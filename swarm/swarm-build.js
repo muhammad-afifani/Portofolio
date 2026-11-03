@@ -27,11 +27,12 @@
   if (!autoPlay) unboot();
 
   // ---------------------------------------------------------------- config
-  var NAMES = ['Afi', 'Raka', 'Sinta', 'Dewi', 'Bima', 'Nadia', 'Yoga', 'Laras', 'Fajar', 'Putri',
-    'Arif', 'Maya', 'Dimas', 'Intan', 'Bayu', 'Citra', 'Gilang', 'Rani', 'Eko', 'Wulan',
-    'Tegar', 'Ayu', 'Hana', 'Rizky', 'Sekar', 'Joko', 'Galih', 'Tari'];
-  var COLORS = ['#3B82F6', '#8B5CF6', '#EC4899', '#06B6D4', '#F59E0B', '#10B981', '#EF4444',
-    '#6366F1', '#14B8A6', '#F97316', '#A855F7', '#22C55E', '#0EA5E9', '#E11D48'];
+  var NAMES = ['NEXUS-01', 'ATLS-07', 'RION-09', 'NOVA-11', 'CRTX-13', 'ASTR-21', 'HELX-24', 'VECTR-27',
+    'VNT-31', 'QUANTM-42', 'ECHO-47', 'ZENTH-51', 'LYRA-64', 'AETHR-77', 'OMEGA-99',
+    'KRON-03', 'SOLR-15', 'TITN-18', 'PULS-33', 'FLUX-36', 'IONX-55', 'ORBT-58', 'AXIS-62', 'STRM-70', 'VOLT-81', 'PRSM-88'];
+  // process-stream palette, darkened where needed so white name tags stay readable
+  var COLORS = ['#BF3A22', '#1B5FD1', '#0F7D50', '#8F6100', '#0A7378', '#6D4BC4', '#C2367A', '#2F6FA8',
+    '#B3321D', '#0C7248', '#5B3FA8', '#8A5A00', '#15181D', '#0A6E73'];
   var BLOCK_SELECTOR = 'nav, [data-screen-label]';
 
   var mobile = window.innerWidth < 760;
@@ -801,7 +802,7 @@
     var html = '';
     var shown = agents.filter(function (a) { return a.mode !== 'leave'; }).slice(-5);
     shown.forEach(function (a) {
-      html += '<i style="background:' + a.color + '">' + a.name.charAt(0) + '</i>';
+      html += '<i style="background:' + a.color + '">' + a.name.replace(/[^A-Z]/g, '').charAt(0) + '</i>';
     });
     hudEls.avs.innerHTML = html;
   }
