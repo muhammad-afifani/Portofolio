@@ -70,6 +70,26 @@
       '</div></div>';
   }
 
+  // Top manway nozzle with a bolted flange, and the support legs, so the portrait reads as a pressure vessel.
+  // Both are drawn behind the vessel shell, so only the parts outside the outline show.
+  function vesselParts() {
+    var bolts = function (y, h) { return [40, 56, 72, 88, 104, 120].map(function (x) { return '<rect x="' + x + '" y="' + y + '" width="6" height="' + h + '" rx="1" fill="#15181D"/>'; }).join(''); };
+    var top = '<svg class="v-top" viewBox="0 0 160 76" aria-hidden="true"><defs><linearGradient id="vs" x1="0" x2="1"><stop offset="0" stop-color="#8F9AA7"/><stop offset=".35" stop-color="#E3E8ED"/><stop offset="1" stop-color="#7D8895"/></linearGradient></defs>' +
+      '<rect x="52" y="30" width="56" height="46" fill="url(#vs)" stroke="#15181D" stroke-width="3"/>' +
+      '<rect x="22" y="10" width="116" height="20" rx="3" fill="url(#vs)" stroke="#15181D" stroke-width="3"/>' + bolts(5, 30) +
+      '<rect x="40" y="2" width="80" height="6" rx="2" fill="#15181D"/></svg>';
+    var legs = '<svg class="v-legs" viewBox="0 0 420 110" aria-hidden="true"><defs><linearGradient id="vl" x1="0" x2="1"><stop offset="0" stop-color="#8F9AA7"/><stop offset=".4" stop-color="#E3E8ED"/><stop offset="1" stop-color="#7D8895"/></linearGradient></defs>' +
+      '<path d="M96 30 L330 86 M326 30 L92 86" stroke="#15181D" stroke-width="2" fill="none" opacity=".55"/>' +
+      [[78, 24], [322, 24]].map(function (l) {
+        return '<rect x="' + l[0] + '" y="0" width="22" height="86" fill="url(#vl)" stroke="#15181D" stroke-width="3"/>' +
+          '<rect x="' + (l[0] - 14) + '" y="86" width="50" height="9" rx="2" fill="#15181D"/>' +
+          '<circle cx="' + (l[0] - 6) + '" cy="90.5" r="2" fill="#F4F1EA"/><circle cx="' + (l[0] + 28) + '" cy="90.5" r="2" fill="#F4F1EA"/>';
+      }).join('') +
+      '<line x1="30" y1="95" x2="390" y2="95" stroke="#15181D" stroke-width="2"/>' +
+      Array.apply(null, Array(24)).map(function (_, k) { return '<line x1="' + (34 + k * 15) + '" y1="95" x2="' + (27 + k * 15) + '" y2="104" stroke="#4A515C" stroke-width="1.5"/>'; }).join('') + '</svg>';
+    return top + legs;
+  }
+
   function heroHTML() {
     var stats = D.stats.map(function (s, i) {
       var cls = ['s-amber', 's-energy', 's-cold', 's-hot'][i];
@@ -84,7 +104,7 @@
       '<a class="btn btn-line dl" href="assets/CV_Muhammad_Afifani_Romadhan.pdf" download>' + esc(strip(U.getCvCta)) + '</a></div>' +
       '<ul class="hero-tags" aria-label="' + esc(U.focusAreasLabel) + '">' + D.heroTags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
       '</div>' +
-      '<div class="portrait"><div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
+      '<div class="portrait">' + vesselParts() + '<div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
       '<span class="nozzle n1" aria-hidden="true"></span><span class="nozzle n2" aria-hidden="true"></span>' +
       '<div class="callout c2"><b>' + esc(U.nowLabel) + '</b>' + esc(U.nowValue) + '</div>' +
       '<div class="callout c1"><b>' + esc(U.regLabel) + '</b>' + esc(U.regValue) + '</div></div>' +

@@ -132,13 +132,16 @@
     el('line', { x1: 78, y1: 220, x2: 146, y2: 220, stroke: C.ink, 'stroke-width': 1, 'stroke-dasharray': '6 4', opacity: 0.4 }, s);
 
     // nozzles: hot in (top left of shell), hot out (bottom right), cold in (front head bottom), cold out (rear head top)
-    function nozzle(x, y1, y2) {
+    function nozzle(x, y1, y2, w, fw) {
       var top = Math.min(y1, y2), h = Math.abs(y2 - y1);
-      el('rect', { x: x - 17, y: top, width: 34, height: h, fill: C.paper, stroke: C.ink, 'stroke-width': 2.5 }, s);
+      el('rect', { x: x - w / 2, y: top, width: w, height: h, fill: C.paper, stroke: C.ink, 'stroke-width': 2.5 }, s);
       var fy = y1 < y2 ? top : top + h - 6;
-      el('rect', { x: x - 26, y: fy, width: 52, height: 6, fill: C.ink }, s);
+      el('rect', { x: x - fw / 2, y: fy, width: fw, height: 6, fill: C.ink }, s);
     }
-    nozzle(190, 64, 128); nozzle(610, 312, 376); nozzle(105, 312, 376); nozzle(695, 64, 128);
+    // shell nozzles are full size; head nozzles are smaller and sit on the straight part of the heads,
+    // so their base never runs past the curved head outline
+    nozzle(190, 64, 128, 34, 52); nozzle(610, 312, 376, 34, 52);
+    nozzle(128, 312, 366, 24, 34); nozzle(672, 64, 128, 24, 34);
 
     // flow paths
     function shellPath(off) {
@@ -150,7 +153,7 @@
       return sample(p, 500);
     });
     var tubeLuts = TY.map(function (y) {
-      var p = el('path', { d: 'M105,392 L105,330 Q105,' + y + ' 150,' + y + ' L650,' + y + ' Q695,' + y + ' 695,110 L695,48', fill: 'none' }, defs);
+      var p = el('path', { d: 'M128,382 L128,330 Q128,' + y + ' 150,' + y + ' L650,' + y + ' Q672,' + y + ' 672,110 L672,54', fill: 'none' }, defs);
       return sample(p, 500);
     });
 
@@ -174,11 +177,11 @@
       var bar = el('rect', { x: bx, y: y + 16 - 32 * level, width: 7, height: 32 * level, rx: 3.5, fill: color }, gI);
       return bar;
     }
-    ti(150, 50, 0.92, C.hot); ti(660, 396, 0.55, C.hot2); ti(60, 396, 0.18, C.cold, 'end'); ti(740, 50, 0.45, C.cold2);
+    ti(150, 50, 0.92, C.hot); ti(660, 396, 0.55, C.hot2); ti(82, 392, 0.18, C.cold, 'end'); ti(718, 50, 0.45, C.cold2);
     text(s, 216, 46, opt.l_hotIn || 'Hot in', { fill: C.hot, weight: 500 });
     text(s, 584, 410, opt.l_hotOut || 'Hot out', { anchor: 'end', fill: C.hot, weight: 500 });
-    text(s, 132, 410, opt.l_coldIn || 'Cold in', { fill: C.cold, weight: 500 });
-    text(s, 668, 46, opt.l_coldOut || 'Cold out', { anchor: 'end', fill: C.cold2, weight: 500 });
+    text(s, 150, 392, opt.l_coldIn || 'Cold in', { fill: C.cold, weight: 500 });
+    text(s, 650, 78, opt.l_coldOut || 'Cold out', { anchor: 'end', fill: C.cold2, weight: 500 });
     leader(s, 390, 140, 420, 100, opt.l_baffle || 'Segmental baffle');
     leader(s, 470, 260, 500, 352, opt.l_tubes || 'Tube bundle');
     leader(s, 150, 316, 175, 352, opt.l_tubesheet || 'Tubesheet');
