@@ -121,7 +121,16 @@ window.PORTFOLIO = {
    "menu": "Menu",
    "skipToContent": "Skip to content",
    "issueSolutionHint": "Issue, then what I did about it",
-   "figLabel": "Figures"
+   "figLabel": "Figures",
+   "projPhotos": "Simulation results",
+   "pipeMarkers": {
+    "s-hot": "HOT SIDE",
+    "s-cold": "COLD SIDE",
+    "s-energy": "ENERGY",
+    "s-amber": "PIPING · EPC",
+    "s-teal": "CFD",
+    "s-violet": "CERTIFIED"
+   }
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -590,7 +599,27 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/sumbawa-cfd-ceramic-bed.webp",
+      "caption": "Surface contour at the ceramic bed (dynamic viscosity)",
+      "w": 800,
+      "h": 564
+     },
+     {
+      "src": "assets/img/sumbawa-cfd-flow-trajectories.webp",
+      "caption": "Flow trajectories through the inlet nozzle and distributor (velocity, log scale)",
+      "w": 1067,
+      "h": 944
+     },
+     {
+      "src": "assets/img/sumbawa-cfd-velocity-xy.webp",
+      "caption": "Velocity contour on plane XY, flow spreading above the ceramic bed",
+      "w": 960,
+      "h": 809
+     }
+    ]
    },
    {
     "index": "02",
@@ -965,7 +994,16 @@ window.PORTFOLIO = {
    "menu": "Menu",
    "skipToContent": "Langsung ke konten",
    "issueSolutionHint": "Masalah, lalu solusi yang saya lakukan",
-   "figLabel": "Gambar"
+   "figLabel": "Gambar",
+   "projPhotos": "Hasil simulasi",
+   "pipeMarkers": {
+    "s-hot": "SISI PANAS",
+    "s-cold": "SISI DINGIN",
+    "s-energy": "ENERGI",
+    "s-amber": "PIPING · EPC",
+    "s-teal": "CFD",
+    "s-violet": "SERTIFIKASI"
+   }
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1434,7 +1472,27 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/sumbawa-cfd-ceramic-bed.webp",
+      "caption": "Kontur permukaan pada ceramic bed (viskositas dinamis)",
+      "w": 800,
+      "h": 564
+     },
+     {
+      "src": "assets/img/sumbawa-cfd-flow-trajectories.webp",
+      "caption": "Lintasan aliran melalui nozzle inlet dan distributor (kecepatan, skala log)",
+      "w": 1067,
+      "h": 944
+     },
+     {
+      "src": "assets/img/sumbawa-cfd-velocity-xy.webp",
+      "caption": "Kontur kecepatan pada bidang XY, aliran menyebar di atas ceramic bed",
+      "w": 960,
+      "h": 809
+     }
+    ]
    },
    {
     "index": "02",
