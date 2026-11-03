@@ -1,39 +1,49 @@
-# Portofolio — Muhammad Afifani Romadhan
+# Portofolio · Muhammad Afifani Romadhan
 
-Static portfolio site (GitHub Pages) with a **swarm build** effect: a crowd of
-multiplayer-style cursors builds the page as you scroll. They draw selection
-boxes, type text, drop in images and duplicate cards, and idle cursors flock
-around your mouse.
+Static portfolio site (GitHub Pages). Light "process datasheet" design with animated
+engineering drawings, EN/ID language switch, and a **swarm build**: a crowd of named
+cursors (NEXUS-01, ATLS-07, ...) builds the page as you scroll.
 
 ## Structure
 
 ```
-index.html                  page template (rendered by the dc runtime)
+index.html                     page shell (nav, main, lightbox)
 assets/
-  img/                      photos, logos, case-study figures
-  fonts/                    JetBrains Mono, Plus Jakarta Sans, Space Grotesk (woff2)
-  js/dc-runtime.js          template runtime (renders {{ }} bindings, EN/ID toggle, …)
-  js/image-slot.js          <image-slot> component used for photos
-  js/react*.min.js          React 18 (local copy, no CDN needed)
+  js/data.js                   ALL content, English + Indonesian (edit this to update the site)
+  js/main.js                   renders the sections, language switch, tabs, project explorer, lightbox
+  js/illustrations.js          animated SVG drawings (heat exchanger, pressure vessel + FEM, emission, piping)
+  css/style.css                design tokens, layout, responsive rules
+  fonts/                       Bricolage Grotesque, Instrument Sans, IBM Plex Mono (woff2, self-hosted)
+  img/                         photos, logos, case-study figures (webp)
+  CV_Muhammad_Afifani_Romadhan.pdf
 swarm/
-  swarm-build.js            swarm-cursor build engine
-  swarm-build.css           cursor / selection box / HUD styles
-.image-slots.state.json     empty sidecar read by image-slot.js
-.nojekyll                   serve files as-is on GitHub Pages
+  swarm-build.js / .css        swarm-cursor build engine and its HUD
 ```
 
-Content (texts in EN and ID, jobs, case studies, certificates) lives in the
-`class Component` script near the end of `index.html`.
+## Editing content
 
-## Swarm build
+Everything visible comes from `assets/js/data.js`, in two blocks: `en` and `id`.
 
-- Plays automatically on load. The HUD at the bottom has speed (1×/2×/3×),
-  **Skip**, **↻ Replay** and **✕** (hide cursors).
-- If the visitor's device has *reduce motion* turned on, the page shows up
-  finished, with a **▶ Play swarm build** button instead.
-- URL switches: `?swarm=on` always auto-plays, `?swarm=off` disables it.
-- Tune cursor count, names, colours and timing at the top of
-  `swarm/swarm-build.js`.
+- **Freelance projects**: `projectLog`. Each project has `client`, `project`, `scope`, `role`,
+  `discipline` (`cfd`, `fem`, `mech`, `hx`, `plan`: picks the colour and the animated drawing),
+  `date` and `link`. The detail panel shows "write-up coming soon" and two photo slots until
+  you add the real write-up.
+- **Jobs**: `timeline` (bullets, `duties`, problems & solutions, photos).
+- **Case studies**: `caseStudies` (steps, metrics, figures).
+- Replace `assets/CV_Muhammad_Afifani_Romadhan.pdf` to update the CV, and
+  `assets/img/cv-page-1.webp` for its preview image.
+
+## Colour means something
+
+Each colour is a process stream, and a section takes the colour of what it talks about:
+red = hot side / stress, blue = cold side, green = energy, amber = piping / EPC,
+teal = CFD, violet = certification.
+
+## Motion
+
+- The pause button in the nav stops every animation (remembered per visitor).
+- Visitors with *reduce motion* on get still drawings and a "Play swarm build" button.
+- URL switches: `?swarm=off` disables the swarm, `?swarm=on` always auto-plays it.
 
 ## Run locally
 
@@ -41,8 +51,3 @@ Content (texts in EN and ID, jobs, case studies, certificates) lives in the
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
-
-## CV download
-
-The "Download CV" buttons point to `assets/CV_Muhammad_Afifani_Romadhan.pdf`.
-Upload the PDF there with that exact name.
