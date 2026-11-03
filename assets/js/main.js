@@ -223,14 +223,20 @@
     var p = D.projectLog[i];
     var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
     return '<div class="proj ' + DISC[p.discipline] + '"><div><div class="proj-il" data-mini="' + p.discipline + '"></div>' +
-      '<div class="slots"><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div></div></div>' +
+      (p.photos && p.photos.length ? ''
+        : '<div class="slots"><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div></div>') + '</div>' +
       '<div><p class="proj-n">' + esc(p.index) + ' / ' + D.projectLog.length + ' · ' + esc(U['disc_' + p.discipline]) + '</p><h3>' + esc(p.project) + '</h3>' +
       '<dl><dt>' + esc(U.projClient) + '</dt><dd><a class="link ext" href="' + esc(p.companyUrl) + '" target="_blank" rel="noopener">' + esc(p.client) + '</a></dd>' +
       '<dt>' + esc(U.projScope) + '</dt><dd>' + esc(p.scope) + '</dd>' +
       '<dt>' + esc(U.projRole) + '</dt><dd>' + esc(p.role) + '</dd>' +
       '<dt>' + esc(U.projDate) + '</dt><dd>' + esc(p.date) + '</dd></dl>' +
       '<div class="proj-links">' + ext(p.link, U.referenceLabel) + (p.anchor ? '<a class="link" href="' + esc(p.anchorHref) + '">' + esc(U.projCaseLink) + '</a>' : '') + '</div>' +
-      '<div class="soon"><b>' + esc(U.projWriteup) + '</b><p>' + esc(U.projWriteupSoon) + '</p></div></div></div>';
+      '<div class="soon"><b>' + esc(U.projWriteup) + '</b><p>' + esc(U.projWriteupSoon) + '</p></div></div>' +
+      (p.photos && p.photos.length
+        ? '<div class="proj-shots"><p class="photos-label">' + esc(U.projPhotos) + '</p><div class="shots">' + p.photos.map(function (ph) {
+            return '<figure>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '<figcaption>' + esc(ph.caption) + '</figcaption></figure>';
+          }).join('') + '</div></div>'
+        : '') + '</div>';
   }
 
   function seal() {
@@ -333,8 +339,55 @@
     main.innerHTML = heroHTML() + aboutHTML() + servicesHTML() + timelineHTML() +
       section('case-studies', 'Case Studies', 'E-04', U.sectionCase, '', 's-hot', D.caseStudies.map(caseHTML).join('')) +
       projectsHTML() + credentialsHTML() + achievementsHTML() + orgEduHTML() + trainingHTML() + resumeHTML() + contactHTML();
+    addPipes();
     wire();
   }
+
+  // ------------------------------------------------------------- process pipe (left gutter)
+  // Each section is a pipe spool: flanged at the joints, a tee branches off to the
+  // section's equipment tag, and an identification band names the stream (ASME A13.1 style).
+  // The flow arrows follow the visitor's scroll direction.
+  function addPipes() {
+    var M = U.pipeMarkers || {};
+    main.querySelectorAll(':scope > section.sec').forEach(function (sec, k) {
+      var stream = (sec.className.match(/\bs-[a-z]+/) || ['s-hot'])[0];
+      if (sec.classList.contains('contact')) stream = 's-amber';
+      var pipe = document.createElement('div');
+      pipe.className = 'pipe ' + stream;
+      pipe.setAttribute('aria-hidden', 'true');
+      pipe.innerHTML = '<i class="pipe-body"></i>' + (k ? '<i class="flange"></i>' : '<i class="inlet"></i>') +
+        '<i class="branch"><i class="branch-flange"></i></i>' +
+        '<span class="marker"><b>' + esc(M[stream] || '') + '</b><i class="marker-arrow"></i></span>';
+      sec.insertBefore(pipe, sec.firstChild);
+    });
+    layoutPipes();
+  }
+  function layoutPipes() {
+    main.querySelectorAll('.pipe').forEach(function (pipe) {
+      var sec = pipe.parentNode, tag = sec.querySelector('.tag'), br = pipe.querySelector('.branch'), mk = pipe.querySelector('.marker');
+      var pr = pipe.getBoundingClientRect(), sr = sec.getBoundingClientRect();
+      if (!pr.width) return;
+      if (tag) {
+        var tr = tag.getBoundingClientRect();
+        br.style.display = '';
+        br.style.top = (tr.top + tr.height / 2 - sr.top - 6) + 'px';
+        br.style.width = Math.max(0, tr.left - pr.right) + 'px';
+        mk.style.top = (tr.top - sr.top + 90) + 'px';
+      } else {
+        br.style.display = 'none';
+        mk.style.top = '160px';
+      }
+    });
+  }
+  var lastY = window.scrollY;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    if (Math.abs(y - lastY) > 4) { root.classList.toggle('flow-up', y < lastY); lastY = y; }
+  }, { passive: true });
+  var rz;
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(layoutPipes, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layoutPipes(); });
+  window.addEventListener('load', layoutPipes);
 
   var observers = [];
   function wire() {
