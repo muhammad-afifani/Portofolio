@@ -8,7 +8,9 @@
  * cursors building a site" idea (Swarm by Joel Califa, Swarm Rebuild by
  * Dhvanil Patel). No code from either project is used.
  *
- * Disable with ?swarm=off, or by the visitor's prefers-reduced-motion setting.
+ * Visitors with "reduce motion" switched on get the finished page plus a
+ * "Play swarm build" button instead of the automatic build.
+ * URL switches: ?swarm=off (never run), ?swarm=on (always auto-play).
  */
 (function () {
   'use strict';
@@ -17,10 +19,12 @@
   function unboot() { docEl.classList.remove('swarm-boot'); }
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced || /[?&]swarm=off\b/.test(location.search) || !Element.prototype.animate) {
+  if (/[?&]swarm=off\b/.test(location.search) || !Element.prototype.animate) {
     unboot();
     return;
   }
+  var autoPlay = /[?&]swarm=on\b/.test(location.search) || !reduced;
+  if (!autoPlay) unboot();
 
   // ---------------------------------------------------------------- config
   var NAMES = ['Afi', 'Raka', 'Sinta', 'Dewi', 'Bima', 'Nadia', 'Yoga', 'Laras', 'Fajar', 'Putri',
@@ -105,7 +109,7 @@
 
   waitForContent(function (ok) {
     if (!ok) { unboot(); return; }
-    settle(init);
+    settle(function () { init(autoPlay); });
   });
 
   // ------------------------------------------------------------- scan
@@ -278,39 +282,13 @@
   }
 
   // ------------------------------------------------------------- init
-  function init() {
+  function init(play) {
     vw = window.innerWidth; vh = window.innerHeight;
-
-    // Neutralise the page's own fade/blur scroll reveal — the swarm reveals now.
-    document.querySelectorAll('[data-reveal]').forEach(function (el) {
-      el.style.transition = 'none';
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-      el.style.filter = 'none';
-    });
-    void document.body.offsetHeight;
-
-    scan();
-    if (!tasks.length) { unboot(); return; }
-    tasks.forEach(hideEl);
-    unboot();
 
     layer = mk('div', '', document.body);
     layer.id = 'sw-layer';
     layer.setAttribute('aria-hidden', 'true');
     buildHud();
-
-    // intro: cursors orbit a glowing orb in the middle of the screen, then fan out
-    orb = mk('div', 'sw-orb', layer);
-    var cx = window.scrollX + vw / 2, cy = window.scrollY + vh / 2;
-    for (var i = 0; i < BASE_AGENTS; i++) {
-      var ang = (i / BASE_AGENTS) * Math.PI * 2;
-      spawnAgent(cx + Math.cos(ang) * 420, cy + Math.sin(ang) * 300);
-    }
-    setTimeout(function () {
-      building = true;
-      if (orb) { orb.classList.add('out'); setTimeout(function () { orb && orb.remove(); orb = null; }, 600); }
-    }, 1300);
 
     window.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; mouse.t = now(); }, { passive: true });
     document.addEventListener('mouseleave', function () { mouse.t = -1e9; });
@@ -324,6 +302,58 @@
       try { tick(t, dt); } catch (e) { console.warn('[swarm]', e); }
       requestAnimationFrame(frame);
     })();
+
+    if (play) startBuild(true);
+    else hud.classList.add('sw-offer');
+  }
+
+  // (Re)start a build of the whole page. Everything above the viewport is
+  // shown at once; the rest is wiped and rebuilt by the swarm.
+  function startBuild(intro) {
+    vw = window.innerWidth; vh = window.innerHeight;
+    agents.forEach(function (a) { if (a.task) release(a, now()); });
+    tasks.forEach(function (t) { if (t.anim) { try { t.anim.cancel(); } catch (e) { } } t.el.__swTask = null; });
+    tasks = []; blocks = []; visible = [];
+    doneCount = 0; completeAt = 0;
+    building = false;
+    if (hidden) setHidden(false);
+
+    // Neutralise the page's own fade/blur scroll reveal — the swarm reveals now.
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      el.style.transition = 'none';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.filter = 'none';
+    });
+    void document.body.offsetHeight;
+
+    scan();
+    tasks.forEach(hideEl);
+    unboot();
+    hud.classList.remove('sw-offer', 'sw-done');
+    hudEls.layers.innerHTML = '<b class="sw-d">0</b> / <span class="sw-t">0</span> layers';
+    hudEls.d = hud.querySelector('.sw-d');
+    hudEls.t = hud.querySelector('.sw-t');
+
+    var cx = window.scrollX + vw / 2, cy = window.scrollY + vh / 2;
+    var need = BASE_AGENTS - agents.filter(function (a) { return a.mode !== 'leave'; }).length;
+    for (var i = 0; i < need; i++) {
+      if (intro) {
+        var ang = (i / need) * Math.PI * 2;
+        spawnAgent(cx + Math.cos(ang) * 420, cy + Math.sin(ang) * 300);
+      } else {
+        var p = edgePoint();
+        spawnAgent(p.x, p.y);
+      }
+    }
+    if (intro) {
+      // cursors orbit a glowing orb in the middle of the screen, then fan out
+      orb = mk('div', 'sw-orb', layer);
+      setTimeout(function () {
+        building = true;
+        if (orb) { orb.classList.add('out'); setTimeout(function () { orb && orb.remove(); orb = null; }, 600); }
+      }, 1300);
+    } else building = true;
   }
 
   // ------------------------------------------------------------- scheduling
@@ -386,6 +416,7 @@
   function tick(t, dt) {
     var sx = window.scrollX, sy = window.scrollY;
 
+    if (!layer) return;
     if (building && !hidden && t - lastScan > 140) {
       lastScan = t;
       refreshVisible(t);
@@ -722,6 +753,8 @@
       '<div class="sw-bar"><i></i></div>' +
       '<button type="button" class="sw-speed" aria-label="Build speed">1×</button>' +
       '<button type="button" class="sw-skip">Skip</button>' +
+      '<button type="button" class="sw-replay">↻ Replay</button>' +
+      '<button type="button" class="sw-play">▶ Play swarm build</button>' +
       '<button type="button" class="sw-hide" aria-label="Hide cursors">✕</button>';
     hudEls.avs = hud.querySelector('.sw-avs');
     hudEls.n = hud.querySelector('.sw-n');
@@ -737,7 +770,13 @@
       hudEls.speed.textContent = userSpeed + '×';
     });
     hudEls.skip.addEventListener('click', function () { revealAll(); });
-    hudEls.hide.addEventListener('click', function () { setHidden(!hidden); });
+    hudEls.hide.addEventListener('click', function () {
+      if (hud.classList.contains('sw-offer')) { hud.remove(); return; }
+      setHidden(!hidden);
+    });
+    hudEls.play = hud.querySelector('.sw-play');
+    hudEls.play.addEventListener('click', function () { startBuild(true); });
+    hud.querySelector('.sw-replay').addEventListener('click', function () { startBuild(false); });
   }
 
   var lastHud = 0;
@@ -749,13 +788,11 @@
     hudEls.d.textContent = doneCount;
     hudEls.t.textContent = tasks.length;
     hudEls.bar.style.width = (tasks.length ? doneCount / tasks.length * 100 : 0).toFixed(1) + '%';
-    var complete = doneCount >= tasks.length;
+    var complete = tasks.length > 0 && doneCount >= tasks.length;
     if (complete && !completeAt) {
       completeAt = t;
       hud.classList.add('sw-done');
       hudEls.layers.innerHTML = '<b>Built</b> ✓';
-      hudEls.skip.style.display = 'none';
-      hudEls.speed.style.display = 'none';
     }
   }
 
