@@ -166,14 +166,18 @@ ul, ol { margin: 0; padding: 0; }
 .hero-tags { display: flex; flex-wrap: wrap; gap: 4px 0; margin-top: 34px; list-style: none; font-size: 14.5px; color: var(--ink-2); }
 .hero-tags li + li::before { content: '/'; margin: 0 10px; color: var(--line-2); }
 
-.portrait { position: relative; justify-self: center; width: min(100%, 420px); }
-.vessel { position: relative; border: 3px solid var(--ink); border-radius: 50% / 16%; overflow: hidden; aspect-ratio: 786 / 900; background: var(--cold-tint); }
+.portrait { position: relative; justify-self: center; width: min(100%, 420px); margin: 64px 0 76px; }
+.v-top, .v-legs { position: absolute; pointer-events: none; display: block; }
+/* anchored to the vessel's own edges so they stay attached at every width */
+.v-top { left: 50%; width: 38%; height: auto; bottom: 100%; transform: translate(-50%, 10%); }
+.v-legs { left: 0; width: 100%; height: auto; top: 100%; transform: translateY(-30%); }
+.vessel { z-index: 1; position: relative; border: 3px solid var(--ink); border-radius: 50% / 16%; overflow: hidden; aspect-ratio: 786 / 900; background: var(--cold-tint); }
 .vessel img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
 .nozzle { position: absolute; width: 44px; height: 22px; border: 3px solid var(--ink); background: var(--sheet); }
 .nozzle::after { content: ''; position: absolute; top: -9px; bottom: -9px; width: 6px; background: var(--ink); }
 .nozzle.n1 { left: -44px; top: 30%; border-right: 0; } .nozzle.n1::after { left: -6px; }
 .nozzle.n2 { right: -44px; top: 62%; border-left: 0; } .nozzle.n2::after { right: -6px; }
-.callout { position: absolute; background: var(--sheet); border: 1.5px solid var(--ink); border-radius: var(--r-s); padding: 9px 12px; font-size: 13.5px; line-height: 1.35; max-width: 220px; }
+.callout { z-index: 2; position: absolute; background: var(--sheet); border: 1.5px solid var(--ink); border-radius: var(--r-s); padding: 9px 12px; font-size: 13.5px; line-height: 1.35; max-width: 220px; }
 .callout b { display: block; font: 500 11.5px/1.4 var(--font-m); color: var(--ink-2); }
 .callout.c1 { left: -70px; bottom: 16%; }
 .callout.c2 { right: -56px; top: -2%; }
@@ -223,7 +227,7 @@ ul, ol { margin: 0; padding: 0; }
 .panel[hidden] { display: none; }
 .il { width: 100%; aspect-ratio: 820 / 440; }
 .il-svg { width: 100%; height: 100%; display: block; }
-.hx-modes { position: absolute; right: 22px; top: 22px; }
+.hx-modes { display: flex; width: max-content; margin: 0 0 10px auto; }
 .hx-shellflow, .hx-tubeflow { transition: opacity .4s; }
 
 /* ---------------------------------------------------------------- experience */
@@ -483,7 +487,7 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
   .job-photos { position: static; }
   .job-head { grid-template-columns: 1fr; }
   .co-link { justify-self: start; }
-  .portrait { width: min(80%, 380px); margin-top: 20px; }
+  .portrait { width: min(80%, 380px); margin-top: 76px; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
   .stats li:nth-child(3) { border-left: 0; padding-left: 0; }
   .certs { grid-template-columns: 1fr; }
@@ -510,7 +514,6 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
   .nozzle { display: none; }
   .facts { grid-template-columns: 1fr 1fr; }
   .stage-sheet { padding: 8px; border-radius: var(--r-m); }
-  .hx-modes { position: static; margin: 0 0 8px; }
   .duty-groups, .design-facts { grid-template-columns: 1fr; }
   .issue-h { display: none; }
   .issue { grid-template-columns: 28px 1fr; }
