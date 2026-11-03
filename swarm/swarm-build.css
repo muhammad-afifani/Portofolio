@@ -62,3 +62,14 @@ html.swarm-boot [data-screen-label] { opacity: 0; animation: swFailsafe .01s lin
   .sw-hud { gap: 8px; bottom: 12px; font-size: 10.5px; padding-left: 10px; }
   .sw-bar, .sw-avs { display: none; }
 }
+
+/* HUD modes: building (default) · done (replay) · offer (reduce-motion visitors: opt-in play) */
+.sw-hud .sw-play, .sw-hud .sw-replay { display: none; }
+.sw-hud.sw-done .sw-speed, .sw-hud.sw-done .sw-skip { display: none; }
+.sw-hud.sw-done .sw-replay { display: inline-block; }
+.sw-hud.sw-offer { padding-left: 6px; }
+.sw-hud.sw-offer > * { display: none !important; }
+.sw-hud.sw-offer .sw-play, .sw-hud.sw-offer .sw-hide { display: inline-block !important; }
+.sw-hud .sw-play { background: linear-gradient(90deg, #3B82F6, #8B5CF6); color: #fff; font-weight: 600; }
+.sw-hud .sw-play:hover { background: linear-gradient(90deg, #60a5fa, #a78bfa); }
+.sw-hud.sw-min .sw-replay { display: none !important; }
