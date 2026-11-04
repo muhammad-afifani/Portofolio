@@ -49,7 +49,7 @@
     { kind: 'emis', stream: 's-energy', sheet: 'ISO 50001 · PPPU' },
     { kind: 'pipe', stream: 's-amber', sheet: 'ISO · RFID spool tracking' }
   ];
-  var DISC = { cfd: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
+  var DISC = { cfd: 's-teal', slosh: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
   var FOCUS_STYLE = [ // P&ID line types, one per focus area
     ['solid', '--hot'], ['dash', '--cold'], ['solid', '--amber'], ['dot', '--ink'], ['dash', '--energy'], ['solid', '--energy'], ['dot', '--violet']
   ];
@@ -255,6 +255,7 @@
       '<div class="soon"><b>' + esc(U.projWriteup) + '</b><p>' + esc(U.projWriteupSoon) + '</p></div></div>' +
       (p.photos && p.photos.length
         ? '<div class="proj-shots"><p class="photos-label">' + esc(p.photosLabel || U.projPhotos) + '</p><div class="shots">' + p.photos.map(function (ph) {
+            if (ph.soon) return '<figure><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div><figcaption>' + esc(ph.caption) + '</figcaption></figure>';
             return '<figure' + (ph.fit === 'contain' ? ' class="doc"' : '') + '>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '<figcaption>' + esc(ph.caption) + '</figcaption></figure>';
           }).join('') + '</div></div>'
         : '') + '</div>';
@@ -488,7 +489,11 @@
       nodes.forEach(function (n, k) { n.setAttribute('aria-pressed', String(k === i)); if (k === i && focus) n.focus(); });
       detail.innerHTML = projectDetail(i);
       var m = detail.querySelector('[data-mini]');
-      IL.mount(m, m.dataset.mini, { label: D.projectLog[i].scope });
+      var mt = lang === 'id'
+        ? { l_in: 'Fluida sumur', l_gas: 'Gas ke flare', l_oil: 'Minyak', l_wat: 'Air ke OWTU' }
+        : { l_in: 'Well fluid', l_gas: 'Gas to flare', l_oil: 'Oil', l_wat: 'Water to OWTU' };
+      mt.label = D.projectLog[i].scope;
+      IL.mount(m, m.dataset.mini, mt);
       wireLightbox(detail);
     }
     nodes.forEach(function (n, i) {

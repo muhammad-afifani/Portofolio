@@ -28,7 +28,7 @@ window.PORTFOLIO = {
    "getCvCta": "Get my CV",
    "fieldDocLabel": "Field documentation",
    "field1Placeholder": "Campaign Finish Storage at Acid Plant",
-   "field2Placeholder": "Pipe erection & welding inspection",
+   "field2Placeholder": "Pipe spool lifting & installation",
    "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Drop activity photo",
    "sectionAbout": "About",
@@ -131,7 +131,8 @@ window.PORTFOLIO = {
     "s-teal": "CFD",
     "s-violet": "CERTIFIED"
    },
-   "openFull": "Open full size"
+   "openFull": "Open full size",
+   "disc_slosh": "CFD sloshing"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -704,7 +705,22 @@ window.PORTFOLIO = {
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/amman-fem-nozzle-3d.webp",
+      "caption": "Von Mises stress on the nozzle, 3D view",
+      "w": 1280,
+      "h": 968
+     },
+     {
+      "src": "assets/img/amman-fem-nozzle-section.webp",
+      "caption": "Von Mises stress on the nozzle, section view",
+      "w": 800,
+      "h": 585
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "06",
@@ -730,7 +746,23 @@ window.PORTFOLIO = {
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Surface temperature distribution on the tube bundle, 3D view",
+      "w": 1280,
+      "h": 868
+     },
+     {
+      "src": "assets/img/antam-hx-tube-temp-front.webp",
+      "caption": "Surface temperature distribution on the tube bundle, front view",
+      "w": 1280,
+      "h": 831,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "08",
@@ -742,8 +774,22 @@ window.PORTFOLIO = {
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
-    "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "discipline": "slosh",
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/medco-ko-drum-sloshing.webp",
+      "caption": "Liquid sloshing simulation in the KO drum (t = 15 s)",
+      "w": 1128,
+      "h": 684,
+      "fit": "contain"
+     },
+     {
+      "soon": true,
+      "caption": "Fabricated vessel photo coming soon"
+     }
+    ],
+    "photosLabel": "Project visuals"
    }
   ],
   "certifications": [
@@ -934,7 +980,7 @@ window.PORTFOLIO = {
    "getCvCta": "Ambil CV saya",
    "fieldDocLabel": "Dokumentasi lapangan",
    "field1Placeholder": "Campaign Finish Storage at Acid Plant",
-   "field2Placeholder": "Erection pipa & inspeksi welding",
+   "field2Placeholder": "Pengangkatan & instalasi pipe spool",
    "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Taruh foto kegiatan",
    "sectionAbout": "Tentang",
@@ -1037,7 +1083,8 @@ window.PORTFOLIO = {
     "s-teal": "CFD",
     "s-violet": "SERTIFIKASI"
    },
-   "openFull": "Buka ukuran penuh"
+   "openFull": "Buka ukuran penuh",
+   "disc_slosh": "CFD sloshing"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1610,7 +1657,22 @@ window.PORTFOLIO = {
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/amman-fem-nozzle-3d.webp",
+      "caption": "Tegangan von Mises pada nozzle, tampilan 3D",
+      "w": 1280,
+      "h": 968
+     },
+     {
+      "src": "assets/img/amman-fem-nozzle-section.webp",
+      "caption": "Tegangan von Mises pada nozzle, tampilan potongan",
+      "w": 800,
+      "h": 585
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "06",
@@ -1636,7 +1698,23 @@ window.PORTFOLIO = {
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Distribusi temperatur permukaan pada tube bundle, tampilan 3D",
+      "w": 1280,
+      "h": 868
+     },
+     {
+      "src": "assets/img/antam-hx-tube-temp-front.webp",
+      "caption": "Distribusi temperatur permukaan pada tube bundle, tampak depan",
+      "w": 1280,
+      "h": 831,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "08",
@@ -1648,8 +1726,22 @@ window.PORTFOLIO = {
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
-    "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "discipline": "slosh",
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/medco-ko-drum-sloshing.webp",
+      "caption": "Simulasi sloshing liquid di KO drum (t = 15 s)",
+      "w": 1128,
+      "h": 684,
+      "fit": "contain"
+     },
+     {
+      "soon": true,
+      "caption": "Foto vessel hasil fabrikasi segera hadir"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    }
   ],
   "certifications": [

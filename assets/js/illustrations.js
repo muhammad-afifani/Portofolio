@@ -636,6 +636,68 @@
         hd.forEach(function (d) { d.u = (d.u + dt * 0.12) % 1; var p = at(hl, d.u); d.el.setAttribute('cx', p[0]); d.el.setAttribute('cy', p[1]); d.el.setAttribute('fill', mix(C.hot, C.hot2, d.u)); });
         cd.forEach(function (d) { d.u = (d.u + dt * 0.18) % 1; d.el.setAttribute('cx', 40 + d.u * 280); d.el.setAttribute('cy', d.y); d.el.setAttribute('fill', mix(C.cold, C.cold2, d.u)); });
       };
+    } else if (kind === 'slosh') {
+      // Vertical three-phase separator on an FPSO deck. Well fluid enters, gas leaves the top to the flare,
+      // oil is drawn off the middle, water leaves the bottom to the OWTU. The hull's roll makes the liquid
+      // slosh, and the level transmitter on the bridle sees the level swing past its high-level alarm.
+      var dfs = el('defs', null, s), cid = id('sep');
+      var VD = 'M120,46 A40,16 0 0 1 200,46 L200,190 A40,16 0 0 1 120,190 Z';
+      el('path', { d: VD }, el('clipPath', { id: cid }, dfs));
+      function pipe(d, color) {
+        el('path', { d: d, stroke: C.ink, 'stroke-width': 8, fill: 'none', 'stroke-linejoin': 'round' }, s);
+        el('path', { d: d, stroke: color, 'stroke-width': 4.5, fill: 'none', 'stroke-linejoin': 'round' }, s);
+        var p = el('path', { d: d, fill: 'none' }, dfs);
+        return sample(p, 160);
+      }
+      var lIn = pipe('M6,84 L120,84', '#D8C9A6');
+      var lGas = pipe('M160,32 L160,14 L354,14', '#CBD2DA');
+      var lOil = pipe('M200,150 L354,150', '#F6D58A');
+      var lWat = pipe('M160,204 L160,226 L354,226', '#A9CBF3');
+      pipe('M120,104 L104,104 L104,182 L120,182', '#CBD2DA'); // level bridle
+      el('path', { d: VD, fill: '#F3F5F8' }, s);
+      var gL = el('g', { 'clip-path': 'url(#' + cid + ')' }, s);
+      var oil = el('path', { fill: '#F3C664' }, gL), wat = el('path', { fill: '#86B7EF' }, gL);
+      var bub = [];
+      for (var bb = 0; bb < 9; bb++) bub.push({ el: el('circle', { r: 2, fill: '#fff', stroke: C.steelD, 'stroke-width': .8 }, gL), u: Math.random(), x: 138 + Math.random() * 50 });
+      el('path', { d: 'M128,70 L142,70 L142,102', stroke: C.steelD, 'stroke-width': 3, fill: 'none' }, s); // inlet diverter
+      el('rect', { x: 128, y: 50, width: 64, height: 9, fill: 'none', stroke: C.ink2, 'stroke-width': 1, 'stroke-dasharray': '2 2' }, s); // mist pad
+      el('path', { d: VD, fill: 'none', stroke: C.ink, 'stroke-width': 2.5 }, s);
+      // level transmitter + its reading
+      el('line', { x1: 104, y1: 143, x2: 95, y2: 143, stroke: C.ink, 'stroke-width': 1.5 }, s);
+      el('circle', { cx: 84, cy: 143, r: 11, fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, s);
+      text(s, 84, 147, 'LT', { anchor: 'middle', size: 9.5, fill: C.ink, weight: 500 });
+      var LAH = 114;
+      el('rect', { x: 54, y: 100, width: 9, height: 90, rx: 2, fill: '#E6E0D3' }, s);
+      var bar = el('rect', { x: 54, y: 120, width: 9, height: 70, rx: 2, fill: C.energy }, s);
+      el('line', { x1: 49, y1: LAH, x2: 68, y2: LAH, stroke: C.hot, 'stroke-width': 1.5, 'stroke-dasharray': '3 2' }, s);
+      var lah = text(s, 47, LAH + 3, 'LAH', { anchor: 'end', size: 9.5, fill: C.hot, weight: 500 });
+      text(s, 6, 76, opt.l_in || 'Well fluid', { size: 10, fill: C.ink, weight: 500 });
+      text(s, 354, 30, opt.l_gas || 'Gas to flare', { anchor: 'end', size: 10, fill: C.ink2, weight: 500 });
+      text(s, 354, 143, opt.l_oil || 'Oil', { anchor: 'end', size: 10, fill: '#8A5A00', weight: 500 });
+      text(s, 354, 219, opt.l_wat || 'Water to OWTU', { anchor: 'end', size: 10, fill: C.cold, weight: 500 });
+      var sea = el('path', { fill: 'none', stroke: C.cold, 'stroke-width': 1.6, opacity: .45 }, s);
+      function flow(lut, n, colors) { var a = []; for (var q = 0; q < n; q++) a.push({ el: el('circle', { r: 2.6, fill: colors[q % colors.length] }, s), u: q / n, lut: lut }); return a; }
+      var dots = flow(lIn, 9, ['#E3A008', C.cold, '#8C96A3']).concat(flow(lGas, 7, ['#8C96A3']), flow(lOil, 6, ['#C98A00']), flow(lWat, 6, [C.cold]));
+      function surf(x, t) { return 122 + (x - 160) * 0.3 * Math.sin(t * 1.3) + 2.5 * Math.sin(x * 0.16 - t * 3.2); }
+      function intf(x, t) { return 162 + (x - 160) * 0.18 * Math.sin(t * 1.3 - 0.5) + 1.6 * Math.sin(x * 0.12 - t * 2.4 + 1); }
+      function layer(f, t) { var d = ''; for (var x = 116; x <= 204; x += 4) d += (x === 116 ? 'M' : 'L') + x + ',' + f(x, t).toFixed(1); return d + ' L204,214 L116,214 Z'; }
+      upd = function (tt, dt) {
+        oil.setAttribute('d', layer(surf, tt)); wat.setAttribute('d', layer(intf, tt));
+        var lvl = surf(121, tt);
+        bar.setAttribute('y', lvl.toFixed(1)); bar.setAttribute('height', (190 - lvl).toFixed(1));
+        var hi = lvl < LAH;
+        bar.setAttribute('fill', hi ? C.hot : C.energy);
+        lah.style.opacity = hi ? 1 : 0.45;
+        var sd = ''; for (var x = 0; x <= 360; x += 8) sd += (x ? 'L' : 'M') + x + ',' + (236 + 2.5 * Math.sin(x * 0.05 - tt * 1.3)).toFixed(1);
+        sea.setAttribute('d', sd);
+        dots.forEach(function (d) { d.u = (d.u + dt * 0.35) % 1; var p = at(d.lut, d.u); d.el.setAttribute('cx', p[0]); d.el.setAttribute('cy', p[1]); });
+        bub.forEach(function (b) {
+          b.u = (b.u + dt * 0.4) % 1;
+          var top = surf(b.x, tt), y = intf(b.x, tt) - b.u * (intf(b.x, tt) - top);
+          b.el.setAttribute('cx', (b.x + Math.sin(b.u * 9) * 2).toFixed(1)); b.el.setAttribute('cy', y.toFixed(1));
+          b.el.setAttribute('opacity', (1 - b.u).toFixed(2));
+        });
+      };
     } else { // plan: gantt bars growing + critical path
       var rows = [[20, 120], [70, 110], [150, 90], [120, 120], [210, 100]];
       var bars = rows.map(function (r, i) {

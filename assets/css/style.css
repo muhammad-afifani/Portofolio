@@ -359,6 +359,7 @@ details.duties[open] summary::before { content: '\2212'; }
 .proj-shots { grid-column: 1 / -1; padding-top: 20px; border-top: 1px dashed var(--line-2); }
 .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
 .shots .doc img { object-fit: contain; background: #fff; }
+.shots .slot { aspect-ratio: 4 / 3; }
 .shots figure { margin: 0; }
 @media (max-width: 640px) { .shots { grid-template-columns: 1fr; } }
 .shots button { border: 1.5px solid var(--line-2); border-radius: var(--r-m); padding: 0; background: #fff; overflow: hidden; display: block; width: 100%; transition: border-color .2s, transform .2s; }
