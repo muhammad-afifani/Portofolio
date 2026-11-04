@@ -467,54 +467,119 @@
   }
 
   // ------------------------------------------------------------ PIPING ISOMETRIC + S-CURVE
+  // Red-oxide primed spools on a steel pipe rack, drawn isometrically with cylinder shading,
+  // flanged spool breaks, a gate valve on the branch and weld bands that go
+  // pending -> welded -> NDE accepted, while RFID tags on each spool ping.
   function piping(host, opt) {
     opt = opt || {};
-    var s = svgRoot(host, '0 0 820 440', 'Isometric piping spools whose weld joints progress from pending to welded to NDE accepted, tracked with RFID tags and an S-curve of plan against actual progress');
-    // 3D route (units), projected isometrically, then fitted into the left half
-    var route = [[0, 0, 2.6], [7, 0, 2.6], [7, 0, 0], [7, 6, 0], [13, 6, 0], [13, 6, 2.6], [13, 11, 2.6]];
-    var branch = [[3.5, 0, 2.6], [3.5, 0, 5], [3.5, -4, 5]];
+    var s = svgRoot(host, '0 0 820 440', 'Isometric piping spools on a pipe rack whose weld joints progress from pending to welded to NDE accepted, tracked with RFID tags and an S-curve of plan against actual progress');
+    var defs = el('defs', null, s);
+    var PR = { base: '#B5563A', dark: '#6E2E1C', light: '#E7A184' };   // red-oxide primer
+    var ST = { base: '#9AA5B1', dark: '#55606C', light: '#DCE2E8' };   // galvanised steel
+
+    var main = [[0, 0, 3], [10, 0, 3], [10, 6, 3], [10, 6, 0.7], [16, 6, 0.7]];
+    var branch = [[5, 0, 3], [5, 0, 5.6]];
     function P(p) { return [(p[0] - p[1]) * 0.866, (p[0] + p[1]) * 0.5 - p[2]]; }
-    var all = route.concat(branch).map(P);
-    var minX = Math.min.apply(null, all.map(function (p) { return p[0]; })), maxX = Math.max.apply(null, all.map(function (p) { return p[0]; }));
-    var minY = Math.min.apply(null, all.map(function (p) { return p[1]; })), maxY = Math.max.apply(null, all.map(function (p) { return p[1]; }));
-    var sc = Math.min(400 / (maxX - minX), 290 / (maxY - minY));
-    var ox = 40 + (400 - (maxX - minX) * sc) / 2, oy = 70 + (290 - (maxY - minY) * sc) / 2;
+    var box = [[-0.6, -1.8, 0], [16.6, -1.8, 0], [16.6, 7.4, 0], [-0.6, 7.4, 0], [0, 0, 6]].map(P);
+    var minX = Math.min.apply(null, box.map(function (p) { return p[0]; })), maxX = Math.max.apply(null, box.map(function (p) { return p[0]; }));
+    var minY = Math.min.apply(null, box.map(function (p) { return p[1]; })), maxY = Math.max.apply(null, box.map(function (p) { return p[1]; }));
+    var sc = Math.min(420 / (maxX - minX), 320 / (maxY - minY));
+    var ox = 30 + (420 - (maxX - minX) * sc) / 2, oy = 50 + (320 - (maxY - minY) * sc) / 2;
     function F(p) { var q = P(p); return [ox + (q[0] - minX) * sc, oy + (q[1] - minY) * sc]; }
-    function poly(r) { return r.map(function (p, i) { var q = F(p); return (i ? 'L' : 'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); }
-    [route, branch].forEach(function (r) {
-      el('path', { d: poly(r), stroke: C.ink, 'stroke-width': 17, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, s);
-      el('path', { d: poly(r), stroke: '#B7C1CC', 'stroke-width': 12, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, s);
-      el('path', { d: poly(r), stroke: '#E7ECF1', 'stroke-width': 3, fill: 'none', 'stroke-linejoin': 'round', transform: 'translate(-2,-3)' }, s);
+    function lerp3(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+    function pts(r) { return r.map(function (p, i) { var q = F(p); return (i ? 'L' : 'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); }
+    function ang(a, b) { var A = F(a), B = F(b); return Math.atan2(B[1] - A[1], B[0] - A[0]) * 180 / Math.PI; }
+
+    // deck plate
+    var deck = [[-0.6, -1.8, 0], [16.6, -1.8, 0], [16.6, 7.4, 0], [-0.6, 7.4, 0]].map(F);
+    el('path', { d: 'M' + deck.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' L') + ' Z', fill: '#EEE9DD', stroke: C.line, 'stroke-width': 1.5 }, s);
+
+    // soft shadows of the spools on the deck
+    [main, branch].forEach(function (r) {
+      el('path', { d: pts(r.map(function (p) { return [p[0] + 0.35, p[1] + 0.35, 0]; })), stroke: 'rgba(21,24,29,.10)', 'stroke-width': 16, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, s);
     });
-    // supports under horizontal runs
-    [[10, 6, 0], [7, 3, 0]].forEach(function (p) {
-      var q = F(p);
-      el('path', { d: 'M' + q[0] + ',' + (q[1] + 9) + ' l-9,16 l18,0 Z', fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, s);
+    // steel members (rack + sleeper) drawn as shaded bars
+    function bar(a, b, w, col) {
+      var d = pts([a, b]);
+      el('path', { d: d, stroke: C.ink, 'stroke-width': w + 3, 'stroke-linecap': 'square' }, s);
+      el('path', { d: d, stroke: col.base, 'stroke-width': w, 'stroke-linecap': 'square' }, s);
+      el('path', { d: d, stroke: col.light, 'stroke-width': Math.max(1.5, w * 0.25), transform: 'translate(-1.2,-1.2)' }, s);
+    }
+    [[2.5, -1.4], [2.5, 1.4], [8, -1.4], [8, 1.4]].forEach(function (c) {
+      var b = F([c[0], c[1], 0]);
+      el('ellipse', { cx: b[0], cy: b[1] + 1, rx: 9, ry: 4.5, fill: ST.dark, stroke: C.ink, 'stroke-width': 1.2 }, s); // base plate
+      bar([c[0], c[1], 0], [c[0], c[1], 2.55], 7, ST);
     });
-    // weld joints along the route
-    var jointPts = [[0, 0, 2.6], [3.5, 0, 2.6], [7, 0, 2.6], [7, 0, 0], [7, 3, 0], [7, 6, 0], [10, 6, 0], [13, 6, 0], [13, 6, 2.6], [13, 8.5, 2.6], [13, 11, 2.6], [3.5, 0, 5], [3.5, -4, 5]];
-    var joints = jointPts.map(function (p, i) {
-      var q = F(p);
-      var ring = el('circle', { cx: q[0], cy: q[1], r: 11, fill: 'none', stroke: C.energy, 'stroke-width': 2.4, opacity: 0 }, s);
-      var dot = el('circle', { cx: q[0], cy: q[1], r: 6.5, fill: '#C3CAD2', stroke: C.ink, 'stroke-width': 1.5 }, s);
-      return { dot: dot, ring: ring, k: i / jointPts.length };
+    bar([2.5, -1.4, 2.55], [2.5, 1.4, 2.55], 8, ST); bar([8, -1.4, 2.55], [8, 1.4, 2.55], 8, ST);
+    bar([2.5, -1.4, 2.55], [8, -1.4, 2.55], 5, ST); bar([2.5, 1.4, 2.55], [8, 1.4, 2.55], 5, ST);
+    bar([13, 4.8, 0], [13, 7.2, 0], 7, ST);                                     // sleeper under the low run
+    [[2.5, 0], [8, 0]].forEach(function (c) { bar([c[0], c[1], 2.6], [c[0], c[1], 2.85], 6, ST); }); // pipe shoes
+    bar([13, 6, 0.05], [13, 6, 0.4], 6, ST);
+
+    // a pipe: dark outline, primer body (round elbows), then per-segment cylinder shading
+    function pipe(r) {
+      var d = pts(r);
+      el('path', { d: d, stroke: C.ink, 'stroke-width': 19, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'butt' }, s);
+      el('path', { d: d, stroke: PR.base, 'stroke-width': 15, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'butt' }, s);
+      for (var i = 0; i < r.length - 1; i++) {
+        var A = F(r[i]), B = F(r[i + 1]), dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1;
+        var nx = -dy / L, ny = dx / L, mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2, gid = id('pg');
+        var g = el('linearGradient', { id: gid, gradientUnits: 'userSpaceOnUse', x1: mx - nx * 7.5, y1: my - ny * 7.5, x2: mx + nx * 7.5, y2: my + ny * 7.5 }, defs);
+        [[0, PR.dark], [0.28, PR.base], [0.55, PR.light], [0.75, PR.base], [1, PR.dark]].forEach(function (st) { el('stop', { offset: st[0], 'stop-color': st[1] }, g); });
+        el('path', { d: 'M' + A[0].toFixed(1) + ',' + A[1].toFixed(1) + ' L' + B[0].toFixed(1) + ',' + B[1].toFixed(1), stroke: 'url(#' + gid + ')', 'stroke-width': 15, fill: 'none' }, s);
+      }
+    }
+    pipe(main); pipe(branch);
+
+    // flanges (ellipses perpendicular to the pipe) at spool breaks and open ends
+    function flange(a, b, t) {
+      var c = F(lerp3(a, b, t)), r = ang(a, b);
+      [-3, 3].forEach(function (o) {
+        var g = el('g', { transform: 'translate(' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + ') rotate(' + r.toFixed(1) + ') translate(' + o + ',0)' }, s);
+        el('ellipse', { rx: 4, ry: 15, fill: ST.light, stroke: C.ink, 'stroke-width': 1.6 }, g);
+        el('ellipse', { rx: 1.4, ry: 11, fill: 'none', stroke: ST.dark, 'stroke-width': 1, 'stroke-dasharray': '2 3' }, g);
+      });
+    }
+    flange(main[0], main[1], 0.02); flange(main[0], main[1], 0.7); flange(main[1], main[2], 0.66);
+    flange(main[3], main[4], 0.5); flange(main[3], main[4], 0.98); flange(branch[0], branch[1], 0.97);
+
+    // gate valve with a red handwheel on the branch
+    var vc = F([5, 0, 4.4]);
+    var vg = el('g', { transform: 'translate(' + vc[0].toFixed(1) + ',' + vc[1].toFixed(1) + ')' }, s);
+    el('path', { d: 'M-12,-14 L12,-14 L0,0 Z M-12,14 L12,14 L0,0 Z', fill: '#5F6B78', stroke: C.ink, 'stroke-width': 1.6, 'stroke-linejoin': 'round' }, vg);
+    el('line', { x1: 0, y1: 0, x2: 26, y2: 15, stroke: C.ink, 'stroke-width': 3 }, vg);
+    el('ellipse', { cx: 30, cy: 17, rx: 5, ry: 12, transform: 'rotate(-30 30 17)', fill: 'none', stroke: '#C0392B', 'stroke-width': 3.5 }, vg);
+
+    // weld bands: thin rings around the pipe, coloured by state
+    var weldAt = [[main[0], main[1], 0.06], [main[0], main[1], 0.5], [main[0], main[1], 0.66], [main[0], main[1], 0.93],
+      [main[1], main[2], 0.12], [main[1], main[2], 0.62], [main[1], main[2], 0.9], [main[2], main[3], 0.12], [main[2], main[3], 0.88],
+      [main[3], main[4], 0.12], [main[3], main[4], 0.46], [main[3], main[4], 0.94], [branch[0], branch[1], 0.12], [branch[0], branch[1], 0.93]];
+    var joints = weldAt.map(function (w, i) {
+      var c = F(lerp3(w[0], w[1], w[2])), r = ang(w[0], w[1]);
+      var g = el('g', { transform: 'translate(' + c[0].toFixed(1) + ',' + c[1].toFixed(1) + ') rotate(' + r.toFixed(1) + ')' }, s);
+      var halo = el('ellipse', { rx: 6, ry: 13.5, fill: 'none', stroke: C.energy, 'stroke-width': 2.2, opacity: 0 }, g);
+      var band = el('ellipse', { rx: 2.6, ry: 9, fill: '#C3CAD2', stroke: C.ink, 'stroke-width': 1.3 }, g);
+      return { band: band, halo: halo, k: i / weldAt.length };
     });
+
     // RFID spool tags
-    var tags = [[[1.8, 0, 2.6], 'SP-01'], [[8.5, 6, 0], 'SP-02'], [[13, 9.8, 2.6], 'SP-03'], [[3.5, -2.4, 5], 'SP-04']].map(function (tg, i) {
+    var tags = [[[2, 0, 3], 'SP-01', -46, -40], [[10, 2.6, 3], 'SP-02', 18, -40], [[10, 6, 1.8], 'SP-03', 24, -6], [[14.6, 6, 0.7], 'SP-04', 6, 26]].map(function (tg, i) {
       var q = F(tg[0]);
-      var g = el('g', { transform: 'translate(' + (q[0] + 14) + ',' + (q[1] - 30) + ')' }, s);
-      el('path', { d: 'M-14,30 L0,8', stroke: C.ink2, 'stroke-width': 1 }, g);
+      var g = el('g', { transform: 'translate(' + (q[0] + tg[2]).toFixed(1) + ',' + (q[1] + tg[3]).toFixed(1) + ')' }, s);
+      el('path', { d: 'M' + (-tg[2]) + ',' + (-tg[3]) + ' L' + (tg[2] < 0 ? 50 : 0) + ',1', stroke: C.ink2, 'stroke-width': 1 }, g); // leader to the pipe
       el('rect', { x: 0, y: -8, width: 50, height: 18, rx: 3, fill: C.paper, stroke: C.ink, 'stroke-width': 1.2 }, g);
       text(g, 25, 5, tg[1], { anchor: 'middle', size: 10, fill: C.ink, weight: 500 });
       var ping = el('circle', { cx: 25, cy: 1, r: 10, fill: 'none', stroke: C.amber, 'stroke-width': 2 }, g);
       return { ping: ping, ph: i * 0.6 };
     });
+
     // legend
-    var lg = el('g', { transform: 'translate(46,404)' }, s);
+    var lg = el('g', { transform: 'translate(46,412)' }, s);
     [['#C3CAD2', opt.l_pending || 'Pending'], [C.amber, opt.l_welded || 'Welded'], [C.energy, opt.l_nde || 'NDE accepted']].forEach(function (it, i) {
-      el('circle', { cx: i * 118, cy: 0, r: 6, fill: it[0], stroke: C.ink, 'stroke-width': 1.2 }, lg);
-      text(lg, i * 118 + 12, 4, it[1], { size: 10.5, fill: C.ink });
+      el('ellipse', { cx: i * 118, cy: 0, rx: 3, ry: 8, fill: it[0], stroke: C.ink, 'stroke-width': 1.2 }, lg);
+      text(lg, i * 118 + 10, 4, it[1], { size: 10.5, fill: C.ink });
     });
+
     // S-curve chart
     var ch = el('g', { transform: 'translate(510,92)' }, s);
     var W = 280, H = 220;
@@ -540,12 +605,12 @@
 
     var T = 0;
     function render(tt) {
-      var cyc = (tt % 10) / 8, p = Math.min(1, cyc);
+      var p = Math.min(1, (tt % 10) / 8);
       joints.forEach(function (j) {
         var a = p - j.k * 0.8;
-        if (a > 0.18) { j.dot.setAttribute('fill', C.energy); j.ring.setAttribute('opacity', 0.9); }
-        else if (a > 0) { j.dot.setAttribute('fill', C.amber); j.ring.setAttribute('opacity', 0); }
-        else { j.dot.setAttribute('fill', '#C3CAD2'); j.ring.setAttribute('opacity', 0); }
+        if (a > 0.18) { j.band.setAttribute('fill', C.energy); j.halo.setAttribute('opacity', 0.9); }
+        else if (a > 0) { j.band.setAttribute('fill', C.amber); j.halo.setAttribute('opacity', 0); }
+        else { j.band.setAttribute('fill', '#C3CAD2'); j.halo.setAttribute('opacity', 0); }
       });
       tags.forEach(function (tg) {
         var u = ((tt + tg.ph) % 2) / 2;
@@ -635,6 +700,82 @@
       upd = function (tt, dt) {
         hd.forEach(function (d) { d.u = (d.u + dt * 0.12) % 1; var p = at(hl, d.u); d.el.setAttribute('cx', p[0]); d.el.setAttribute('cy', p[1]); d.el.setAttribute('fill', mix(C.hot, C.hot2, d.u)); });
         cd.forEach(function (d) { d.u = (d.u + dt * 0.18) % 1; d.el.setAttribute('cx', 40 + d.u * 280); d.el.setAttribute('cy', d.y); d.el.setAttribute('fill', mix(C.cold, C.cold2, d.u)); });
+      };
+    } else if (kind === 'slosh') {
+      // Horizontal three-phase separator (KO drum) on an FPSO deck. Well fluid enters the left head and
+      // hits the inlet diverter; water settles to the bottom and leaves to the OWTU, oil spills over the
+      // weir into the oil bucket, gas leaves the top through the mist pad to the flare. The hull's motion
+      // makes the liquid slosh along the drum, and the level transmitter (a radar probe from the top)
+      // sees the level swing past its LAH setting.
+      var dfs = el('defs', null, s), cid = id('sep');
+      var VD = 'M88,70 L282,70 A18,50 0 0 1 282,170 L88,170 A18,50 0 0 1 88,70 Z';
+      el('path', { d: VD }, el('clipPath', { id: cid }, dfs));
+      function pipe(d, color) {
+        el('path', { d: d, stroke: C.ink, 'stroke-width': 8, fill: 'none', 'stroke-linejoin': 'round' }, s);
+        el('path', { d: d, stroke: color, 'stroke-width': 4.5, fill: 'none', 'stroke-linejoin': 'round' }, s);
+        return sample(el('path', { d: d, fill: 'none' }, dfs), 160);
+      }
+      // legs and deck
+      [[118, 132], [236, 250]].forEach(function (l) {
+        el('rect', { x: l[0], y: 150, width: l[1] - l[0], height: 54, fill: '#C3CAD2', stroke: C.ink, 'stroke-width': 1.8 }, s);
+        el('rect', { x: l[0] - 7, y: 202, width: l[1] - l[0] + 14, height: 5, fill: C.ink }, s);
+      });
+      el('line', { x1: 50, y1: 207, x2: 320, y2: 207, stroke: C.ink2, 'stroke-width': 1.2 }, s);
+      var lIn = pipe('M24,135 L72,135', '#D8C9A6');
+      var lGas = pipe('M275,72 L275,40 L354,40', '#CBD2DA');
+      var lOil = pipe('M276,168 L276,190 L354,190', '#F6D58A');
+      var lWat = pipe('M190,168 L190,218 L354,218', '#A9CBF3');
+      [130, 200].forEach(function (x) { el('rect', { x: x - 4, y: 60, width: 8, height: 11, fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, s); });
+      el('rect', { x: 116, y: 56, width: 10, height: 15, fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, s);  // LT nozzle
+      el('path', { d: VD, fill: '#F3F5F8' }, s);
+      var gL = el('g', { 'clip-path': 'url(#' + cid + ')' }, s);
+      var oil = el('path', { fill: '#F3C664' }, gL), wat = el('path', { fill: '#86B7EF' }, gL), buck = el('path', { fill: '#F3C664' }, gL);
+      var bub = [];
+      for (var bb = 0; bb < 10; bb++) bub.push({ el: el('circle', { r: 2, fill: '#fff', stroke: C.steelD, 'stroke-width': .8 }, gL), u: Math.random(), x: 110 + Math.random() * 110 });
+      el('path', { d: 'M100,96 L100,150', stroke: C.steelD, 'stroke-width': 3.5 }, s);                     // inlet diverter
+      el('rect', { x: 238, y: 128, width: 5, height: 44, fill: C.steelD }, s);                                 // weir
+      el('rect', { x: 250, y: 77, width: 34, height: 10, fill: 'none', stroke: C.ink2, 'stroke-width': 1, 'stroke-dasharray': '2 2' }, s); // mist pad
+      el('line', { x1: 121, y1: 71, x2: 121, y2: 166, stroke: C.ink, 'stroke-width': 1.6 }, s);              // radar probe
+      el('circle', { cx: 205, cy: 104, r: 11, fill: 'none', stroke: C.steelD, 'stroke-width': 1.5 }, s);      // manway
+      el('path', { d: VD, fill: 'none', stroke: C.ink, 'stroke-width': 2.5 }, s);
+      // LT bubble, instrument signal (dashed) to the level bar
+      el('circle', { cx: 121, cy: 40, r: 11, fill: C.paper, stroke: C.ink, 'stroke-width': 1.5 }, s);
+      text(s, 121, 44, 'LT', { anchor: 'middle', size: 9.5, fill: C.ink, weight: 500 });
+      el('line', { x1: 121, y1: 51, x2: 121, y2: 56, stroke: C.ink, 'stroke-width': 1.5 }, s);
+      el('path', { d: 'M110,40 L12,40 L12,70', stroke: C.ink2, 'stroke-width': 1, 'stroke-dasharray': '4 3', fill: 'none' }, s);
+      var LAH = 109;
+      el('rect', { x: 8, y: 70, width: 9, height: 100, rx: 2, fill: '#E6E0D3' }, s);
+      var bar = el('rect', { x: 8, y: 118, width: 9, height: 52, rx: 2, fill: C.energy }, s);
+      el('line', { x1: 4, y1: LAH, x2: 22, y2: LAH, stroke: C.hot, 'stroke-width': 1.5, 'stroke-dasharray': '3 2' }, s);
+      var lah = text(s, 24, LAH + 3, 'LAH', { size: 9.5, fill: C.hot, weight: 500 });
+      text(s, 24, 127, opt.l_in || 'Well fluid', { size: 10, fill: C.ink, weight: 500 });
+      text(s, 354, 32, opt.l_gas || 'Gas to flare', { anchor: 'end', size: 10, fill: C.ink2, weight: 500 });
+      text(s, 354, 183, opt.l_oil || 'Oil', { anchor: 'end', size: 10, fill: '#8A5A00', weight: 500 });
+      text(s, 354, 211, opt.l_wat || 'Water to OWTU', { anchor: 'end', size: 10, fill: C.cold, weight: 500 });
+      var sea = el('path', { fill: 'none', stroke: C.cold, 'stroke-width': 1.6, opacity: .45 }, s);
+      function flow(lut, n, colors) { var a = []; for (var q = 0; q < n; q++) a.push({ el: el('circle', { r: 2.6, fill: colors[q % colors.length] }, s), u: q / n, lut: lut }); return a; }
+      var dots = flow(lIn, 5, ['#E3A008', C.cold, '#8C96A3']).concat(flow(lGas, 7, ['#8C96A3']), flow(lOil, 6, ['#C98A00']), flow(lWat, 7, [C.cold]));
+      var X0 = 70, X1 = 240, XM = (X0 + X1) / 2;
+      function surf(x, t) { return 118 + (x - XM) * 0.16 * Math.sin(t * 1.1) + 3 * Math.sin(x * 0.09 - t * 2.6); }
+      function intf(x, t) { return 148 + (x - XM) * 0.08 * Math.sin(t * 1.1 - 0.6) + 1.6 * Math.sin(x * 0.07 - t * 2 + 1); }
+      function bucket(x, t) { return 150 + (x - 270) * 0.12 * Math.sin(t * 1.1) + 1.4 * Math.sin(x * 0.2 - t * 3); }
+      function layer(f, t, a, b) { var d = ''; for (var x = a; x <= b; x += 4) d += (x === a ? 'M' : 'L') + x + ',' + f(x, t).toFixed(1); return d + ' L' + b + ',176 L' + a + ',176 Z'; }
+      upd = function (tt, dt) {
+        oil.setAttribute('d', layer(surf, tt, X0, X1)); wat.setAttribute('d', layer(intf, tt, X0, X1)); buck.setAttribute('d', layer(bucket, tt, 240, 304));
+        var lvl = surf(121, tt);
+        bar.setAttribute('y', lvl.toFixed(1)); bar.setAttribute('height', (170 - lvl).toFixed(1));
+        var hi = lvl < LAH;
+        bar.setAttribute('fill', hi ? C.hot : C.energy);
+        lah.style.opacity = hi ? 1 : 0.45;
+        var sd = ''; for (var x = 0; x <= 360; x += 8) sd += (x ? 'L' : 'M') + x + ',' + (234 + 2.5 * Math.sin(x * 0.05 - tt * 1.1)).toFixed(1);
+        sea.setAttribute('d', sd);
+        dots.forEach(function (d) { d.u = (d.u + dt * 0.35) % 1; var p = at(d.lut, d.u); d.el.setAttribute('cx', p[0]); d.el.setAttribute('cy', p[1]); });
+        bub.forEach(function (b) {
+          b.u = (b.u + dt * 0.4) % 1;
+          var top = surf(b.x, tt), bot = intf(b.x, tt), y = bot - b.u * (bot - top);
+          b.el.setAttribute('cx', (b.x + Math.sin(b.u * 9) * 2).toFixed(1)); b.el.setAttribute('cy', y.toFixed(1));
+          b.el.setAttribute('opacity', (1 - b.u).toFixed(2));
+        });
       };
     } else { // plan: gantt bars growing + critical path
       var rows = [[20, 120], [70, 110], [150, 90], [120, 120], [210, 100]];

@@ -49,7 +49,7 @@
     { kind: 'emis', stream: 's-energy', sheet: 'ISO 50001 · PPPU' },
     { kind: 'pipe', stream: 's-amber', sheet: 'ISO · RFID spool tracking' }
   ];
-  var DISC = { cfd: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
+  var DISC = { cfd: 's-teal', slosh: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
   var FOCUS_STYLE = [ // P&ID line types, one per focus area
     ['solid', '--hot'], ['dash', '--cold'], ['solid', '--amber'], ['dot', '--ink'], ['dash', '--energy'], ['solid', '--energy'], ['dot', '--violet']
   ];
@@ -200,12 +200,13 @@
       issues + tool + '</div><aside class="job-photos">' + photos + '</aside></div></article>';
   }
 
+  var FIELD_IMG = ['field-1', 'field-smelter-pipe-lift', 'field-3'];
   function timelineHTML() {
     var field = '<div class="field s-amber"><div class="field-head"><p class="photos-label">' + esc(U.fieldDocLabel) + '</p>' +
       ext('https://1drv.ms/f/c/8df1985aa0d6d304/IgDBfgF6AVRVQoP1owdhx68vAee1EubdAm7vDMsded4Tpk8?e=pmDyq6', U.viewGalleryLabel) + '</div><div class="field-grid">' +
       [1, 2, 3].map(function (n) {
         var cap0 = U['field' + n + 'Placeholder'];
-        return '<figure>' + photoBtn('assets/img/field-' + n + '.webp', cap0, 900, 675) + '<figcaption>' + esc(cap0) + '</figcaption></figure>';
+        return '<figure>' + photoBtn('assets/img/' + FIELD_IMG[n - 1] + '.webp', cap0, n === 2 ? 1400 : 900, n === 2 ? 788 : 675) + '<figcaption>' + esc(cap0) + '</figcaption></figure>';
       }).join('') + '</div></div>';
     return section('timeline', 'Experience', 'E-03', U.sectionTimeline, '', 's-energy', D.timeline.map(jobHTML).join('') + field, 'band');
   }
@@ -253,8 +254,9 @@
       '<div class="proj-links">' + ext(p.link, U.referenceLabel) + (p.anchor ? '<a class="link" href="' + esc(p.anchorHref) + '">' + esc(U.projCaseLink) + '</a>' : '') + '</div>' +
       '<div class="soon"><b>' + esc(U.projWriteup) + '</b><p>' + esc(U.projWriteupSoon) + '</p></div></div>' +
       (p.photos && p.photos.length
-        ? '<div class="proj-shots"><p class="photos-label">' + esc(U.projPhotos) + '</p><div class="shots">' + p.photos.map(function (ph) {
-            return '<figure>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '<figcaption>' + esc(ph.caption) + '</figcaption></figure>';
+        ? '<div class="proj-shots"><p class="photos-label">' + esc(p.photosLabel || U.projPhotos) + '</p><div class="shots">' + p.photos.map(function (ph) {
+            if (ph.soon) return '<figure><div class="slot">' + cam + esc(U.projPhotoSoon) + '</div><figcaption>' + esc(ph.caption) + '</figcaption></figure>';
+            return '<figure' + (ph.fit === 'contain' ? ' class="doc"' : '') + '>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '<figcaption>' + esc(ph.caption) + '</figcaption></figure>';
           }).join('') + '</div></div>'
         : '') + '</div>';
   }
@@ -487,7 +489,11 @@
       nodes.forEach(function (n, k) { n.setAttribute('aria-pressed', String(k === i)); if (k === i && focus) n.focus(); });
       detail.innerHTML = projectDetail(i);
       var m = detail.querySelector('[data-mini]');
-      IL.mount(m, m.dataset.mini, { label: D.projectLog[i].scope });
+      var mt = lang === 'id'
+        ? { l_in: 'Fluida sumur', l_gas: 'Gas ke flare', l_oil: 'Minyak', l_wat: 'Air ke OWTU' }
+        : { l_in: 'Well fluid', l_gas: 'Gas to flare', l_oil: 'Oil', l_wat: 'Water to OWTU' };
+      mt.label = D.projectLog[i].scope;
+      IL.mount(m, m.dataset.mini, mt);
       wireLightbox(detail);
     }
     nodes.forEach(function (n, i) {
@@ -538,13 +544,14 @@
 
   // lightbox
   var lb = document.getElementById('lightbox');
-  var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lb-cap');
+  var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lb-cap'), lbOpen = lb.querySelector('.lb-open');
   lb.querySelector('.lb-close').addEventListener('click', function () { lb.close(); });
   lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
   function wireLightbox(scope) {
     scope.querySelectorAll('[data-lb]').forEach(function (b) {
       b.addEventListener('click', function () {
         lbImg.src = b.dataset.lb; lbImg.alt = b.dataset.cap || ''; lbCap.textContent = b.dataset.cap || '';
+        lbOpen.href = b.dataset.lb; lbOpen.textContent = U.openFull;
         lb.querySelector('.lb-close').textContent = U.close;
         if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
       });

@@ -27,9 +27,9 @@ window.PORTFOLIO = {
    "viewWorkCta": "View my work",
    "getCvCta": "Get my CV",
    "fieldDocLabel": "Field documentation",
-   "field1Placeholder": "Toolbox meeting / site briefing",
-   "field2Placeholder": "Pipe erection & welding inspection",
-   "field3Placeholder": "PHM emission / energy fieldwork",
+   "field1Placeholder": "Campaign Finish Storage at Acid Plant",
+   "field2Placeholder": "Pipe spool lifting & installation",
+   "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Drop activity photo",
    "sectionAbout": "About",
    "sectionServices": "What I Do",
@@ -130,7 +130,9 @@ window.PORTFOLIO = {
     "s-amber": "PIPING · EPC",
     "s-teal": "CFD",
     "s-violet": "CERTIFIED"
-   }
+   },
+   "openFull": "Open full size",
+   "disc_slosh": "CFD sloshing"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -504,7 +506,7 @@ window.PORTFOLIO = {
     "anchor": "case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgACnYjuBy1aS4RLBDuCyVOjAb7sfTUWdWTvbi2NActciUc?e=wgc6dQ",
     "client": "CFPP Pomalaa, PT Aneka Tambang Tbk. (2×30 MW)",
-    "date": "2023 – 2025",
+    "date": "2023 & 2025",
     "companyLink": {
      "short": "ANTAM",
      "full": "PT Aneka Tambang Tbk. (CFPP Pomalaa)",
@@ -569,8 +571,8 @@ window.PORTFOLIO = {
     ],
     "images": [
      {
-      "src": "assets/img/case-htri-tube.webp",
-      "caption": "Tube bundle layout (plugged tubes)"
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Surface temperature on tube bundle"
      },
      {
       "src": "assets/img/case-htri-temp.webp",
@@ -632,7 +634,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "plan",
-    "role": "Project Planner"
+    "role": "Project Planner",
+    "photos": [
+     {
+      "src": "assets/img/onwj-les-platform.webp",
+      "caption": "LES Platform",
+      "w": 1280,
+      "h": 715
+     },
+     {
+      "src": "assets/img/onwj-chemical-injection-p6.webp",
+      "caption": "Chemical Injection Pkg. using P6",
+      "w": 1280,
+      "h": 883,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "03",
@@ -645,7 +663,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Engineer",
+    "photos": [
+     {
+      "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
+      "caption": "Crude Oil Stabilization Unit using PV Elite",
+      "w": 1136,
+      "h": 933
+     },
+     {
+      "src": "assets/img/petronas-pid-degasser-coalescer.webp",
+      "caption": "P&ID Crude Oil Stabilization - Degasser and Electrostatic Coalescer",
+      "w": 1280,
+      "h": 900,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "04",
@@ -671,7 +705,22 @@ window.PORTFOLIO = {
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/amman-fem-nozzle-3d.webp",
+      "caption": "Von Mises stress on the nozzle, 3D view",
+      "w": 1280,
+      "h": 968
+     },
+     {
+      "src": "assets/img/amman-fem-nozzle-section.webp",
+      "caption": "Von Mises stress on the nozzle, section view",
+      "w": 800,
+      "h": 585
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "06",
@@ -692,12 +741,28 @@ window.PORTFOLIO = {
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
     "scope": "CFD simulations for heat transfer & forces in heat exchanger, integrated with FEA stress; extended HTRI/CFD performance study.",
-    "date": "Aug 2023 – 2025",
+    "date": "Aug 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Surface temperature distribution on the tube bundle, 3D view",
+      "w": 1280,
+      "h": 868
+     },
+     {
+      "src": "assets/img/antam-hx-tube-temp-front.webp",
+      "caption": "Surface temperature distribution on the tube bundle, front view",
+      "w": 1280,
+      "h": 831,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "08",
@@ -709,8 +774,25 @@ window.PORTFOLIO = {
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
-    "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "discipline": "slosh",
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/medco-ko-drum-sloshing.webp",
+      "caption": "Liquid sloshing simulation in the KO drum (t = 15 s)",
+      "w": 1128,
+      "h": 684,
+      "fit": "contain"
+     },
+     {
+      "src": "assets/img/medco-ko-drum-oil-fraction-side.webp",
+      "caption": "Volume fraction of oil, side view",
+      "w": 914,
+      "h": 487,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    }
   ],
   "certifications": [
@@ -900,9 +982,9 @@ window.PORTFOLIO = {
    "viewWorkCta": "Lihat karya saya",
    "getCvCta": "Ambil CV saya",
    "fieldDocLabel": "Dokumentasi lapangan",
-   "field1Placeholder": "Toolbox meeting / pengarahan lokasi",
-   "field2Placeholder": "Erection pipa & inspeksi welding",
-   "field3Placeholder": "Kegiatan lapangan emisi/energi PHM",
+   "field1Placeholder": "Campaign Finish Storage at Acid Plant",
+   "field2Placeholder": "Pengangkatan & instalasi pipe spool",
+   "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Taruh foto kegiatan",
    "sectionAbout": "Tentang",
    "sectionServices": "Layanan Saya",
@@ -1003,7 +1085,9 @@ window.PORTFOLIO = {
     "s-amber": "PIPING · EPC",
     "s-teal": "CFD",
     "s-violet": "SERTIFIKASI"
-   }
+   },
+   "openFull": "Buka ukuran penuh",
+   "disc_slosh": "CFD sloshing"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1377,7 +1461,7 @@ window.PORTFOLIO = {
     "anchor": "case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgACnYjuBy1aS4RLBDuCyVOjAb7sfTUWdWTvbi2NActciUc?e=wgc6dQ",
     "client": "CFPP Pomalaa, PT Aneka Tambang Tbk. (2×30 MW)",
-    "date": "2023 – 2025",
+    "date": "2023 & 2025",
     "companyLink": {
      "short": "ANTAM",
      "full": "PT Aneka Tambang Tbk. (CFPP Pomalaa)",
@@ -1442,8 +1526,8 @@ window.PORTFOLIO = {
     ],
     "images": [
      {
-      "src": "assets/img/case-htri-tube.webp",
-      "caption": "Layout tube bundle (tube di-plug)"
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Temperatur permukaan pada tube bundle"
      },
      {
       "src": "assets/img/case-htri-temp.webp",
@@ -1505,7 +1589,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "plan",
-    "role": "Project Planner"
+    "role": "Project Planner",
+    "photos": [
+     {
+      "src": "assets/img/onwj-les-platform.webp",
+      "caption": "LES Platform",
+      "w": 1280,
+      "h": 715
+     },
+     {
+      "src": "assets/img/onwj-chemical-injection-p6.webp",
+      "caption": "Chemical Injection Pkg. menggunakan P6",
+      "w": 1280,
+      "h": 883,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "03",
@@ -1518,7 +1618,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Engineer",
+    "photos": [
+     {
+      "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
+      "caption": "Crude Oil Stabilization Unit menggunakan PV Elite",
+      "w": 1136,
+      "h": 933
+     },
+     {
+      "src": "assets/img/petronas-pid-degasser-coalescer.webp",
+      "caption": "P&ID Crude Oil Stabilization - Degasser dan Electrostatic Coalescer",
+      "w": 1280,
+      "h": 900,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "04",
@@ -1544,7 +1660,22 @@ window.PORTFOLIO = {
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/amman-fem-nozzle-3d.webp",
+      "caption": "Tegangan von Mises pada nozzle, tampilan 3D",
+      "w": 1280,
+      "h": 968
+     },
+     {
+      "src": "assets/img/amman-fem-nozzle-section.webp",
+      "caption": "Tegangan von Mises pada nozzle, tampilan potongan",
+      "w": 800,
+      "h": 585
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "06",
@@ -1565,12 +1696,28 @@ window.PORTFOLIO = {
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
     "scope": "Simulasi CFD perpindahan panas & gaya pada heat exchanger, terintegrasi dengan FEA stress; diperluas dengan studi performa HTRI/CFD.",
-    "date": "Agu 2023 – 2025",
+    "date": "Agu 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist"
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Distribusi temperatur permukaan pada tube bundle, tampilan 3D",
+      "w": 1280,
+      "h": 868
+     },
+     {
+      "src": "assets/img/antam-hx-tube-temp-front.webp",
+      "caption": "Distribusi temperatur permukaan pada tube bundle, tampak depan",
+      "w": 1280,
+      "h": 831,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "08",
@@ -1582,8 +1729,25 @@ window.PORTFOLIO = {
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
-    "discipline": "cfd",
-    "role": "FEM/CFD Specialist"
+    "discipline": "slosh",
+    "role": "FEM/CFD Specialist",
+    "photos": [
+     {
+      "src": "assets/img/medco-ko-drum-sloshing.webp",
+      "caption": "Simulasi sloshing liquid di KO drum (t = 15 s)",
+      "w": 1128,
+      "h": 684,
+      "fit": "contain"
+     },
+     {
+      "src": "assets/img/medco-ko-drum-oil-fraction-side.webp",
+      "caption": "Fraksi volume minyak, tampak samping",
+      "w": 914,
+      "h": 487,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    }
   ],
   "certifications": [
