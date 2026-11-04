@@ -785,8 +785,11 @@ window.PORTFOLIO = {
       "fit": "contain"
      },
      {
-      "soon": true,
-      "caption": "Fabricated vessel photo coming soon"
+      "src": "assets/img/medco-ko-drum-oil-fraction-side.webp",
+      "caption": "Volume fraction of oil, side view",
+      "w": 914,
+      "h": 487,
+      "fit": "contain"
      }
     ],
     "photosLabel": "Project visuals"
@@ -1737,8 +1740,11 @@ window.PORTFOLIO = {
       "fit": "contain"
      },
      {
-      "soon": true,
-      "caption": "Foto vessel hasil fabrikasi segera hadir"
+      "src": "assets/img/medco-ko-drum-oil-fraction-side.webp",
+      "caption": "Fraksi volume minyak, tampak samping",
+      "w": 914,
+      "h": 487,
+      "fit": "contain"
      }
     ],
     "photosLabel": "Visual proyek"
