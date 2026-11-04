@@ -506,7 +506,7 @@ window.PORTFOLIO = {
     "anchor": "case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgACnYjuBy1aS4RLBDuCyVOjAb7sfTUWdWTvbi2NActciUc?e=wgc6dQ",
     "client": "CFPP Pomalaa, PT Aneka Tambang Tbk. (2×30 MW)",
-    "date": "2023 – 2025",
+    "date": "2023 & 2025",
     "companyLink": {
      "short": "ANTAM",
      "full": "PT Aneka Tambang Tbk. (CFPP Pomalaa)",
@@ -571,8 +571,8 @@ window.PORTFOLIO = {
     ],
     "images": [
      {
-      "src": "assets/img/case-htri-tube.webp",
-      "caption": "Tube bundle layout (plugged tubes)"
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Surface temperature on tube bundle"
      },
      {
       "src": "assets/img/case-htri-temp.webp",
@@ -741,7 +741,7 @@ window.PORTFOLIO = {
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
     "scope": "CFD simulations for heat transfer & forces in heat exchanger, integrated with FEA stress; extended HTRI/CFD performance study.",
-    "date": "Aug 2023 – 2025",
+    "date": "Aug 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
@@ -1461,7 +1461,7 @@ window.PORTFOLIO = {
     "anchor": "case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgACnYjuBy1aS4RLBDuCyVOjAb7sfTUWdWTvbi2NActciUc?e=wgc6dQ",
     "client": "CFPP Pomalaa, PT Aneka Tambang Tbk. (2×30 MW)",
-    "date": "2023 – 2025",
+    "date": "2023 & 2025",
     "companyLink": {
      "short": "ANTAM",
      "full": "PT Aneka Tambang Tbk. (CFPP Pomalaa)",
@@ -1526,8 +1526,8 @@ window.PORTFOLIO = {
     ],
     "images": [
      {
-      "src": "assets/img/case-htri-tube.webp",
-      "caption": "Layout tube bundle (tube di-plug)"
+      "src": "assets/img/antam-hx-tube-temp-3d.webp",
+      "caption": "Temperatur permukaan pada tube bundle"
      },
      {
       "src": "assets/img/case-htri-temp.webp",
@@ -1696,7 +1696,7 @@ window.PORTFOLIO = {
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
     "scope": "Simulasi CFD perpindahan panas & gaya pada heat exchanger, terintegrasi dengan FEA stress; diperluas dengan studi performa HTRI/CFD.",
-    "date": "Agu 2023 – 2025",
+    "date": "Agu 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
