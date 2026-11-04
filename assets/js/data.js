@@ -27,9 +27,9 @@ window.PORTFOLIO = {
    "viewWorkCta": "View my work",
    "getCvCta": "Get my CV",
    "fieldDocLabel": "Field documentation",
-   "field1Placeholder": "Toolbox meeting / site briefing",
+   "field1Placeholder": "Campaign Finish Storage at Acid Plant",
    "field2Placeholder": "Pipe erection & welding inspection",
-   "field3Placeholder": "PHM emission / energy fieldwork",
+   "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Drop activity photo",
    "sectionAbout": "About",
    "sectionServices": "What I Do",
@@ -130,7 +130,8 @@ window.PORTFOLIO = {
     "s-amber": "PIPING · EPC",
     "s-teal": "CFD",
     "s-violet": "CERTIFIED"
-   }
+   },
+   "openFull": "Open full size"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -632,7 +633,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "plan",
-    "role": "Project Planner"
+    "role": "Project Planner",
+    "photos": [
+     {
+      "src": "assets/img/onwj-les-platform.webp",
+      "caption": "LES Platform",
+      "w": 1280,
+      "h": 715
+     },
+     {
+      "src": "assets/img/onwj-chemical-injection-p6.webp",
+      "caption": "Chemical Injection Pkg. using P6",
+      "w": 1280,
+      "h": 883,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "03",
@@ -645,7 +662,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Engineer",
+    "photos": [
+     {
+      "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
+      "caption": "Crude Oil Stabilization Unit using PV Elite",
+      "w": 1136,
+      "h": 933
+     },
+     {
+      "src": "assets/img/petronas-pid-degasser-coalescer.webp",
+      "caption": "P&ID Crude Oil Stabilization - Degasser and Electrostatic Coalescer",
+      "w": 1280,
+      "h": 900,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Project visuals"
    },
    {
     "index": "04",
@@ -900,9 +933,9 @@ window.PORTFOLIO = {
    "viewWorkCta": "Lihat karya saya",
    "getCvCta": "Ambil CV saya",
    "fieldDocLabel": "Dokumentasi lapangan",
-   "field1Placeholder": "Toolbox meeting / pengarahan lokasi",
+   "field1Placeholder": "Campaign Finish Storage at Acid Plant",
    "field2Placeholder": "Erection pipa & inspeksi welding",
-   "field3Placeholder": "Kegiatan lapangan emisi/energi PHM",
+   "field3Placeholder": "Cooling tower & Acid Plant",
    "activitySlotPlaceholder": "Taruh foto kegiatan",
    "sectionAbout": "Tentang",
    "sectionServices": "Layanan Saya",
@@ -1003,7 +1036,8 @@ window.PORTFOLIO = {
     "s-amber": "PIPING · EPC",
     "s-teal": "CFD",
     "s-violet": "SERTIFIKASI"
-   }
+   },
+   "openFull": "Buka ukuran penuh"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1505,7 +1539,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "plan",
-    "role": "Project Planner"
+    "role": "Project Planner",
+    "photos": [
+     {
+      "src": "assets/img/onwj-les-platform.webp",
+      "caption": "LES Platform",
+      "w": 1280,
+      "h": 715
+     },
+     {
+      "src": "assets/img/onwj-chemical-injection-p6.webp",
+      "caption": "Chemical Injection Pkg. menggunakan P6",
+      "w": 1280,
+      "h": 883,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "03",
@@ -1518,7 +1568,23 @@ window.PORTFOLIO = {
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Engineer",
+    "photos": [
+     {
+      "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
+      "caption": "Crude Oil Stabilization Unit menggunakan PV Elite",
+      "w": 1136,
+      "h": 933
+     },
+     {
+      "src": "assets/img/petronas-pid-degasser-coalescer.webp",
+      "caption": "P&ID Crude Oil Stabilization - Degasser dan Electrostatic Coalescer",
+      "w": 1280,
+      "h": 900,
+      "fit": "contain"
+     }
+    ],
+    "photosLabel": "Visual proyek"
    },
    {
     "index": "04",
