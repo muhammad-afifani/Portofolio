@@ -65,7 +65,7 @@ window.PORTFOLIO = {
    "engDesignLabel": "ENGINEERING DESIGN & SYSTEM",
    "teamLedLabel": "TEAM LED",
    "collabLabel": "CROSS-DISCIPLINE COLLABORATION",
-   "problemsLabel": "PROBLEMS IDENTIFIED & SOLVED",
+   "problemsLabel": "Problems & fixes",
    "issueLabel": "ISSUE",
    "solutionLabel": "SOLUTION",
    "visitSite": "Visit official site ↗",
@@ -132,7 +132,17 @@ window.PORTFOLIO = {
     "s-violet": "CERTIFIED"
    },
    "openFull": "Open full size",
-   "disc_slosh": "CFD sloshing"
+   "disc_slosh": "CFD sloshing",
+   "fixProblem": "The problem",
+   "fixSolution": "What I did",
+   "fixPrev": "Previous",
+   "fixNext": "Next",
+   "toolsLabel": "Self-built tools",
+   "toolsIntro": "Small web apps I built to make field work faster. They are internal, so access is on request.",
+   "toolRequest": "Request access",
+   "toolRequestNote": "Opens your email app with a short request",
+   "toolSoon": "Screen coming soon",
+   "toolWebApp": "Web app"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -228,35 +238,39 @@ window.PORTFOLIO = {
      "logo": "assets/img/logo-phm.webp"
     },
     "sitePhoto": "assets/img/site-phm.webp",
-    "sitePhotoCaption": "PHM site · offshore platform",
+    "sitePhotoCaption": "Handil Central Processing Area (Swamp Operation)",
     "activitySlots": [
      {
       "id": "phm-activity-1",
-      "src": "assets/img/phm-activity-1.webp"
+      "src": "assets/img/phm-activity-1.webp",
+      "caption": "NPU Site Process Platform"
      },
      {
       "id": "phm-activity-2",
-      "src": "assets/img/phm-activity-2.webp"
+      "src": "assets/img/phm-activity-2.webp",
+      "caption": "Bekapai Offshore Platform"
      },
      {
       "id": "phm-activity-3",
-      "src": "assets/img/phm-activity-3.webp"
+      "src": "assets/img/phm-activity-3.webp",
+      "caption": "Site Visit to Oily Water Treatment at Bekapai Platform"
      },
      {
       "id": "phm-activity-4",
-      "src": "assets/img/phm-activity-4.webp"
+      "src": "assets/img/phm-activity-4.webp",
+      "caption": "ISO 50001 EnMS at Senipah Control Room"
      },
      {
       "id": "phm-activity-5",
-      "src": "assets/img/phm-activity-5.webp"
+      "src": "assets/img/phm-activity-5.webp",
+      "caption": "Soebroto Award 2024: Pengelolaan Gas Suar (Flaring)"
+     },
+     {
+      "id": "phm-activity-6",
+      "src": "assets/img/phm-activity-6-teg-sampling.webp",
+      "caption": "Emission Sampling on Turbine Engine"
      }
     ],
-    "innovationTool": {
-     "title": "Innovation: PPU Sampling, Planning & Monitoring Tool",
-     "desc": "A self-built web tool to plan air-emission sampling schedules, track monitoring compliance, and streamline PPPU reporting workflows.",
-     "url": "https://muhammad-afifani.github.io/Innovation_PPU-PHM/",
-     "linkLabel": "View Tool ↗"
-    },
     "bullets": [
      "Lead Air Emission Control (PPPU) activities, identifying emission sources, developing Emission Monitoring Plans per RKL/RPL and SKK Migas requirements, and coordinating stack testing for PROPER Biru compliance.",
      "Support ISO 50001:2018 Energy Management System implementation across PHM fields (BKP, SPS, HCA, CPU, NPU, SPU), energy review, Significant Energy Use determination, Energy Baseline & EnPI.",
@@ -275,61 +289,63 @@ window.PORTFOLIO = {
     "collaboration": "Coordinated 10+ times/month with Process, Drilling, and Production Engineers plus Safety and Operations & Maintenance to interpret emission anomalies and design cross-discipline efficiency programs.",
     "problemsSolved": [
      {
-      "problem": "Not every PHM field (BKP, SPS, HCA, CPU, NPU, SPU) had dedicated manpower or an active energy focal point, leaving some energy-critical equipment without consistent ownership.",
-      "solution": "Built a centralized EnMS across all PHM fields mandating structured energy reporting with real-time EnPI monitoring per SEU."
+      "title": "No one owned energy",
+      "problem": "Some fields had no one looking after energy, so key equipment had no clear owner.",
+      "solution": "I set up one energy system for every field, with the same reports and an EnPI for each major energy user."
      },
      {
-      "problem": "Equipment performance parameters were recorded manually with no standard format, blocking any real root-cause or degradation-trend analysis.",
-      "solution": "Standardized the reporting format and parameter sheets so previously manual-only equipment could be analyzed for performance, root cause, and savings potential."
+      "title": "Notes on paper",
+      "problem": "Equipment readings were written by hand, each in its own format, so we couldn't see trends.",
+      "solution": "We agreed on one standard sheet, so readings could finally be compared and analysed."
      },
      {
-      "problem": "Low energy awareness at field level meant efficiency windows and early degradation signs were routinely missed.",
-      "solution": "Formed field-level Energy Teams and gave hands-on technical assistance on reading EnPI, basic checks, and anomaly reporting."
+      "title": "Low awareness",
+      "problem": "Most people in the field didn't see energy as part of their job, so early warning signs were missed.",
+      "solution": "We formed an energy team at each field and coached them on reading EnPI and reporting odd numbers."
      },
      {
-      "problem": "Energy management lacked a structured, certifiable framework to anchor continuous improvement.",
-      "solution": "Drove ISO 50001:2018 certification implementation across all PHM fields, strengthening PROPER standing and internal/external recognition."
+      "title": "No standard to follow",
+      "problem": "There was no framework holding the energy work together.",
+      "solution": "We took every PHM field through ISO 50001:2018 certification."
      },
      {
-      "problem": "Equipment degradation and inefficiency could go undetected between reviews.",
-      "solution": "Strengthened the periodic energy-audit cycle to surface equipment needing repair and new efficiency opportunities."
+      "title": "Problems hiding between reviews",
+      "problem": "Equipment could wear out or waste energy for months before anyone noticed.",
+      "solution": "We tightened the energy audit schedule, which also turned up new places to save energy."
      },
      {
-      "problem": "Rising cost of operation and GHG emissions lacked a clear line back to accountable KPIs.",
-      "solution": "Tied the system directly to company KPIs, lowering cost of operation, cutting GHG emissions, improving regulatory compliance, and meeting/exceeding top management’s Energy & Emission targets."
+      "title": "Savings nobody counted",
+      "problem": "Rising operating cost and emissions weren't linked to anyone's KPI.",
+      "solution": "I tied the system to company KPIs, so savings and emission cuts now show up in the targets."
      }
     ],
     "duties": [
      {
       "key": "emission",
-      "title": "Air Emission Control (PPPU)",
+      "title": "Air emission (PPPU)",
       "items": [
-       "Identify and assess emission sources: combustion equipment, flaring systems, process venting and fugitive sources.",
-       "Evaluate emission levels against regulatory thresholds and PROPER Biru criteria.",
-       "Develop Emission Monitoring Plans in line with RKL/RPL and SKK Migas requirements; coordinate stack emission testing."
+       "Map emission sources, plan monitoring and run stack tests for PROPER Biru."
       ]
      },
      {
       "key": "energy",
-      "title": "Energy Management & Decarbonization",
+      "title": "Energy & decarbonisation",
       "items": [
-       "ISO 50001:2018 EnMS implementation: data gathering, performance analysis, standard documentation.",
-       "Energy Audit support, ENMS monitoring tools, ESG & KPI monitoring and Life Cycle Assessment data."
+       "Help run ISO 50001, energy audits and ESG/KPI tracking."
       ]
      },
      {
       "key": "ghg",
-      "title": "Energy Consumption & Emission Analysis",
+      "title": "GHG accounting",
       "items": [
-       "Scope 1 & 2 GHG from combustion, flaring, venting, fugitive sources and PLN grid electricity.",
-       "Track updates to API Compendium, IPCC guidelines and Pertamina emission calculation tools."
+       "Calculate Scope 1 & 2 emissions with API Compendium and IPCC methods."
       ]
      },
      {
       "key": "report",
-      "title": "Reporting & Documentation",
+      "title": "Reporting",
       "items": [
-       "Monthly and semester regulatory reports to SKK Migas, PHE and ESDM."
+       "Monthly and semester reports to SKK Migas, PHE and ESDM."
       ]
      }
     ]
@@ -389,28 +405,34 @@ window.PORTFOLIO = {
     "collaboration": "Coordinated 10+ times/month with Civil, Mechanical, Electrical, QA/QC, HSE, and Planning disciplines to support SIMOPS and priority work completion.",
     "problemsSolved": [
      {
-      "problem": "Material availability didn’t match installation-sequence priority, the workshop fabricated spools from whatever material was on hand, chaos in tracking, rising scrap, and higher risk of double production.",
-      "solution": "Synchronized Material Control updates per spool and per drawing, so mismatches and material switching were caught before fabrication started."
+      "title": "Wrong material, wrong time",
+      "problem": "The workshop fabricated whatever material was on hand, not what was needed next, which meant scrap and double work.",
+      "solution": "We checked material against every spool and drawing before any cutting started."
      },
      {
-      "problem": "Laydown area for pipe spools was over capacity and poorly organized, mixed-up identities and uncontrolled retrieval caused lost spools and costly rework.",
-      "solution": "Deployed RFID & GPS tracking with a dedicated scanning team locating every spool daily and flagging anomalies immediately."
+      "title": "Lost spools",
+      "problem": "The laydown yard was full, and spools got mixed up or lost.",
+      "solution": "We tagged every spool with RFID and GPS, and a small team scanned the yard every day."
      },
      {
-      "problem": "Isometric drawing revisions were distributed without control, triggering cut-&-reweld on spools already fabricated to outdated drawings.",
-      "solution": "Integrated SpoolGen to auto-generate welding-joint, cut-length, and fabrication data the moment a revision was issued, no spool built against a stale drawing."
+      "title": "Old drawings on the shop floor",
+      "problem": "Revisions weren't controlled, so some spools were built to old drawings and had to be cut and rewelded.",
+      "solution": "We used SpoolGen to regenerate weld and cut data the moment a revision came out."
      },
      {
-      "problem": "QC documentation was manual and siloed, delaying handover to the next work stage and piling up non-productive admin work.",
-      "solution": "Digitalized QC verification into a standard format enabling automatic cross-checks against construction progress, eliminating double claims."
+      "title": "Paperwork bottleneck",
+      "problem": "QC records were kept by hand and slowed down every handover.",
+      "solution": "We moved QC checks to one digital format that cross-checks progress automatically."
      },
      {
-      "problem": "Weak cross-function communication meant progress data went out of sync, double reporting, double fabrication, and area disputes that the main contractor often caught before we did.",
-      "solution": "Stood up a real-time progress taskforce dedicated to closing data gaps and reconciling field conditions with the digital reports."
+      "title": "Numbers out of sync",
+      "problem": "Teams reported different numbers, and the main contractor often found the gaps before we did.",
+      "solution": "We set up a small taskforce to match field progress with the reports every day."
      },
      {
-      "problem": "No comprehensive system existed to monitor welding, QC, NDE, installation, testing, and subsystem readiness together, tracked manually, prone to mismatch, and risking the commissioning schedule.",
-      "solution": "Built a large-scale integrated Excel–Access database handling millions of welding/spool/NDE/line-check/installation records, plus daily dashboards with field verification focused on commissioning-priority lines."
+      "title": "No single view",
+      "problem": "Welding, NDE, testing and readiness were all tracked in different places.",
+      "solution": "I built one Excel–Access database with daily dashboards focused on what commissioning needed first."
      }
     ]
    }
@@ -954,6 +976,95 @@ window.PORTFOLIO = {
     "name": "Interpretation Drawing P&ID, Isometrics, Layout, Rotating & Static Equipment",
     "year": "2023"
    }
+  ],
+  "tools": [
+   {
+    "key": "air",
+    "name": "Air Monitoring",
+    "sub": "Emission sampling planner, dashboard, compliance check, dispersion simulation",
+    "desc": "A browser app for PHM's environment team. It plans, schedules and tracks emission and ambient monitoring across every site, from the list of mandatory points to lab results, EMF reports and SIMPEL PPU input.",
+    "features": [
+     "Sampling plans, batches and S-curve",
+     "PROPER Biru dashboard",
+     "PPU stack compliance check",
+     "Lab result import with OCR",
+     "Gaussian plume dispersion model",
+     "ISO 50001 EnMS tools"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-air-monitoring.webp",
+      "caption": "Air Monitoring dashboard: monitoring points, S-curve progress and status",
+      "w": 1600,
+      "h": 855
+     }
+    ]
+   },
+   {
+    "key": "oil",
+    "name": "GeoImpact",
+    "sub": "Sampling planning and recovery for an oil spill incident",
+    "desc": "A sampling map for the recovery of land hit by an oil spill: 17 grid areas and 73 sampling points on a drone basemap, coloured by progress, plus a lab results map that classifies soil and sediment against PP 22/2021 thresholds.",
+    "features": [
+     "Drone basemap with live progress",
+     "Interpolated lab result map",
+     "Automatic TK-A/B/C classification",
+     "Leak point and wind sector",
+     "Grid editor",
+     "PDF map export"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-geoimpact-oil-spill.webp",
+      "caption": "GeoImpact lab result spread map on the drone basemap",
+      "w": 1501,
+      "h": 1014
+     }
+    ]
+   },
+   {
+    "key": "geo",
+    "name": "GeoStamp Studio",
+    "sub": "Photo geotagging generator for large batches of field photos",
+    "desc": "Adds GPS watermarks and writes location metadata into field photos in bulk, from a CSV or straight from a folder of photos. Everything runs in the browser, so photos never leave the device.",
+    "features": [
+     "GPS Map Camera style watermark",
+     "Batch from CSV or a photo folder",
+     "Write GPS into EXIF",
+     "Build a CSV from photo EXIF",
+     "Map and calendar to fix locations",
+     "HEIC (iPhone) support"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-geostamp-studio.webp",
+      "caption": "GeoStamp Studio: map, calendar and watermark preview on the original photo",
+      "w": 1435,
+      "h": 1017
+     }
+    ]
+   },
+   {
+    "key": "lab",
+    "name": "Engine & Turbine Emission Lab",
+    "sub": "3D motion presentation on how engines and turbines drive energy use and emissions",
+    "desc": "An interactive 3D presentation that walks from the thermodynamic cycle to efficiency to emissions, for diesel engines, gas engines, turbine generators and compressor turbines. Made to explain energy and emission with PHM's real equipment.",
+    "features": [
+     "3D gas turbine coloured by gas temperature",
+     "Explore and Present modes",
+     "Learn: 21 lessons in 6 levels",
+     "15 chart reading guides",
+     "PNG snapshots for slides"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-engine-turbine-lab.webp",
+      "caption": "Engine & Turbine Emission Lab landing: 3D gas turbine coloured by gas temperature",
+      "w": 1584,
+      "h": 976
+     }
+    ]
+   }
   ]
  },
  "id": {
@@ -1020,7 +1131,7 @@ window.PORTFOLIO = {
    "engDesignLabel": "DESAIN KEINSINYURAN & SISTEM",
    "teamLedLabel": "TIM YANG DIPIMPIN",
    "collabLabel": "KOLABORASI LINTAS DISIPLIN",
-   "problemsLabel": "MASALAH YANG DIIDENTIFIKASI & DISELESAIKAN",
+   "problemsLabel": "Masalah & solusi",
    "issueLabel": "MASALAH",
    "solutionLabel": "SOLUSI",
    "visitSite": "Kunjungi situs resmi ↗",
@@ -1087,7 +1198,17 @@ window.PORTFOLIO = {
     "s-violet": "SERTIFIKASI"
    },
    "openFull": "Buka ukuran penuh",
-   "disc_slosh": "CFD sloshing"
+   "disc_slosh": "CFD sloshing",
+   "fixProblem": "Masalahnya",
+   "fixSolution": "Yang saya lakukan",
+   "fixPrev": "Sebelumnya",
+   "fixNext": "Berikutnya",
+   "toolsLabel": "Tools buatan sendiri",
+   "toolsIntro": "Aplikasi web kecil yang saya buat supaya kerja lapangan lebih cepat. Sifatnya internal, jadi akses diberikan berdasarkan permintaan.",
+   "toolRequest": "Minta akses",
+   "toolRequestNote": "Membuka aplikasi email dengan permintaan singkat",
+   "toolSoon": "Tampilan segera hadir",
+   "toolWebApp": "Aplikasi web"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1183,35 +1304,39 @@ window.PORTFOLIO = {
      "logo": "assets/img/logo-phm.webp"
     },
     "sitePhoto": "assets/img/site-phm.webp",
-    "sitePhotoCaption": "Site PHM · platform lepas pantai",
+    "sitePhotoCaption": "Handil Central Processing Area (Swamp Operation)",
     "activitySlots": [
      {
       "id": "phm-activity-1",
-      "src": "assets/img/phm-activity-1.webp"
+      "src": "assets/img/phm-activity-1.webp",
+      "caption": "NPU Site Process Platform"
      },
      {
       "id": "phm-activity-2",
-      "src": "assets/img/phm-activity-2.webp"
+      "src": "assets/img/phm-activity-2.webp",
+      "caption": "Bekapai Offshore Platform"
      },
      {
       "id": "phm-activity-3",
-      "src": "assets/img/phm-activity-3.webp"
+      "src": "assets/img/phm-activity-3.webp",
+      "caption": "Site Visit to Oily Water Treatment at Bekapai Platform"
      },
      {
       "id": "phm-activity-4",
-      "src": "assets/img/phm-activity-4.webp"
+      "src": "assets/img/phm-activity-4.webp",
+      "caption": "ISO 50001 EnMS at Senipah Control Room"
      },
      {
       "id": "phm-activity-5",
-      "src": "assets/img/phm-activity-5.webp"
+      "src": "assets/img/phm-activity-5.webp",
+      "caption": "Soebroto Award 2024: Pengelolaan Gas Suar (Flaring)"
+     },
+     {
+      "id": "phm-activity-6",
+      "src": "assets/img/phm-activity-6-teg-sampling.webp",
+      "caption": "Sampling Emisi pada Turbine Engine"
      }
     ],
-    "innovationTool": {
-     "title": "Inovasi: Tools PPU Sampling, Planning & Monitoring",
-     "desc": "Tools web yang saya bangun sendiri untuk merencanakan jadwal sampling emisi udara, memantau kepatuhan monitoring, dan mempercepat alur pelaporan PPPU.",
-     "url": "https://muhammad-afifani.github.io/Innovation_PPU-PHM/",
-     "linkLabel": "Lihat Tools ↗"
-    },
     "bullets": [
      "Memimpin kegiatan Pengendalian Pencemaran Udara (PPPU), identifikasi sumber emisi, menyusun Rencana Pemantauan Emisi sesuai RKL/RPL dan ketentuan SKK Migas, serta mengoordinasikan stack testing untuk kepatuhan PROPER Biru.",
      "Mendukung implementasi Sistem Manajemen Energi ISO 50001:2018 di seluruh lapangan PHM (BKP, SPS, HCA, CPU, NPU, SPU), energy review, penentuan Significant Energy Use, Energy Baseline & EnPI.",
@@ -1230,61 +1355,63 @@ window.PORTFOLIO = {
     "collaboration": "Berkoordinasi 10+ kali/bulan dengan Process, Drilling, dan Production Engineer serta Safety dan Operations & Maintenance untuk menginterpretasikan anomali emisi dan merancang program efisiensi lintas disiplin.",
     "problemsSolved": [
      {
-      "problem": "Tidak semua lapangan PHM (BKP, SPS, HCA, CPU, NPU, SPU) memiliki manpower atau energy focal point aktif, sehingga sejumlah equipment kritis energi tidak memiliki kepemilikan yang konsisten.",
-      "solution": "Membangun EnMS terpusat di seluruh lapangan PHM yang mewajibkan pelaporan energi terstruktur dengan monitoring EnPI real-time per SEU."
+      "title": "Energi tanpa pemilik",
+      "problem": "Beberapa field belum punya orang yang mengurus energi, jadi peralatan penting tidak jelas siapa yang memantau.",
+      "solution": "Saya bangun satu sistem energi untuk semua field, dengan laporan yang sama dan EnPI untuk tiap pengguna energi utama."
      },
      {
-      "problem": "Parameter performa equipment dicatat manual tanpa format standar, sehingga analisis root cause dan tren degradasi tidak bisa dilakukan.",
-      "solution": "Menstandardisasi format pelaporan dan parameter sheet sehingga equipment yang sebelumnya manual-only bisa dianalisis performa, root cause, dan potensi penghematannya."
+      "title": "Catatan manual",
+      "problem": "Data peralatan dicatat manual dengan format masing-masing, jadi trennya tidak terbaca.",
+      "solution": "Kami sepakati satu format standar, sehingga datanya akhirnya bisa dibandingkan dan dianalisis."
      },
      {
-      "problem": "Awareness energi di level lapangan masih rendah, sehingga peluang efisiensi dan tanda-tanda degradasi dini kerap terlewat.",
-      "solution": "Membentuk Tim Energi di tiap lapangan dan memberikan asistensi teknis langsung soal membaca EnPI, pengecekan dasar, dan pelaporan anomali."
+      "title": "Kesadaran masih rendah",
+      "problem": "Banyak orang di lapangan belum menganggap energi bagian dari pekerjaannya, jadi tanda-tanda awal sering terlewat.",
+      "solution": "Kami bentuk tim energi di tiap field dan mendampingi mereka membaca EnPI serta melaporkan angka yang janggal."
      },
      {
-      "problem": "Manajemen energi belum memiliki kerangka kerja yang terstruktur dan dapat disertifikasi untuk continuous improvement.",
-      "solution": "Mendorong implementasi sertifikasi ISO 50001:2018 di seluruh lapangan PHM, memperkuat posisi PROPER serta pengakuan internal/eksternal."
+      "title": "Belum ada acuan",
+      "problem": "Belum ada kerangka yang menyatukan semua kegiatan energi.",
+      "solution": "Kami dampingi seluruh field PHM sampai tersertifikasi ISO 50001:2018."
      },
      {
-      "problem": "Degradasi dan inefisiensi equipment berpotensi tidak terdeteksi di antara periode review.",
-      "solution": "Memperkuat siklus audit energi berkala untuk menemukan equipment yang perlu perbaikan dan peluang efisiensi baru."
+      "title": "Masalah yang tersembunyi",
+      "problem": "Peralatan bisa menurun atau boros energi berbulan-bulan sebelum ada yang sadar.",
+      "solution": "Kami perketat jadwal audit energi, dan dari situ muncul peluang hemat energi yang baru."
      },
      {
-      "problem": "Kenaikan cost of operation dan emisi GRK belum memiliki keterkaitan yang jelas dengan KPI yang bertanggung jawab.",
-      "solution": "Mengaitkan sistem langsung dengan KPI perusahaan, menurunkan cost of operation, memangkas emisi GRK, meningkatkan kepatuhan regulasi, serta memenuhi/melampaui target Energi & Emisi dari top management."
+      "title": "Hemat tapi tak tercatat",
+      "problem": "Kenaikan biaya operasi dan emisi belum terhubung dengan KPI siapa pun.",
+      "solution": "Saya kaitkan sistem ini dengan KPI perusahaan, sehingga penghematan dan penurunan emisi ikut tercatat di target."
      }
     ],
     "duties": [
      {
       "key": "emission",
-      "title": "Pengendalian Pencemaran Udara (PPPU)",
+      "title": "Emisi udara (PPPU)",
       "items": [
-       "Identifikasi dan penilaian sumber emisi: peralatan pembakaran, sistem flare, process venting, dan sumber fugitive.",
-       "Evaluasi tingkat emisi terhadap baku mutu regulasi dan kriteria PROPER Biru.",
-       "Menyusun Rencana Pemantauan Emisi sesuai RKL/RPL dan ketentuan SKK Migas; koordinasi uji emisi cerobong."
+       "Memetakan sumber emisi, merencanakan pemantauan, dan uji cerobong untuk PROPER Biru."
       ]
      },
      {
       "key": "energy",
-      "title": "Manajemen Energi & Dekarbonisasi",
+      "title": "Energi & dekarbonisasi",
       "items": [
-       "Implementasi EnMS ISO 50001:2018: pengumpulan data, analisis performa, dokumen standar.",
-       "Dukungan Energy Audit, tools ENMS, monitoring ESG & KPI, serta data Life Cycle Assessment."
+       "Membantu menjalankan ISO 50001, audit energi, dan pemantauan ESG/KPI."
       ]
      },
      {
       "key": "ghg",
-      "title": "Analisis Konsumsi Energi & Emisi",
+      "title": "Perhitungan GRK",
       "items": [
-       "GRK Scope 1 & 2 dari pembakaran, flaring, venting, fugitive, dan listrik jaringan PLN.",
-       "Memantau pembaruan API Compendium, pedoman IPCC, dan tools perhitungan emisi Pertamina."
+       "Menghitung emisi Scope 1 & 2 dengan metode API Compendium dan IPCC."
       ]
      },
      {
       "key": "report",
-      "title": "Pelaporan & Dokumentasi",
+      "title": "Pelaporan",
       "items": [
-       "Laporan regulasi bulanan dan semester ke SKK Migas, PHE, dan ESDM."
+       "Laporan bulanan dan semester ke SKK Migas, PHE, dan ESDM."
       ]
      }
     ]
@@ -1344,28 +1471,34 @@ window.PORTFOLIO = {
     "collaboration": "Berkoordinasi 10+ kali/bulan dengan disiplin Sipil, Mekanikal, Elektrikal, QA/QC, HSE, dan Planning untuk mendukung SIMOPS dan penyelesaian pekerjaan prioritas.",
     "problemsSolved": [
      {
-      "problem": "Ketersediaan material tidak sesuai prioritas sequence instalasi, workshop memfabrikasi spool dari material seadanya, pencatatan kacau, scrap meningkat, dan risiko double production makin tinggi.",
-      "solution": "Menyinkronkan update Material Control per spool dan per drawing, sehingga mismatch dan salah material bisa dicegah sebelum fabrikasi dimulai."
+      "title": "Material salah waktu",
+      "problem": "Workshop memfabrikasi material yang ada, bukan yang dibutuhkan berikutnya, akibatnya banyak sisa dan kerja ganda.",
+      "solution": "Kami cocokkan material dengan setiap spool dan gambar sebelum pemotongan dimulai."
      },
      {
-      "problem": "Area laydown pipe spool melebihi kapasitas dan tidak tertata, identitas tertukar dan pengambilan tanpa kontrol menyebabkan spool hilang dan rework mahal.",
-      "solution": "Menerapkan RFID & GPS tracking dengan tim scanning khusus yang melacak lokasi tiap spool setiap hari dan langsung menandai anomali."
+      "title": "Spool hilang",
+      "problem": "Area laydown penuh, spool tertukar atau hilang.",
+      "solution": "Setiap spool kami pasangi tag RFID dan GPS, dan tim kecil memindai area setiap hari."
      },
      {
-      "problem": "Revisi gambar isometric didistribusikan tanpa kontrol, memicu cut-&-reweld pada spool yang sudah terlanjur difabrikasi sesuai gambar lama.",
-      "solution": "Mengintegrasikan SpoolGen untuk otomatis menghasilkan data welding joint, cut length, dan kebutuhan fabrikasi begitu revisi terbit, tidak ada spool yang dibuat dari gambar usang."
+      "title": "Gambar lama di workshop",
+      "problem": "Revisi gambar tidak terkontrol, jadi sebagian spool dibuat dari gambar lama lalu harus dipotong dan dilas ulang.",
+      "solution": "Kami pakai SpoolGen untuk membuat ulang data las dan potong begitu revisi terbit."
      },
      {
-      "problem": "Dokumentasi QC manual dan tersekat, menghambat serah terima ke tahap berikutnya dan menumpuk pekerjaan administratif non-produktif.",
-      "solution": "Mendigitalisasi verifikasi QC ke format standar yang memungkinkan cross-check otomatis terhadap progres konstruksi, menghilangkan double claim."
+      "title": "Dokumen menumpuk",
+      "problem": "Catatan QC masih manual dan memperlambat setiap serah terima.",
+      "solution": "Pemeriksaan QC kami pindahkan ke satu format digital yang otomatis mencocokkan progres."
      },
      {
-      "problem": "Komunikasi lintas fungsi lemah sehingga data progres tidak sinkron, double reporting, double fabrikasi, dan rebutan area yang justru sering lebih dulu diketahui main contractor.",
-      "solution": "Membentuk taskforce progres real-time yang fokus menutup gap data dan menyelaraskan kondisi lapangan dengan laporan digital."
+      "title": "Angka tidak sinkron",
+      "problem": "Tiap tim melaporkan angka berbeda, dan kontraktor utama sering lebih dulu menemukan selisihnya.",
+      "solution": "Kami bentuk tim kecil yang setiap hari mencocokkan progres lapangan dengan laporan."
      },
      {
-      "problem": "Tidak ada sistem komprehensif untuk memonitor welding, QC, NDE, instalasi, testing, dan kesiapan subsistem secara bersamaan, dicatat manual, rawan mismatch, dan mengancam jadwal commissioning.",
-      "solution": "Membangun database Excel–Access skala besar untuk jutaan data welding/spool/NDE/line-check/instalasi, plus dashboard harian dengan verifikasi lapangan khusus untuk jalur prioritas commissioning."
+      "title": "Tidak ada satu tampilan",
+      "problem": "Welding, NDE, testing, dan kesiapan sistem dilacak di tempat yang berbeda-beda.",
+      "solution": "Saya buat satu database Excel–Access dengan dashboard harian yang fokus ke kebutuhan commissioning."
      }
     ]
    }
@@ -1908,6 +2041,95 @@ window.PORTFOLIO = {
    {
     "name": "Interpretation Drawing P&ID, Isometrics, Layout, Rotating & Static Equipment",
     "year": "2023"
+   }
+  ],
+  "tools": [
+   {
+    "key": "air",
+    "name": "Air Monitoring",
+    "sub": "Perencana sampling emisi, dashboard, cek kepatuhan, simulasi dispersi",
+    "desc": "Aplikasi web untuk tim Environment PHM. Merencanakan, menjadwalkan, dan memantau pemantauan emisi dan ambien di seluruh site, dari daftar titik wajib pantau sampai hasil lab, laporan EMF, dan input SIMPEL PPU.",
+    "features": [
+     "Rencana sampling, batch, dan S-curve",
+     "Dashboard PROPER Biru",
+     "Cek kepatuhan cerobong PPU",
+     "Impor hasil lab dengan OCR",
+     "Model dispersi Gaussian plume",
+     "Tools EnMS ISO 50001"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-air-monitoring.webp",
+      "caption": "Dashboard Air Monitoring: titik pantau, progres S-curve, dan status",
+      "w": 1600,
+      "h": 855
+     }
+    ]
+   },
+   {
+    "key": "oil",
+    "name": "GeoImpact",
+    "sub": "Perencanaan sampling dan pemulihan untuk insiden tumpahan minyak",
+    "desc": "Peta sampling untuk pemulihan lahan terdampak tumpahan minyak: 17 area grid dan 73 titik sampling di atas citra drone, diwarnai sesuai progres, plus peta hasil lab yang mengklasifikasikan tanah dan sedimen terhadap ambang PP 22/2021.",
+    "features": [
+     "Citra drone dengan progres langsung",
+     "Peta sebaran hasil lab",
+     "Klasifikasi TK-A/B/C otomatis",
+     "Titik bocor dan sektor angin",
+     "Editor grid",
+     "Ekspor peta PDF"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-geoimpact-oil-spill.webp",
+      "caption": "Peta sebaran hasil lab GeoImpact di atas citra drone",
+      "w": 1501,
+      "h": 1014
+     }
+    ]
+   },
+   {
+    "key": "geo",
+    "name": "GeoStamp Studio",
+    "sub": "Generator geotagging untuk foto lapangan dalam jumlah besar",
+    "desc": "Menambahkan watermark GPS dan menulis metadata lokasi ke foto lapangan sekaligus banyak, dari CSV atau langsung dari folder foto. Semua berjalan di browser, jadi foto tidak keluar dari perangkat.",
+    "features": [
+     "Watermark gaya GPS Map Camera",
+     "Massal dari CSV atau folder foto",
+     "Tulis GPS ke EXIF",
+     "Buat CSV dari EXIF foto",
+     "Peta dan kalender untuk koreksi lokasi",
+     "Dukungan HEIC (iPhone)"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-geostamp-studio.webp",
+      "caption": "GeoStamp Studio: peta, kalender, dan preview watermark di foto asli",
+      "w": 1435,
+      "h": 1017
+     }
+    ]
+   },
+   {
+    "key": "lab",
+    "name": "Engine & Turbine Emission Lab",
+    "sub": "Presentasi 3D tentang pengaruh engine dan turbin terhadap energi dan emisi",
+    "desc": "Presentasi 3D interaktif dari siklus termodinamika ke efisiensi lalu emisi, untuk diesel engine, gas engine, turbin generator, dan turbin kompresor. Dibuat untuk menjelaskan energi dan emisi dengan peralatan PHM yang sebenarnya.",
+    "features": [
+     "Turbin gas 3D berwarna sesuai suhu gas",
+     "Mode Explore dan Present",
+     "Learn: 21 pelajaran dalam 6 level",
+     "15 panduan membaca grafik",
+     "Snapshot PNG untuk slide"
+    ],
+    "shots": [
+     {
+      "src": "assets/img/tool-engine-turbine-lab.webp",
+      "caption": "Landing Engine & Turbine Emission Lab: turbin gas 3D berwarna sesuai suhu gas",
+      "w": 1584,
+      "h": 976
+     }
+    ]
    }
   ]
  },

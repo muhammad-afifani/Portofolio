@@ -171,23 +171,76 @@
     return '<button type="button" data-lb="' + esc(src) + '" data-cap="' + esc(alt) + '" aria-label="' + esc(U.enlarge) + ': ' + esc(alt) + '"><img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" width="' + (w || 300) + '" height="' + (h || 300) + '"></button>';
   }
 
+  var DUTY_ICON = {
+    emission: '<path d="M6 21V9h5v12M8.5 9V5" /><path d="M13 7c1.5-2 4-2 5 0 1.6 0 2.6 1.6 2 3H12c-.6-1.4.2-3 1-3z" />',
+    energy: '<circle cx="12" cy="13" r="8" /><path d="M12 13l4-4M8 19h8" />',
+    ghg: '<path d="M4 15a4 4 0 0 1 3-6 5 5 0 0 1 9.5 1A3.5 3.5 0 0 1 17 17H7a3 3 0 0 1-3-2z" />',
+    report: '<path d="M7 3h7l4 4v14H7z" /><path d="M14 3v4h4M10 12h5M10 16h5" />'
+  };
+  function two(n) { return (n < 9 ? '0' : '') + (n + 1); }
+
+  // Problems & fixes: numbered stops on a line; one problem -> fix card at a time.
+  function fixesHTML(j, ji) {
+    var n = j.problemsSolved.length, base = 'fix-' + ji;
+    return '<div class="fixes" data-fixes><p class="issues-label">' + esc(U.problemsLabel) + ' <span class="fold-n">' + n + '</span></p>' +
+      '<div class="fix-rail" role="tablist" aria-label="' + esc(U.problemsLabel) + '"><span class="fix-line" aria-hidden="true"><i></i></span>' +
+      j.problemsSolved.map(function (p, k) {
+        return '<button type="button" role="tab" class="fix-dot" id="' + base + '-t' + k + '" aria-controls="' + base + '-p' + k + '" aria-selected="' + (k === 0) + '" tabindex="' + (k ? -1 : 0) + '" data-k="' + k + '">' +
+          '<span class="fix-num">' + two(k) + '</span><span class="fix-t">' + esc(p.title) + '</span></button>';
+      }).join('') + '</div>' +
+      j.problemsSolved.map(function (p, k) {
+        return '<div class="fix-card' + (k === 0 ? ' in' : '') + '" role="tabpanel" id="' + base + '-p' + k + '" aria-labelledby="' + base + '-t' + k + '"' + (k ? ' hidden' : '') + '>' +
+          '<div class="fix-top"><span class="fix-k">' + two(k) + ' / ' + (n < 10 ? '0' : '') + n + '</span><h4>' + esc(p.title) + '</h4></div>' +
+          '<div class="fix-flow"><div class="fix-p"><b>' + esc(U.fixProblem) + '</b><p>' + esc(p.problem) + '</p></div>' +
+          '<svg class="fix-arrow" viewBox="0 0 64 24" aria-hidden="true"><path d="M2 12H54" /><path d="M46 4l10 8-10 8" /></svg>' +
+          '<div class="fix-s"><b>' + esc(U.fixSolution) + '</b><p>' + esc(p.solution) + '</p></div></div>' +
+          '<div class="fix-nav"><button type="button" class="icon-btn" data-step="-1" aria-label="' + esc(U.fixPrev) + '"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>' +
+          '<button type="button" class="icon-btn" data-step="1" aria-label="' + esc(U.fixNext) + '"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></div></div>';
+      }).join('') + '</div>';
+  }
+
+  // Self-built tools: pick a tool on the left, see its screen, what it does, and ask for access.
+  function toolsHTML() {
+    var T = D.tools || [];
+    if (!T.length) return '';
+    var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+    function mail(t) {
+      var body = lang === 'id'
+        ? 'Halo Afifani,\n\nSaya ingin meminta akses ke ' + t.name + '.\n\nNama:\nInstansi:\nKeperluan:\n'
+        : 'Hi Afifani,\n\nI would like to request access to ' + t.name + '.\n\nName:\nCompany:\nPurpose:\n';
+      return 'mailto:muhammad.afifani007@gmail.com?subject=' + encodeURIComponent((lang === 'id' ? 'Permintaan akses: ' : 'Access request: ') + t.name) + '&body=' + encodeURIComponent(body);
+    }
+    return '<div class="sbt" data-tools><div class="sbt-head"><p class="issues-label">' + esc(U.toolsLabel) + ' <span class="fold-n">' + T.length + '</span></p>' +
+      '<p class="sbt-intro">' + esc(U.toolsIntro) + '</p></div><div class="sbt-wrap">' +
+      '<div class="tool-list" role="tablist" aria-label="' + esc(U.toolsLabel) + '">' + T.map(function (t, k) {
+        return '<button type="button" role="tab" class="tool-tab" id="tool-t' + k + '" aria-controls="tool-p' + k + '" aria-selected="' + (k === 0) + '" tabindex="' + (k ? -1 : 0) + '" data-k="' + k + '">' +
+          '<span class="tool-n">' + two(k) + '</span><span class="tool-name"><b>' + esc(t.name) + '</b><small>' + esc(t.sub) + '</small></span></button>';
+      }).join('') + '</div><div class="tool-panels">' + T.map(function (t, k) {
+        var real = t.shots.filter(function (x) { return !x.soon; });
+        var screen = real.length
+          ? '<div class="device-shot">' + photoBtn(real[0].src, real[0].caption, real[0].w, real[0].h) + '</div>'
+          : '<div class="device-soon">' + t.shots.map(function (x) { return '<div class="slot">' + cam + '<span>' + esc(x.caption) + '</span><small>' + esc(U.toolSoon) + '</small></div>'; }).join('') + '</div>';
+        return '<div class="tool-panel' + (k === 0 ? ' in' : '') + '" role="tabpanel" id="tool-p' + k + '" aria-labelledby="tool-t' + k + '"' + (k ? ' hidden' : '') + '>' +
+          '<div class="device"><div class="device-bar"><span class="device-name">' + esc(t.name) + '</span><span class="device-chip">' + esc(U.toolWebApp) + '</span></div>' + screen + '</div>' +
+          '<div class="tool-info"><div><p class="tool-desc">' + esc(t.desc) + '</p><div class="tool-cta"><a class="btn btn-ink" href="' + esc(mail(t)) + '">' + esc(U.toolRequest) + '</a><small>' + esc(U.toolRequestNote) + '</small></div></div>' +
+          '<ul class="tool-feats">' + t.features.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div></div>';
+      }).join('') + '</div></div></div>';
+  }
+
   function jobHTML(j, i) {
     var stream = i === 0 ? 's-energy' : 's-amber';
     var co = j.companyLink;
-    var duties = j.duties ? '<details class="duties"><summary>' + esc(U.dutiesLabel) + '</summary><div class="duty-groups">' +
-      j.duties.map(function (g) { return '<div><h4>' + esc(g.title) + '</h4><ul>' + g.items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>'; }).join('') +
-      '</div></details>' : '';
-    var issues = '<details class="fold issues" data-open-wide><summary>' + esc(cap(U.problemsLabel)) + ' <span class="fold-n">' + j.problemsSolved.length + '</span></summary>' +
-      '<div class="issue-h" aria-hidden="true"><span></span><span>' + esc(cap(U.issueLabel)) + '</span><span></span><span>' + esc(cap(U.solutionLabel)) + '</span></div>' +
-      j.problemsSolved.map(function (p, k) {
-        return '<div class="issue"><span class="issue-n">' + (k < 9 ? '0' : '') + (k + 1) + '</span><p class="issue-p"><span class="sr-only">' + esc(U.issueLabel) + ': </span>' + esc(p.problem) +
-          '</p><span class="issue-arrow" aria-hidden="true"></span><p class="issue-s" data-label="' + esc(cap(U.solutionLabel)) + '"><span class="sr-only">' + esc(U.solutionLabel) + ': </span>' + esc(p.solution) + '</p></div>';
-      }).join('') + '</details>';
-    var tool = j.innovationTool ? '<div class="tool"><div><b>' + esc(cap(U.innovationLabel)) + '</b><h4>' + esc(j.innovationTool.title) + '</h4><p>' + esc(j.innovationTool.desc) + '</p></div>' +
-      '<a class="btn btn-line ext" href="' + esc(j.innovationTool.url) + '" target="_blank" rel="noopener">' + esc(strip(j.innovationTool.linkLabel)) + '</a></div>' : '';
+    var duties = j.duties ? '<div class="duties2"><p class="issues-label">' + esc(U.dutiesLabel) + '</p><ul class="duty-list">' +
+      j.duties.map(function (g) {
+        return '<li><svg viewBox="0 0 24 24" aria-hidden="true">' + (DUTY_ICON[g.key] || '') + '</svg><div><b>' + esc(g.title) + '</b><span>' + esc(g.items.join(' ')) + '</span></div></li>';
+      }).join('') + '</ul></div>' : '';
+    var withCaps = j.activitySlots.some(function (a) { return a.caption; });
     var photos = '<p class="photos-label">' + esc(U.photosLabel) + '</p><div class="photo-main">' + photoBtn(j.sitePhoto, j.sitePhotoCaption, 800, 600) +
-      '<span class="photo-cap">' + esc(j.sitePhotoCaption) + '</span></div><div class="thumbs">' +
-      j.activitySlots.map(function (a, k) { return photoBtn(a.src, co.short + ' field activity ' + (k + 1)); }).join('') + '</div>';
+      '<span class="photo-cap">' + esc(j.sitePhotoCaption) + '</span></div><div class="thumbs' + (withCaps ? ' cap' : '') + '">' +
+      j.activitySlots.map(function (a, k) {
+        var alt = a.caption || (co.short + ' field activity ' + (k + 1));
+        return withCaps ? '<figure>' + photoBtn(a.src, alt) + '<figcaption>' + esc(a.caption) + '</figcaption></figure>' : photoBtn(a.src, alt);
+      }).join('') + '</div>';
     return '<article class="job ' + stream + '"><div class="job-head"><p class="job-when">' + esc(j.dates) + '</p>' +
       '<div><h3>' + esc(j.role) + '</h3><p class="job-co">' + esc(j.company) + ' · ' + esc(j.location) + '</p></div>' +
       '<a class="co-link" href="' + esc(co.url) + '" target="_blank" rel="noopener"><img src="' + esc(co.logo) + '" alt="" width="64" height="36" loading="lazy"><span>' + esc(co.full) + '<small class="ext">' + esc(strip(U.visitSite)) + '</small></span></a></div>' +
@@ -197,7 +250,7 @@
       duties +
       '<div class="design"><p class="design-label">' + esc(cap(U.engDesignLabel)) + '</p><p>' + esc(j.design) + '</p>' +
       '<div class="design-facts"><p><b>' + esc(cap(U.teamLedLabel)) + '</b>' + esc(j.leadTeam) + '</p><p><b>' + esc(cap(U.collabLabel)) + '</b>' + esc(j.collaboration) + '</p></div></div>' +
-      issues + tool + '</div><aside class="job-photos">' + photos + '</aside></div></article>';
+      fixesHTML(j, i) + '</div><aside class="job-photos">' + photos + '</aside></div>' + (i === 0 ? toolsHTML() : '') + '</article>';
   }
 
   var FIELD_IMG = ['field-1', 'field-smelter-pipe-lift', 'field-3'];
@@ -452,7 +505,7 @@
         insts.hx.setMode(b.dataset.mode);
       });
     });
-    var tabs = [].slice.call(main.querySelectorAll('[role="tab"]'));
+    var tabs = [].slice.call(main.querySelectorAll('.stage-tabs [role="tab"]'));
     var svcs = [].slice.call(main.querySelectorAll('.svc'));
     var sheet = main.querySelector('.stage');
     var manualUntil = 0;
@@ -537,6 +590,40 @@
       main.querySelectorAll('section[id]').forEach(function (s) { no.observe(s); });
       observers.push(no);
     }
+
+    // generic tab group: buttons [role=tab] inside `rail`, panels by aria-controls; arrow keys move
+    function tabGroup(box, tabSel, onShow) {
+      var tabs = [].slice.call(box.querySelectorAll(tabSel));
+      function show(k, focus) {
+        tabs.forEach(function (t, x) {
+          var on = x === k, panel = document.getElementById(t.getAttribute('aria-controls'));
+          t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+          if (on && focus) t.focus();
+          panel.hidden = !on; panel.classList.remove('in');
+          if (on) { void panel.offsetWidth; panel.classList.add('in'); }
+        });
+        if (onShow) onShow(k, tabs.length);
+      }
+      tabs.forEach(function (t, k) {
+        t.addEventListener('click', function () { show(k); });
+        t.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+          if (d) { e.preventDefault(); show((k + d + tabs.length) % tabs.length, true); }
+        });
+      });
+      return { show: show, count: tabs.length, current: function () { return tabs.findIndex(function (t) { return t.getAttribute('aria-selected') === 'true'; }); } };
+    }
+    main.querySelectorAll('[data-fixes]').forEach(function (box) {
+      var line = box.querySelector('.fix-line i');
+      var g = tabGroup(box, '.fix-dot', function (k, n) {
+        line.style.width = (n > 1 ? k / (n - 1) * 100 : 0) + '%';
+        box.querySelectorAll('.fix-dot').forEach(function (d, x) { d.classList.toggle('done', x < k); });
+      });
+      box.querySelectorAll('[data-step]').forEach(function (b) {
+        b.addEventListener('click', function () { g.show((g.current() + +b.dataset.step + g.count) % g.count); });
+      });
+    });
+    main.querySelectorAll('[data-tools]').forEach(function (box) { tabGroup(box, '.tool-tab'); });
 
     if (window.matchMedia('(min-width: 981px)').matches) main.querySelectorAll('[data-open-wide]').forEach(function (d) { d.open = true; });
     wireLightbox(main);
