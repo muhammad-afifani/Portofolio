@@ -1058,20 +1058,10 @@ window.PORTFOLIO = {
     ],
     "shots": [
      {
-      "soon": true,
-      "caption": "Landing: 3D gas turbine"
-     },
-     {
-      "soon": true,
-      "caption": "Explore: from cycle to emissions"
-     },
-     {
-      "soon": true,
-      "caption": "Learn: lessons and quizzes"
-     },
-     {
-      "soon": true,
-      "caption": "Present mode"
+      "src": "assets/img/tool-engine-turbine-lab.webp",
+      "caption": "Engine & Turbine Emission Lab landing: 3D gas turbine coloured by gas temperature",
+      "w": 1584,
+      "h": 976
      }
     ]
    }
@@ -2134,20 +2124,10 @@ window.PORTFOLIO = {
     ],
     "shots": [
      {
-      "soon": true,
-      "caption": "Landing: turbin gas 3D"
-     },
-     {
-      "soon": true,
-      "caption": "Explore: dari siklus ke emisi"
-     },
-     {
-      "soon": true,
-      "caption": "Learn: pelajaran dan kuis"
-     },
-     {
-      "soon": true,
-      "caption": "Mode Present"
+      "src": "assets/img/tool-engine-turbine-lab.webp",
+      "caption": "Landing Engine & Turbine Emission Lab: turbin gas 3D berwarna sesuai suhu gas",
+      "w": 1584,
+      "h": 976
      }
     ]
    }
