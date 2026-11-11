@@ -50,9 +50,6 @@
     { kind: 'pipe', stream: 's-amber', sheet: 'ISO · RFID spool tracking' }
   ];
   var DISC = { cfd: 's-teal', slosh: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
-  var FOCUS_STYLE = [ // P&ID line types, one per focus area
-    ['solid', '--hot'], ['dash', '--cold'], ['solid', '--amber'], ['dot', '--ink'], ['dash', '--energy'], ['solid', '--energy'], ['dot', '--violet']
-  ];
 
   // ------------------------------------------------------------- sections
   function navHTML() {
@@ -90,6 +87,32 @@
     return top + legs;
   }
 
+  // A smaller knock-out drum behind and to the right of the portrait vessel, fed from its side nozzle.
+  // Motion: flow in the connecting and outlet pipes, a liquid level bobbing in the sight glass.
+  function plantSVG() {
+    return '<svg class="plant" viewBox="0 0 200 360" aria-hidden="true"><defs>' +
+      '<linearGradient id="pdS" x1="0" x2="1"><stop offset="0" stop-color="#8F9AA7"/><stop offset=".42" stop-color="#EEF1F4"/><stop offset="1" stop-color="#7D8895"/></linearGradient>' +
+      '<linearGradient id="pdP" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E7A184"/><stop offset=".5" stop-color="#B5563A"/><stop offset="1" stop-color="#6E2E1C"/></linearGradient>' +
+      '<clipPath id="pdGlass"><rect x="178" y="128" width="8" height="118" rx="3"/></clipPath></defs>' +
+      '<rect x="0" y="142" width="92" height="16" fill="url(#pdP)" stroke="#15181D" stroke-width="2"/>' +
+      '<path class="pd-flow" d="M2 150H90"/>' +
+      '<rect x="44" y="134" width="6" height="32" rx="1" fill="#A4AEBA" stroke="#15181D" stroke-width="1.5"/><rect x="51" y="134" width="6" height="32" rx="1" fill="#A4AEBA" stroke="#15181D" stroke-width="1.5"/>' +
+      '<path d="M90 76a40 18 0 0 1 80 0v204a40 18 0 0 1-80 0z" fill="url(#pdS)" stroke="#15181D" stroke-width="2.5"/>' +
+      '<path d="M90 120h80M90 236h80" stroke="#15181D" stroke-width="1" opacity=".35"/>' +
+      '<path d="M130 58V40" stroke="#15181D" stroke-width="6"/><path d="M130 58V40" stroke="#C3CAD2" stroke-width="3"/>' +
+      '<path d="M121 40h18l-4-12h-10z" fill="#D9432B" stroke="#15181D" stroke-width="1.8"/><path d="M135 22h22v-10" fill="none" stroke="#15181D" stroke-width="4"/>' +
+      '<path d="M170 128h8M170 246h8" stroke="#15181D" stroke-width="3"/>' +
+      '<rect x="178" y="128" width="8" height="118" rx="3" fill="#F4F6F8" stroke="#15181D" stroke-width="1.8"/>' +
+      '<g clip-path="url(#pdGlass)"><rect class="pd-level" x="176" y="196" width="12" height="60" fill="#1B5FD1"/></g>' +
+      '<path d="M130 297v22h70" fill="none" stroke="#15181D" stroke-width="12" stroke-linejoin="round"/><path d="M130 297v22h70" fill="none" stroke="#B5563A" stroke-width="8" stroke-linejoin="round"/>' +
+      '<path class="pd-flow" d="M130 300v19h70"/>' +
+      '<path d="M100 290v50M160 290v50" stroke="#15181D" stroke-width="9"/><path d="M100 290v50M160 290v50" stroke="#C3CAD2" stroke-width="5"/>' +
+      '<rect x="88" y="338" width="24" height="6" rx="1" fill="#15181D"/><rect x="148" y="338" width="24" height="6" rx="1" fill="#15181D"/>' +
+      '<path d="M0 343H200" stroke="#15181D" stroke-width="2"/>' +
+      Array.apply(null, Array(13)).map(function (_, k) { return '<path d="M' + (4 + k * 15) + ' 343l-7 9" stroke="#4A515C" stroke-width="1.5"/>'; }).join('') +
+      '</svg>';
+  }
+
   function heroHTML() {
     var stats = D.stats.map(function (s, i) {
       var cls = ['s-amber', 's-energy', 's-cold', 's-hot'][i];
@@ -104,10 +127,11 @@
       '<a class="btn btn-line dl" href="assets/CV_Muhammad_Afifani_Romadhan.pdf" download>' + esc(strip(U.getCvCta)) + '</a></div>' +
       '<ul class="hero-tags" aria-label="' + esc(U.focusAreasLabel) + '">' + D.heroTags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
       '</div>' +
-      '<div class="portrait">' + vesselParts() + '<div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
-      '<span class="nozzle n1" aria-hidden="true"></span><span class="nozzle n2" aria-hidden="true"></span>' +
-      '<div class="callout c2"><b>' + esc(U.nowLabel) + '</b>' + esc(U.nowValue) + '</div>' +
-      '<div class="callout c1"><b>' + esc(U.regLabel) + '</b>' + esc(U.regValue) + '</div></div>' +
+      '<div class="portrait"><div class="v-bg" aria-hidden="true"><img src="assets/img/site-phm.webp" alt="" width="1280" height="720" loading="lazy"></div>' +
+      '<div class="v-main">' + plantSVG() + vesselParts() + '<div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
+      '<span class="nozzle n1" aria-hidden="true"></span>' +
+      '<dl class="v-plate"><div><dt>' + esc(U.plateNowK) + '</dt><dd>' + esc(U.plateNow) + '</dd></div><div><dt>' + esc(U.plateRegK) + '</dt><dd>' + esc(U.plateReg) + '</dd></div></dl>' +
+      '</div></div>' +
       '</div>' +
       '<div class="clients"><span class="clients-label">' + esc(U.experienceAtLabel) + '</span><ul class="client-logos">' +
       P.clients.map(function (c) { return '<li><img src="' + esc(c.logo) + '" alt="' + esc(c.name) + '" width="120" height="34" loading="lazy"></li>'; }).join('') +
@@ -124,19 +148,32 @@
     }).join(' ');
   }
 
+  // Small engineering glyphs; the part with class "ia" moves when the row is hovered or first scrolls in.
+  var ICONS = {
+    vessel: ['s-hot', '<rect x="13" y="5" width="14" height="30" rx="7"/><path d="M20 5V2M27 18h5M8 26h5"/><path class="ia ia-wave" d="M14 23c2-1.6 4 1.6 6 0s4 1.6 6 0"/>'],
+    fem: ['s-violet', '<path d="M5 33L20 7l15 26zM12.5 20h15M20 7v26M12.5 20L20 33l7.5-13"/><circle class="ia ia-pulse" cx="20" cy="20" r="3.2"/>'],
+    hx: ['s-cold', '<rect x="5" y="13" width="30" height="14" rx="4"/><path d="M5 18h30M5 22h30"/><path class="ia ia-slide" d="M9 8h12m-3-3l3 3-3 3"/><path class="ia ia-slide2" d="M31 32H19m3-3l-3 3 3 3"/>'],
+    piping: ['s-amber', '<path d="M4 14h14a6 6 0 0 1 6 6v16"/><path d="M4 9v10M19 36h10"/><path class="ia ia-dash" d="M4 14h14a6 6 0 0 1 6 6v16"/>'],
+    plan: ['s-teal', '<path d="M7 11h13M11 20h17M17 29h16" class="thick"/><path class="ia ia-today" d="M22 5v30"/>'],
+    ghg: ['s-energy', '<path d="M9 36V19h6v17M5 36h14"/><path class="ia ia-drift" d="M16 14a4.5 4.5 0 0 1 8-2.5 4.5 4.5 0 0 1 8 3 3.5 3.5 0 0 1-2 6.5H18a3.5 3.5 0 0 1-2-7z"/>'],
+    energy: ['s-amber', '<path d="M7 29a13 13 0 1 1 26 0"/><path d="M10 29h3M27 29h3M20 16v3"/><path class="ia ia-needle" d="M20 29l7-8"/><circle cx="20" cy="29" r="2.2" class="fillc"/>'],
+    data: ['s-cold', '<path d="M6 35h28"/><path class="ia ia-bars" d="M10 33V23M17 33V15M24 33V19M31 33V9"/>']
+  };
+  function iconList(items, keys, extra) {
+    return '<ul class="ilist' + (extra ? ' ' + extra : '') + '">' + items.map(function (t, i) {
+      var ic = ICONS[keys[i]] || ICONS.vessel;
+      return '<li class="' + ic[0] + '" style="--i:' + i + '"><span class="ico" aria-hidden="true"><svg viewBox="0 0 40 40">' + ic[1] + '</svg></span><span>' + esc(t) + '</span></li>';
+    }).join('') + '</ul>';
+  }
+
   function aboutHTML() {
-    var legend = D.heroTags.map(function (t, i) {
-      var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
-      var dash = st[0] === 'dash' ? ' stroke-dasharray="10 6"' : st[0] === 'dot' ? ' stroke-dasharray="2 5" stroke-linecap="round"' : '';
-      return '<li><svg viewBox="0 0 56 10" aria-hidden="true"><line x1="0" y1="5" x2="56" y2="5" stroke="var(' + st[1] + ')" stroke-width="3.5"' + dash + '/></svg>' + esc(t) + '</li>';
-    }).join('');
     return section('about', 'About', 'E-01', U.sectionAbout, '', 's-energy',
       '<div class="about-grid"><div><p class="about-bio">' + esc(U.heroBio) + '</p>' +
       '<dl class="facts">' + D.quickFacts.map(function (f) {
         var v = f.value.indexOf('@') > 0 ? '<a class="link" href="mailto:' + esc(f.value) + '">' + esc(f.value) + '</a>' : esc(f.value);
         return '<div><dt>' + esc(cap(f.label)) + '</dt><dd>' + v + '</dd></div>';
       }).join('') + '</dl></div>' +
-      '<div><p class="legend-title">' + esc(cap(U.focusAreasLabel)) + '</p><ul class="legend">' + legend + '</ul></div></div>');
+      '<div><p class="legend-title">' + esc(cap(U.focusAreasLabel)) + '</p>' + iconList(D.heroTags, P.focusIcons) + '</div></div>');
   }
 
   function section(id, label, tag, title, intro, stream, inner, extra) {
@@ -314,6 +351,8 @@
         : '') + '</div>';
   }
 
+  var RADAR_TOOLS = [];
+  function LV_NOW() { return U.levels; }
   function credentialsHTML() {
     var streams = ['s-energy', 's-violet', 's-amber'];
     var certs = D.certifications.map(function (c, i) {
@@ -327,42 +366,56 @@
     }).join('');
     var other = '<p class="sub-h" style="margin-top:34px;font-size:17px">' + esc(U.otherCertsLabel) + '</p><ul class="other-certs">' +
       D.otherCerts.map(function (c) { return '<li><span>' + esc(c.year) + '</span>' + esc(c.name) + '</li>'; }).join('') + '</ul>';
-    // Competency matrix: each tool is a short pipe that fills to its level (1 Basic .. 4 Expert).
-    function mono(n) { var m = P.softwareMono && P.softwareMono[n]; if (m) return m; var w = n.split(/\s+/); return (w.length > 1 ? w[0].charAt(0) + w[1].charAt(0) : n.slice(0, 2)).toUpperCase(); }
+    // Competency radar: Expert sits in the bullseye, Basic on the outer ring; each group owns a quarter.
     var LV = U.levels;
-    var nTools = D.toolGroups.reduce(function (a, g) { return a + g.items.length; }, 0);
-    function groupHTML(g, gi) {
-      return '<section class="cm-group ' + g.stream + '" style="--o:' + gi + '" data-cm-group="' + g.key + '" aria-labelledby="cm-h-' + g.key + '">' +
-        '<div class="cm-band" aria-hidden="true"><span>' + two(gi) + '</span><i></i></div><div class="cm-body">' +
-        '<div class="cm-top"><h4 id="cm-h-' + g.key + '">' + esc(g.title) + '</h4><p>' + esc(g.hint) + '</p></div>' +
-        '<div class="cm-scale" aria-hidden="true"><span></span><span class="cm-ticks">' + LV.map(function (l, k) { return '<b title="' + esc(l) + '">' + (k + 1) + '</b>'; }).join('') + '</span><span></span></div>' +
-        '<ul class="cm-rows">' + g.items.map(function (it, k) {
-          var lg = P.softwareLogos[it.name];
-          return '<li class="cm-row lv' + it.level + '" style="--lv:' + it.level + ';--i:' + k + '">' +
-            (lg ? '<img class="cm-logo" src="' + esc(lg) + '" alt="" width="34" height="34" loading="lazy">' : '<span class="cm-logo cm-mono" aria-hidden="true">' + esc(mono(it.name)) + '</span>') +
-            '<span class="cm-name">' + esc(it.name) + '</span>' +
-            '<span class="cm-meter" role="img" aria-label="' + esc(it.name) + ': ' + esc(LV[it.level - 1]) + ', ' + it.level + ' ' + esc(U.levelOf) + '"><i class="cm-fill"></i></span>' +
-            '<span class="cm-lv">' + esc(LV[it.level - 1]) + '</span></li>';
-        }).join('') + '</ul></div></section>';
-    }
-    var cols = [[], []];
-    D.toolGroups.forEach(function (g, gi) { cols[gi % 2].push(groupHTML(g, gi)); }); // Mech + Coding | EPC + Data: balanced heights
-    var matrix = '<div class="skills-block cm" data-cm><div class="cm-head"><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + ' <span class="fold-n">' + nTools + '</span></p>' +
+    var RING = { 4: 17, 3: 27.5, 2: 37.5, 1: 47.5 };   // % of the radar's width
+    var TOOLS = [];
+    var PAD = { 4: 12, 3: 10, 2: 9, 1: 9 };   // keep logos off the sector edges and the ring labels
+    D.toolGroups.forEach(function (g, gi) {
+      var inner = [];
+      [4, 3, 2, 1].forEach(function (lv) {
+        var on = g.items.filter(function (it) { return it.level === lv; }), angs = [];
+        on.forEach(function (it, k) {
+          var span = 90 - 2 * PAD[lv], a = PAD[lv] + (k + 0.5) * (span / on.length);
+          angs.push(a);
+          var ang = gi * 90 + a, r = RING[lv], rad = ang * Math.PI / 180;
+          TOOLS.push({ name: it.name, level: lv, g: g, gi: gi, ang: ang,
+            x: (50 + r * Math.sin(rad)).toFixed(2), y: (50 - r * Math.cos(rad)).toFixed(2) });
+        });
+        if (angs.length) inner = angs;
+      });
+    });
+    TOOLS.forEach(function (t, i) { t.i = i; });
+    RADAR_TOOLS = TOOLS;
+    function logo(n, w) { var lg = P.softwareLogos[n]; return lg ? '<img src="' + esc(lg) + '" alt="" width="' + w + '" height="' + w + '" loading="lazy">' : ''; }
+    var wedges = D.toolGroups.map(function (g, gi) {
+      var a0 = gi * 90 * Math.PI / 180, a1 = (gi + 1) * 90 * Math.PI / 180, R = 48;
+      return '<path class="rd-wedge ' + g.stream + '" data-g="' + g.key + '" d="M50 50 L' + (50 + R * Math.sin(a0)).toFixed(2) + ' ' + (50 - R * Math.cos(a0)).toFixed(2) +
+        ' A' + R + ' ' + R + ' 0 0 1 ' + (50 + R * Math.sin(a1)).toFixed(2) + ' ' + (50 - R * Math.cos(a1)).toFixed(2) + ' Z"/>';
+    }).join('');
+    var rings = [4, 3, 2, 1].map(function (lv) { return '<circle class="rd-ring" cx="50" cy="50" r="' + RING[lv] + '"/>'; }).join('');
+    var radar = '<div class="skills-block rd-wrap" data-rd data-f="all"><div class="cm-head"><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + ' <span class="fold-n">' + TOOLS.length + '</span></p>' +
       '<div class="cm-filter" role="group" aria-label="' + esc(U.softwareToolsLabel) + '"><button type="button" data-f="all" aria-pressed="true">' + esc(U.filterAll) + '</button>' +
       D.toolGroups.map(function (g) { return '<button type="button" class="' + g.stream + '" data-f="' + g.key + '" aria-pressed="false"><i aria-hidden="true"></i>' + esc(g.title) + '</button>'; }).join('') + '</div></div>' +
-      '<ol class="cm-legend">' + LV.map(function (l, k) {
-        return '<li style="--lv:' + (k + 1) + '"><span class="cm-meter mini" aria-hidden="true"><i class="cm-fill"></i></span><b><em>' + (k + 1) + '</em>' + esc(l) + '</b><span>' + esc(U.levelHints[k]) + '</span></li>';
-      }).join('') + '</ol><p class="cm-note">' + esc(U.levelNote) + '</p>' +
-      '<div class="cm-grid"><div class="cm-col">' + cols[0].join('') + '</div><div class="cm-col">' + cols[1].join('') + '</div></div></div>';
-    var comp = D.coreSkills.map(function (t, i) {
-      var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
-      var dash = st[0] === 'dash' ? ' stroke-dasharray="10 6"' : st[0] === 'dot' ? ' stroke-dasharray="2 5" stroke-linecap="round"' : '';
-      return '<li><svg viewBox="0 0 56 10" aria-hidden="true"><line x1="0" y1="5" x2="56" y2="5" stroke="var(' + st[1] + ')" stroke-width="3.5"' + dash + '/></svg>' + esc(t) + '</li>';
-    }).join('');
+      '<div class="rd-layout"><div class="rd" data-f="all">' +
+      '<svg class="rd-bg" viewBox="0 0 100 100" aria-hidden="true">' + wedges + rings +
+      '<path class="rd-axis" d="M50 2V98M2 50H98"/><circle class="rd-hub" cx="50" cy="50" r="1.4"/></svg>' +
+      '<div class="rd-sweep" aria-hidden="true"></div>' +
+      [4, 3, 2, 1].map(function (lv) { return '<span class="rd-lv" style="top:' + (50 - RING[lv] - 2.6) + '%" aria-hidden="true">' + esc(LV[lv - 1]) + '</span>'; }).join('') +
+      TOOLS.map(function (t) {
+        return '<button type="button" class="rd-node ' + t.g.stream + ' g-' + t.g.key + '" data-t="' + t.i + '" style="--x:' + t.x + '%;--y:' + t.y + '%;--a:' + t.ang.toFixed(1) + ';--d:' + t.i + '"' +
+          ' aria-label="' + esc(t.name) + ', ' + esc(LV[t.level - 1]) + '">' + logo(t.name, 40) + '<span class="rd-name">' + esc(t.name) + '</span></button>';
+      }).join('') + '</div>' +
+      '<div class="rd-side"><div class="rd-card" aria-live="polite"></div>' +
+      '<div class="rd-list">' + [4, 3, 2, 1].map(function (lv) {
+        var on = TOOLS.filter(function (t) { return t.level === lv; });
+        return '<div class="rd-row"><p><b>' + esc(LV[lv - 1]) + '</b><span class="rd-dots" aria-hidden="true">' + [1, 2, 3, 4].map(function (k) { return '<i' + (k <= lv ? ' class="on"' : '') + '></i>'; }).join('') + '</span></p><div>' +
+          on.map(function (t) { return '<button type="button" class="rd-chip ' + t.g.stream + ' g-' + t.g.key + '" data-t="' + t.i + '">' + logo(t.name, 18) + esc(t.name) + '</button>'; }).join('') + '</div></div>';
+      }).join('') + '</div><p class="cm-note">' + esc(U.levelNote) + '</p></div></div></div>';
     return section('credentials', 'Skills & Credentials', 'E-06', U.sectionCredentials, '', 's-violet',
       '<ul class="certs">' + certs + '</ul>' + other +
-      matrix +
-      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend legend-cols">' + comp + '</ul></div>');
+      radar +
+      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p>' + iconList(D.coreSkills, P.coreIcons, 'cols') + '</div>');
   }
 
   function medal(rank) {
@@ -374,8 +427,11 @@
   function achievementsHTML() {
     return section('achievements', 'Achievements', 'E-07', U.sectionAchievements, '', 's-amber',
       '<ul class="awards">' + D.achievements.map(function (a) {
-        return '<li class="award"><span class="award-y">' + esc(a.year) + '</span><div><h3>' + esc(a.title) + '</h3><p class="org">' + esc(a.org) + '</p>' +
-          '<p class="prog">' + esc(a.program) + (a.rank ? ' · ' + esc(a.rank) : '') + '</p>' + ext(a.link, U.viewEvidence) + '</div>' + medal(a.rank) + '</li>';
+        var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+        var ph = a.photo ? '<figure class="aw-photo">' + photoBtn(a.photo.src, a.photo.caption, a.photo.w, a.photo.h) + '</figure>'
+          : '<figure class="aw-photo aw-soon"><div class="slot">' + cam + esc(U.awardPhotoSoon) + '</div></figure>';
+        return '<li class="award">' + ph + '<div class="aw-body"><span class="award-y">' + esc(a.year) + '</span><div><h3>' + esc(a.title) + '</h3><p class="org">' + esc(a.org) + '</p>' +
+          '<p class="prog">' + esc(a.program) + (a.rank ? ' · ' + esc(a.rank) : '') + '</p>' + ext(a.link, U.viewEvidence) + '</div>' + medal(a.rank) + '</div></li>';
       }).join('') + '</ul>');
   }
 
@@ -441,45 +497,92 @@
   }
 
   // ------------------------------------------------------------- process pipe (left gutter)
-  // Each section is a pipe spool: flanged at the joints, a tee branches off to the
-  // section's equipment tag, and an identification band names the stream (ASME A13.1 style).
-  // The flow arrows follow the visitor's scroll direction.
+  // Each section is a pipe spool: flanged at the joints, with a tee branch to the section's
+  // equipment tag. Along the run sit real fittings: gate valves whose handwheels turn as you
+  // scroll, a pressure gauge whose needle follows scroll speed, a swing check valve, a control
+  // valve with a diaphragm actuator, and pipe supports. Flow chevrons follow scroll direction.
+  var FIT = {
+    // every drawing has the pipe centreline at x=52 of a 76-wide viewBox
+    gate: { h: 84, svg: '<rect x="38" y="4" width="28" height="7" rx="1.5" class="fl"/><rect x="38" y="73" width="28" height="7" rx="1.5" class="fl"/>' +
+      '<path d="M41 11h22v62H41z" class="st"/><path d="M44 30l16 12-16 12zM60 30L44 42l16 12z" class="dk" opacity=".35"/>' +
+      '<rect x="24" y="35" width="18" height="14" rx="2" class="st"/><path d="M24 42H13" class="stem"/>' +
+      '<g class="hw"><circle cx="11" cy="42" r="10" class="wheel"/><path d="M11 32v20M1 42h20M4 35l14 14M18 35L4 49" class="spoke"/><circle cx="11" cy="42" r="2.6" class="hub"/></g>' },
+    gauge: { h: 64, svg: '<rect x="38" y="44" width="28" height="7" rx="1.5" class="fl" opacity="0"/><path d="M43 46H30V36" class="tube"/>' +
+      '<rect x="26" y="40" width="8" height="7" rx="1" class="dk"/><circle cx="30" cy="22" r="15" class="bezel"/><circle cx="30" cy="22" r="11.5" class="face"/>' +
+      '<path d="M22 30a11 11 0 1 1 16 0" class="ticks"/><g class="needle"><path d="M30 22L30 12" class="nd"/></g><circle cx="30" cy="22" r="2" class="hub"/>' },
+    check: { h: 78, svg: '<rect x="38" y="4" width="28" height="7" rx="1.5" class="fl"/><rect x="38" y="67" width="28" height="7" rx="1.5" class="fl"/>' +
+      '<path d="M41 11h22v56H41z" class="st"/><circle cx="38" cy="39" r="13" class="st"/><circle cx="38" cy="39" r="9" class="cover"/>' +
+      '<g class="bolts"><circle cx="38" cy="28.5" r="1.4"/><circle cx="38" cy="49.5" r="1.4"/><circle cx="27.5" cy="39" r="1.4"/><circle cx="31" cy="31.6" r="1.4"/><circle cx="31" cy="46.4" r="1.4"/></g>' +
+      '<path d="M57 26v24m-4-6l4 7 4-7" class="arrow"/>' },
+    control: { h: 100, svg: '<rect x="38" y="44" width="28" height="7" rx="1.5" class="fl"/><rect x="38" y="89" width="28" height="7" rx="1.5" class="fl"/>' +
+      '<path d="M41 51h22v38H41z" class="st"/><circle cx="52" cy="70" r="13" class="st"/>' +
+      '<path d="M39 70H20" class="stem"/><path d="M38 62H24M38 78H24" class="yoke"/><g class="travel"><rect x="27" y="66" width="6" height="8" rx="1" class="dk"/></g>' +
+      '<path d="M20 50c-14 0-18 9-18 20s4 20 18 20z" class="act"/><path d="M20 50v40" class="dk-line"/>' +
+      '<rect x="22" y="26" width="16" height="12" rx="2" class="box"/><path d="M30 38v12" class="tube"/><circle cx="30" cy="32" r="2.4" class="lamp"/>' },
+    clamp: { h: 30, svg: '<path d="M0 6h4v18H0z" class="dk"/><path d="M4 14h36" class="bracket"/><rect x="40" y="9" width="24" height="11" rx="4" class="band"/>' +
+      '<circle cx="43.5" cy="14.5" r="1.6" class="hub"/><circle cx="60.5" cy="14.5" r="1.6" class="hub"/>' }
+  };
+  var FIT_ORDER = ['gate', 'gauge', 'check', 'control'];
+  function fitHTML(type, top) {
+    var f = FIT[type];
+    return '<svg class="fit fit-' + type + '" viewBox="0 0 76 ' + f.h + '" width="76" height="' + f.h + '" style="top:' + Math.round(top - f.h / 2) + 'px" aria-hidden="true">' + f.svg + '</svg>';
+  }
   function addPipes() {
-    var M = U.pipeMarkers || {};
     main.querySelectorAll(':scope > section.sec').forEach(function (sec, k) {
       var stream = (sec.className.match(/\bs-[a-z]+/) || ['s-hot'])[0];
       if (sec.classList.contains('contact')) stream = 's-amber';
       var pipe = document.createElement('div');
       pipe.className = 'pipe ' + stream;
+      pipe.dataset.k = k;
       pipe.setAttribute('aria-hidden', 'true');
       pipe.innerHTML = '<i class="pipe-body"></i>' + (k ? '<i class="flange"></i>' : '<i class="inlet"></i>') +
-        '<i class="branch"><i class="branch-flange"></i></i>' +
-        '<span class="marker"><b>' + esc(M[stream] || '') + '</b><i class="marker-arrow"></i></span>';
+        '<i class="branch"><i class="branch-flange"></i></i><div class="fits"></div>';
       sec.insertBefore(pipe, sec.firstChild);
     });
     layoutPipes();
   }
   function layoutPipes() {
     main.querySelectorAll('.pipe').forEach(function (pipe) {
-      var sec = pipe.parentNode, tag = sec.querySelector('.tag'), br = pipe.querySelector('.branch'), mk = pipe.querySelector('.marker');
-      var pr = pipe.getBoundingClientRect(), sr = sec.getBoundingClientRect();
+      var sec = pipe.parentNode, tag = sec.querySelector('.tag'), br = pipe.querySelector('.branch'), fits = pipe.querySelector('.fits');
+      var pr = pipe.getBoundingClientRect(), sr = sec.getBoundingClientRect(), H = sr.height, k = +pipe.dataset.k;
       if (!pr.width) return;
+      var branchY = 160;
       if (tag) {
         var tr = tag.getBoundingClientRect();
+        branchY = tr.top + tr.height / 2 - sr.top;
         br.style.display = '';
-        br.style.top = (tr.top + tr.height / 2 - sr.top - 6) + 'px';
+        br.style.top = (branchY - 6) + 'px';
         br.style.width = Math.max(0, tr.left - pr.right) + 'px';
-        mk.style.top = (tr.top - sr.top + 90) + 'px';
-      } else {
-        br.style.display = 'none';
-        mk.style.top = '160px';
+      } else br.style.display = 'none';
+      // the main fitting sits just below the branch; long sections get a second one
+      var placed = [], html = '';
+      function put(type, y) { if (y > 70 && y < H - 70) { html += fitHTML(type, y); placed.push([y, FIT[type].h]); } }
+      put(FIT_ORDER[k % FIT_ORDER.length], branchY + 150);
+      if (H > 1500) put(FIT_ORDER[(k + 2) % FIT_ORDER.length], Math.round(H * 0.62));
+      placed.push([branchY, 40]);
+      for (var y = 110; y < H - 60; y += 380) {
+        var clash = placed.some(function (p) { return Math.abs(p[0] - y) < p[1] / 2 + 45; });
+        if (!clash) html += fitHTML('clamp', y);
       }
+      fits.innerHTML = html;
     });
   }
-  var lastY = window.scrollY;
+  var lastY = window.scrollY, pv = 0, pvT = 0, pvRaf = 0, lastT = performance.now();
+  function pvTick() {
+    pv += (pvT - pv) * 0.12; pvT *= 0.9;
+    root.style.setProperty('--pv', pv.toFixed(3));
+    pvRaf = (pv > 0.002 || pvT > 0.002) ? requestAnimationFrame(pvTick) : 0;
+  }
   window.addEventListener('scroll', function () {
-    var y = window.scrollY;
-    if (Math.abs(y - lastY) > 4) { root.classList.toggle('flow-up', y < lastY); lastY = y; }
+    var y = window.scrollY, t = performance.now();
+    if (Math.abs(y - lastY) > 4) { root.classList.toggle('flow-up', y < lastY); }
+    if (!IL.isPaused()) {
+      root.style.setProperty('--sc', Math.round(y));
+      var v = Math.abs(y - lastY) / Math.max(8, t - lastT);   // px per ms
+      pvT = Math.max(pvT, Math.min(1, v / 3));
+      if (!pvRaf) pvRaf = requestAnimationFrame(pvTick);
+    }
+    lastY = y; lastT = t;
   }, { passive: true });
   var rz;
   window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(layoutPipes, 120); });
@@ -647,27 +750,53 @@
     });
     main.querySelectorAll('[data-tools]').forEach(function (box) { tabGroup(box, '.tool-tab'); });
     if ('IntersectionObserver' in window && !IL.isPaused()) {
-      var tg = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); tg.unobserve(e.target); } });
-      }, { threshold: 0.2 });
-      main.querySelectorAll('[data-cm-group]').forEach(function (g) { g.classList.add('cm-ready'); tg.observe(g); });
-      observers.push(tg);
+      var il = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); il.unobserve(e.target); } }); }, { threshold: 0.3 });
+      main.querySelectorAll('.ilist').forEach(function (u) { il.observe(u); }); observers.push(il);
     }
-    // competency matrix filter
-    main.querySelectorAll('[data-cm]').forEach(function (box) {
-      var btns = [].slice.call(box.querySelectorAll('[data-f]')), grid = box.querySelector('.cm-grid');
-      btns.forEach(function (b) {
+    // competency radar
+    main.querySelectorAll('[data-rd]').forEach(function (box) {
+      var rd = box.querySelector('.rd'), card = box.querySelector('.rd-card');
+      var nodes = [].slice.call(box.querySelectorAll('.rd-node')), chips = [].slice.call(box.querySelectorAll('.rd-chip'));
+      var sel = 0;
+      function show(i) {
+        var t = RADAR_TOOLS[i], lg = P.softwareLogos[t.name];
+        card.className = 'rd-card ' + t.g.stream;
+        card.innerHTML = (lg ? '<img src="' + esc(lg) + '" alt="" width="64" height="64">' : '') +
+          '<div><p class="rd-g"><i aria-hidden="true"></i>' + esc(t.g.title) + '</p><h4>' + esc(t.name) + '</h4>' +
+          '<p class="rd-l"><b>' + esc(LV_NOW()[t.level - 1]) + '</b><span class="rd-dots" aria-hidden="true">' + [1, 2, 3, 4].map(function (k) { return '<i' + (k <= t.level ? ' class="on"' : '') + '></i>'; }).join('') + '</span></p>' +
+          '<p class="rd-hint">' + esc(U.levelHints[t.level - 1]) + '</p></div>';
+        void card.offsetWidth; card.classList.add('in');
+        nodes.forEach(function (n) { n.classList.toggle('hot', +n.dataset.t === i); });
+        chips.forEach(function (c) { c.classList.toggle('hot', +c.dataset.t === i); });
+      }
+      function pick(i) { sel = i; nodes.forEach(function (n) { n.classList.toggle('sel', +n.dataset.t === i); }); show(i); }
+      nodes.concat(chips).forEach(function (el) {
+        var i = +el.dataset.t;
+        el.addEventListener('click', function () { pick(i); });
+        el.addEventListener('mouseenter', function () { show(i); });
+        el.addEventListener('focus', function () { show(i); });
+        el.addEventListener('mouseleave', function () { show(sel); });
+        el.addEventListener('blur', function () { show(sel); });
+      });
+      pick(0);
+      box.querySelectorAll('[data-f]').forEach(function (b) {
         b.addEventListener('click', function () {
-          var f = b.dataset.f;
-          btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-          grid.classList.toggle('one', f !== 'all');
-          box.querySelectorAll('[data-cm-group]').forEach(function (g) {
-            var show = f === 'all' || g.dataset.cmGroup === f;
-            g.hidden = !show;
-            if (show) { g.classList.remove('in'); void g.offsetWidth; g.classList.add('in'); }
-          });
+          box.querySelectorAll('[data-f]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          rd.dataset.f = b.dataset.f; box.dataset.f = b.dataset.f;
+          if (b.dataset.f !== 'all') { var first = RADAR_TOOLS.filter(function (t) { return t.g.key === b.dataset.f; })[0]; if (first) pick(first.i); }
         });
       });
+      if ('IntersectionObserver' in window && !IL.isPaused()) {
+        rd.classList.add('ready');
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            rd.classList.add('in'); io.disconnect();
+            setTimeout(function () { rd.classList.add('done'); }, 900 + RADAR_TOOLS.length * 45);
+          });
+        }, { threshold: 0.3 });
+        io.observe(rd); observers.push(io);
+      }
     });
 
     if (window.matchMedia('(min-width: 981px)').matches) main.querySelectorAll('[data-open-wide]').forEach(function (d) { d.open = true; });
