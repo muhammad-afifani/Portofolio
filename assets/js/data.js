@@ -2459,7 +2459,13 @@ window.PORTFOLIO = {
   "Visual Studio Code": "assets/img/logo-vs-code.webp",
   "Supabase": "assets/img/logo-supabase.webp",
   "Vercel": "assets/img/logo-vercel.webp",
-  "Python": "assets/img/logo-python.webp"
+  "Python": "assets/img/logo-python.webp",
+  "Ms. Excel": "assets/img/logo-excel.webp",
+  "Ms. Access": "assets/img/logo-access.webp",
+  "Ms. Project": "assets/img/logo-ms-project.webp",
+  "Navisworks": "assets/img/logo-navisworks.webp",
+  "AutoCAD Plant 3D": "assets/img/logo-autocad-plant-3d.webp",
+  "Aveva E3D": "assets/img/logo-aveva-e3d.webp"
  },
  "clients": [
   {
@@ -2494,13 +2500,5 @@ window.PORTFOLIO = {
    "name": "Pertamina Hulu Energi",
    "logo": "assets/img/logo-phe.webp"
   }
- ],
- "softwareMono": {
-  "Ms. Excel": "X",
-  "Ms. Access": "A",
-  "Ms. Project": "P",
-  "Navisworks": "N",
-  "AutoCAD Plant 3D": "P3D",
-  "Aveva E3D": "E3D"
- }
+ ]
 };
