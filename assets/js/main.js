@@ -327,10 +327,33 @@
     }).join('');
     var other = '<p class="sub-h" style="margin-top:34px;font-size:17px">' + esc(U.otherCertsLabel) + '</p><ul class="other-certs">' +
       D.otherCerts.map(function (c) { return '<li><span>' + esc(c.year) + '</span>' + esc(c.name) + '</li>'; }).join('') + '</ul>';
-    var tools = P.software.map(function (n) {
-      var lg = P.softwareLogos[n];
-      return '<li>' + (lg ? '<img src="' + esc(lg) + '" alt="" width="32" height="32" loading="lazy">' : '<span class="noimg" aria-hidden="true">' + esc(n.slice(0, 2)) + '</span>') + esc(n) + '</li>';
-    }).join('');
+    // Competency matrix: each tool is a short pipe that fills to its level (1 Basic .. 4 Expert).
+    function mono(n) { var m = P.softwareMono && P.softwareMono[n]; if (m) return m; var w = n.split(/\s+/); return (w.length > 1 ? w[0].charAt(0) + w[1].charAt(0) : n.slice(0, 2)).toUpperCase(); }
+    var LV = U.levels;
+    var nTools = D.toolGroups.reduce(function (a, g) { return a + g.items.length; }, 0);
+    function groupHTML(g, gi) {
+      return '<section class="cm-group ' + g.stream + '" style="--o:' + gi + '" data-cm-group="' + g.key + '" aria-labelledby="cm-h-' + g.key + '">' +
+        '<div class="cm-band" aria-hidden="true"><span>' + two(gi) + '</span><i></i></div><div class="cm-body">' +
+        '<div class="cm-top"><h4 id="cm-h-' + g.key + '">' + esc(g.title) + '</h4><p>' + esc(g.hint) + '</p></div>' +
+        '<div class="cm-scale" aria-hidden="true"><span></span><span class="cm-ticks">' + LV.map(function (l, k) { return '<b title="' + esc(l) + '">' + (k + 1) + '</b>'; }).join('') + '</span><span></span></div>' +
+        '<ul class="cm-rows">' + g.items.map(function (it, k) {
+          var lg = P.softwareLogos[it.name];
+          return '<li class="cm-row lv' + it.level + '" style="--lv:' + it.level + ';--i:' + k + '">' +
+            (lg ? '<img class="cm-logo" src="' + esc(lg) + '" alt="" width="34" height="34" loading="lazy">' : '<span class="cm-logo cm-mono" aria-hidden="true">' + esc(mono(it.name)) + '</span>') +
+            '<span class="cm-name">' + esc(it.name) + '</span>' +
+            '<span class="cm-meter" role="img" aria-label="' + esc(it.name) + ': ' + esc(LV[it.level - 1]) + ', ' + it.level + ' ' + esc(U.levelOf) + '"><i class="cm-fill"></i></span>' +
+            '<span class="cm-lv">' + esc(LV[it.level - 1]) + '</span></li>';
+        }).join('') + '</ul></div></section>';
+    }
+    var cols = [[], []];
+    D.toolGroups.forEach(function (g, gi) { cols[gi % 2].push(groupHTML(g, gi)); }); // Mech + Coding | EPC + Data: balanced heights
+    var matrix = '<div class="skills-block cm" data-cm><div class="cm-head"><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + ' <span class="fold-n">' + nTools + '</span></p>' +
+      '<div class="cm-filter" role="group" aria-label="' + esc(U.softwareToolsLabel) + '"><button type="button" data-f="all" aria-pressed="true">' + esc(U.filterAll) + '</button>' +
+      D.toolGroups.map(function (g) { return '<button type="button" class="' + g.stream + '" data-f="' + g.key + '" aria-pressed="false"><i aria-hidden="true"></i>' + esc(g.title) + '</button>'; }).join('') + '</div></div>' +
+      '<ol class="cm-legend">' + LV.map(function (l, k) {
+        return '<li style="--lv:' + (k + 1) + '"><span class="cm-meter mini" aria-hidden="true"><i class="cm-fill"></i></span><b><em>' + (k + 1) + '</em>' + esc(l) + '</b><span>' + esc(U.levelHints[k]) + '</span></li>';
+      }).join('') + '</ol><p class="cm-note">' + esc(U.levelNote) + '</p>' +
+      '<div class="cm-grid"><div class="cm-col">' + cols[0].join('') + '</div><div class="cm-col">' + cols[1].join('') + '</div></div></div>';
     var comp = D.coreSkills.map(function (t, i) {
       var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
       var dash = st[0] === 'dash' ? ' stroke-dasharray="10 6"' : st[0] === 'dot' ? ' stroke-dasharray="2 5" stroke-linecap="round"' : '';
@@ -338,8 +361,8 @@
     }).join('');
     return section('credentials', 'Skills & Credentials', 'E-06', U.sectionCredentials, '', 's-violet',
       '<ul class="certs">' + certs + '</ul>' + other +
-      '<div class="skills-grid"><div><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + '</p><ul class="tools">' + tools + '</ul></div>' +
-      '<div><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend">' + comp + '</ul></div></div>');
+      matrix +
+      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend legend-cols">' + comp + '</ul></div>');
   }
 
   function medal(rank) {
@@ -623,6 +646,29 @@
       });
     });
     main.querySelectorAll('[data-tools]').forEach(function (box) { tabGroup(box, '.tool-tab'); });
+    if ('IntersectionObserver' in window && !IL.isPaused()) {
+      var tg = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); tg.unobserve(e.target); } });
+      }, { threshold: 0.2 });
+      main.querySelectorAll('[data-cm-group]').forEach(function (g) { g.classList.add('cm-ready'); tg.observe(g); });
+      observers.push(tg);
+    }
+    // competency matrix filter
+    main.querySelectorAll('[data-cm]').forEach(function (box) {
+      var btns = [].slice.call(box.querySelectorAll('[data-f]')), grid = box.querySelector('.cm-grid');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var f = b.dataset.f;
+          btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          grid.classList.toggle('one', f !== 'all');
+          box.querySelectorAll('[data-cm-group]').forEach(function (g) {
+            var show = f === 'all' || g.dataset.cmGroup === f;
+            g.hidden = !show;
+            if (show) { g.classList.remove('in'); void g.offsetWidth; g.classList.add('in'); }
+          });
+        });
+      });
+    });
 
     if (window.matchMedia('(min-width: 981px)').matches) main.querySelectorAll('[data-open-wide]').forEach(function (d) { d.open = true; });
     wireLightbox(main);

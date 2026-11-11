@@ -73,7 +73,7 @@ window.PORTFOLIO = {
    "stepsLabel": "STEPS I TOOK",
    "conclusionLabel": "CONCLUSION",
    "resultsReadout": "RESULTS READOUT",
-   "softwareToolsLabel": "SOFTWARE & TOOLS",
+   "softwareToolsLabel": "Software & tools",
    "coreCompLabel": "CORE COMPETENCIES",
    "trainingLabel": "TRAINING & COURSES",
    "degreeName": "Bachelor of Mechanical Engineering",
@@ -144,7 +144,22 @@ window.PORTFOLIO = {
    "toolSoon": "Screen coming soon",
    "toolWebApp": "Web app",
    "certEnlarge": "View certificate",
-   "certAlt": "Certificate of competence"
+   "certAlt": "Certificate of competence",
+   "levels": [
+    "Basic",
+    "Working",
+    "Advanced",
+    "Expert"
+   ],
+   "levelHints": [
+    "I can use it with guidance",
+    "I use it on my own for routine work",
+    "I deliver project work with it",
+    "I lead the work and handle the hard cases"
+   ],
+   "levelNote": "Levels are my own assessment",
+   "filterAll": "All",
+   "levelOf": "of 4"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -1083,6 +1098,128 @@ window.PORTFOLIO = {
      }
     ]
    }
+  ],
+  "toolGroups": [
+   {
+    "key": "mech",
+    "stream": "s-hot",
+    "title": "Mechanical engineering & research",
+    "hint": "Simulation, sizing and design",
+    "items": [
+     {
+      "name": "SolidWorks",
+      "level": 4
+     },
+     {
+      "name": "HTRI Xist",
+      "level": 4
+     },
+     {
+      "name": "PV Elite",
+      "level": 3
+     },
+     {
+      "name": "Ansys",
+      "level": 3
+     },
+     {
+      "name": "Autodesk Inventor",
+      "level": 3
+     }
+    ]
+   },
+   {
+    "key": "epc",
+    "stream": "s-amber",
+    "title": "EPC & project control",
+    "hint": "Piping, plant models and scheduling",
+    "items": [
+     {
+      "name": "Primavera P6",
+      "level": 4
+     },
+     {
+      "name": "AutoCAD",
+      "level": 3
+     },
+     {
+      "name": "Ms. Project",
+      "level": 3
+     },
+     {
+      "name": "CAESAR II",
+      "level": 2
+     },
+     {
+      "name": "AutoCAD Plant 3D",
+      "level": 2
+     },
+     {
+      "name": "Navisworks",
+      "level": 2
+     },
+     {
+      "name": "Aveva E3D",
+      "level": 2
+     }
+    ]
+   },
+   {
+    "key": "code",
+    "stream": "s-violet",
+    "title": "Coding my own tools",
+    "hint": "New to code; strongest at prompting AI to build",
+    "items": [
+     {
+      "name": "Claude Code",
+      "level": 3
+     },
+     {
+      "name": "Antigravity",
+      "level": 3
+     },
+     {
+      "name": "GitHub",
+      "level": 2
+     },
+     {
+      "name": "Visual Studio Code",
+      "level": 1
+     },
+     {
+      "name": "Supabase",
+      "level": 1
+     },
+     {
+      "name": "Vercel",
+      "level": 1
+     }
+    ]
+   },
+   {
+    "key": "data",
+    "stream": "s-teal",
+    "title": "Data analysis",
+    "hint": "Dashboards, databases and scripts",
+    "items": [
+     {
+      "name": "Ms. Excel",
+      "level": 4
+     },
+     {
+      "name": "Ms. Access",
+      "level": 3
+     },
+     {
+      "name": "Power BI",
+      "level": 3
+     },
+     {
+      "name": "Python",
+      "level": 2
+     }
+    ]
+   }
   ]
  },
  "id": {
@@ -1157,7 +1294,7 @@ window.PORTFOLIO = {
    "stepsLabel": "LANGKAH YANG SAYA LAKUKAN",
    "conclusionLabel": "KESIMPULAN",
    "resultsReadout": "HASIL ANALISIS",
-   "softwareToolsLabel": "SOFTWARE & TOOLS",
+   "softwareToolsLabel": "Software & tools",
    "coreCompLabel": "KOMPETENSI INTI",
    "trainingLabel": "PELATIHAN & KURSUS",
    "degreeName": "Sarjana Teknik Mesin",
@@ -1228,7 +1365,22 @@ window.PORTFOLIO = {
    "toolSoon": "Tampilan segera hadir",
    "toolWebApp": "Aplikasi web",
    "certEnlarge": "Lihat sertifikat",
-   "certAlt": "Sertifikat kompetensi"
+   "certAlt": "Sertifikat kompetensi",
+   "levels": [
+    "Dasar",
+    "Menengah",
+    "Mahir",
+    "Ahli"
+   ],
+   "levelHints": [
+    "Bisa memakai dengan arahan",
+    "Memakai sendiri untuk pekerjaan rutin",
+    "Menyelesaikan pekerjaan proyek",
+    "Memimpin pekerjaan dan menangani kasus sulit"
+   ],
+   "levelNote": "Level berdasarkan penilaian saya sendiri",
+   "filterAll": "Semua",
+   "levelOf": "dari 4"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -2167,26 +2319,153 @@ window.PORTFOLIO = {
      }
     ]
    }
+  ],
+  "toolGroups": [
+   {
+    "key": "mech",
+    "stream": "s-hot",
+    "title": "Engineering mekanikal & riset",
+    "hint": "Simulasi, sizing, dan desain",
+    "items": [
+     {
+      "name": "SolidWorks",
+      "level": 4
+     },
+     {
+      "name": "HTRI Xist",
+      "level": 4
+     },
+     {
+      "name": "PV Elite",
+      "level": 3
+     },
+     {
+      "name": "Ansys",
+      "level": 3
+     },
+     {
+      "name": "Autodesk Inventor",
+      "level": 3
+     }
+    ]
+   },
+   {
+    "key": "epc",
+    "stream": "s-amber",
+    "title": "EPC & kontrol proyek",
+    "hint": "Piping, model plant, dan penjadwalan",
+    "items": [
+     {
+      "name": "Primavera P6",
+      "level": 4
+     },
+     {
+      "name": "AutoCAD",
+      "level": 3
+     },
+     {
+      "name": "Ms. Project",
+      "level": 3
+     },
+     {
+      "name": "CAESAR II",
+      "level": 2
+     },
+     {
+      "name": "AutoCAD Plant 3D",
+      "level": 2
+     },
+     {
+      "name": "Navisworks",
+      "level": 2
+     },
+     {
+      "name": "Aveva E3D",
+      "level": 2
+     }
+    ]
+   },
+   {
+    "key": "code",
+    "stream": "s-violet",
+    "title": "Coding tools sendiri",
+    "hint": "Masih baru di coding; paling kuat di prompting AI",
+    "items": [
+     {
+      "name": "Claude Code",
+      "level": 3
+     },
+     {
+      "name": "Antigravity",
+      "level": 3
+     },
+     {
+      "name": "GitHub",
+      "level": 2
+     },
+     {
+      "name": "Visual Studio Code",
+      "level": 1
+     },
+     {
+      "name": "Supabase",
+      "level": 1
+     },
+     {
+      "name": "Vercel",
+      "level": 1
+     }
+    ]
+   },
+   {
+    "key": "data",
+    "stream": "s-teal",
+    "title": "Analisis data",
+    "hint": "Dashboard, database, dan script",
+    "items": [
+     {
+      "name": "Ms. Excel",
+      "level": 4
+     },
+     {
+      "name": "Ms. Access",
+      "level": 3
+     },
+     {
+      "name": "Power BI",
+      "level": 3
+     },
+     {
+      "name": "Python",
+      "level": 2
+     }
+    ]
+   }
   ]
  },
- "software": [
-  "HTRI Xist",
-  "CAESAR II",
-  "PV Elite",
-  "SolidWorks Simulation",
-  "AutoCAD",
-  "Autodesk Inventor",
-  "Primavera P6",
-  "Microsoft Office"
- ],
  "softwareLogos": {
   "HTRI Xist": "assets/img/htri-xist.webp",
   "CAESAR II": "assets/img/caesar-ii.webp",
   "PV Elite": "assets/img/pv-elite.webp",
-  "SolidWorks Simulation": "assets/img/solid-works-simulation.webp",
   "AutoCAD": "assets/img/auto-cad.webp",
   "Primavera P6": "assets/img/primavera-p6.webp",
-  "Microsoft Office": "assets/img/microsoft-office.webp"
+  "Autodesk Inventor": "assets/img/logo-autodesk-inventor.webp",
+  "Power BI": "assets/img/logo-power-bi.webp",
+  "Claude Code": "assets/img/logo-claude-code.webp",
+  "Antigravity": "assets/img/logo-antigravity.webp",
+  "GitHub": "assets/img/logo-github.webp",
+  "SolidWorks": "assets/img/solid-works-simulation.webp",
+  "Ansys": "assets/img/logo-ansys.webp",
+  "Visual Studio Code": "assets/img/logo-vs-code.webp",
+  "Supabase": "assets/img/logo-supabase.webp",
+  "Vercel": "assets/img/logo-vercel.webp",
+  "Python": "assets/img/logo-python.webp",
+  "Ms. Excel": "assets/img/logo-excel.webp",
+  "Ms. Access": "assets/img/logo-access.webp",
+  "Ms. Project": "assets/img/logo-ms-project.webp",
+  "Navisworks": "assets/img/logo-navisworks.webp",
+  "AutoCAD Plant 3D": "assets/img/logo-autocad-plant-3d.webp",
+  "Aveva E3D": "assets/img/logo-aveva-e3d.webp"
  },
  "clients": [
   {
