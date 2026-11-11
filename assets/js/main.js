@@ -327,9 +327,14 @@
     }).join('');
     var other = '<p class="sub-h" style="margin-top:34px;font-size:17px">' + esc(U.otherCertsLabel) + '</p><ul class="other-certs">' +
       D.otherCerts.map(function (c) { return '<li><span>' + esc(c.year) + '</span>' + esc(c.name) + '</li>'; }).join('') + '</ul>';
-    var tools = P.software.map(function (n) {
-      var lg = P.softwareLogos[n];
-      return '<li>' + (lg ? '<img src="' + esc(lg) + '" alt="" width="32" height="32" loading="lazy">' : '<span class="noimg" aria-hidden="true">' + esc(n.slice(0, 2)) + '</span>') + esc(n) + '</li>';
+    function mono(n) { var w = n.split(/\s+/); return (w.length > 1 ? w[0].charAt(0) + w[1].charAt(0) : n.slice(0, 2)).toUpperCase(); }
+    var nTools = D.toolGroups.reduce(function (a, g) { return a + g.items.length; }, 0);
+    var groups = D.toolGroups.map(function (g, gi) {
+      return '<div class="tgroup ' + g.stream + '" data-tg><div class="tg-head"><span class="tg-n">' + two(gi) + '</span><h4>' + esc(g.title) + '</h4><p>' + esc(g.hint) + '</p></div>' +
+        '<ul class="tg-list">' + g.items.map(function (n, k) {
+          var lg = P.softwareLogos[n];
+          return '<li style="--i:' + k + '">' + (lg ? '<img src="' + esc(lg) + '" alt="" width="36" height="36" loading="lazy">' : '<span class="noimg" aria-hidden="true">' + esc(mono(n)) + '</span>') + '<span>' + esc(n) + '</span></li>';
+        }).join('') + '</ul></div>';
     }).join('');
     var comp = D.coreSkills.map(function (t, i) {
       var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
@@ -338,8 +343,8 @@
     }).join('');
     return section('credentials', 'Skills & Credentials', 'E-06', U.sectionCredentials, '', 's-violet',
       '<ul class="certs">' + certs + '</ul>' + other +
-      '<div class="skills-grid"><div><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + '</p><ul class="tools">' + tools + '</ul></div>' +
-      '<div><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend">' + comp + '</ul></div></div>');
+      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.softwareToolsLabel)) + ' <span class="fold-n">' + nTools + '</span></p><div class="tg-grid">' + groups + '</div></div>' +
+      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend legend-cols">' + comp + '</ul></div>');
   }
 
   function medal(rank) {
@@ -623,6 +628,13 @@
       });
     });
     main.querySelectorAll('[data-tools]').forEach(function (box) { tabGroup(box, '.tool-tab'); });
+    if ('IntersectionObserver' in window && !IL.isPaused()) {
+      var tg = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); tg.unobserve(e.target); } });
+      }, { threshold: 0.25 });
+      main.querySelectorAll('[data-tg]').forEach(function (g) { g.classList.add('tg-ready'); tg.observe(g); });
+      observers.push(tg);
+    }
 
     if (window.matchMedia('(min-width: 981px)').matches) main.querySelectorAll('[data-open-wide]').forEach(function (d) { d.open = true; });
     wireLightbox(main);

@@ -73,7 +73,7 @@ window.PORTFOLIO = {
    "stepsLabel": "STEPS I TOOK",
    "conclusionLabel": "CONCLUSION",
    "resultsReadout": "RESULTS READOUT",
-   "softwareToolsLabel": "SOFTWARE & TOOLS",
+   "softwareToolsLabel": "Software & tools",
    "coreCompLabel": "CORE COMPETENCIES",
    "trainingLabel": "TRAINING & COURSES",
    "degreeName": "Bachelor of Mechanical Engineering",
@@ -1083,6 +1083,56 @@ window.PORTFOLIO = {
      }
     ]
    }
+  ],
+  "toolGroups": [
+   {
+    "key": "mech",
+    "stream": "s-hot",
+    "title": "Mechanical engineering & research",
+    "hint": "Simulation, sizing and design",
+    "items": [
+     "SolidWorks Simulation",
+     "Ansys",
+     "HTRI Xist",
+     "PV Elite",
+     "Autodesk Inventor"
+    ]
+   },
+   {
+    "key": "epc",
+    "stream": "s-amber",
+    "title": "EPC & project control",
+    "hint": "Piping, drafting and scheduling",
+    "items": [
+     "CAESAR II",
+     "AutoCAD",
+     "Primavera P6"
+    ]
+   },
+   {
+    "key": "code",
+    "stream": "s-violet",
+    "title": "Coding my own tools",
+    "hint": "Build, host and ship web apps",
+    "items": [
+     "Claude Code",
+     "Antigravity",
+     "Visual Studio",
+     "GitHub",
+     "Supabase",
+     "Vercel"
+    ]
+   },
+   {
+    "key": "data",
+    "stream": "s-teal",
+    "title": "Data analysis",
+    "hint": "Dashboards and large spreadsheets",
+    "items": [
+     "Power BI",
+     "Microsoft Office"
+    ]
+   }
   ]
  },
  "id": {
@@ -1157,7 +1207,7 @@ window.PORTFOLIO = {
    "stepsLabel": "LANGKAH YANG SAYA LAKUKAN",
    "conclusionLabel": "KESIMPULAN",
    "resultsReadout": "HASIL ANALISIS",
-   "softwareToolsLabel": "SOFTWARE & TOOLS",
+   "softwareToolsLabel": "Software & tools",
    "coreCompLabel": "KOMPETENSI INTI",
    "trainingLabel": "PELATIHAN & KURSUS",
    "degreeName": "Sarjana Teknik Mesin",
@@ -2167,18 +2217,58 @@ window.PORTFOLIO = {
      }
     ]
    }
+  ],
+  "toolGroups": [
+   {
+    "key": "mech",
+    "stream": "s-hot",
+    "title": "Engineering mekanikal & riset",
+    "hint": "Simulasi, sizing, dan desain",
+    "items": [
+     "SolidWorks Simulation",
+     "Ansys",
+     "HTRI Xist",
+     "PV Elite",
+     "Autodesk Inventor"
+    ]
+   },
+   {
+    "key": "epc",
+    "stream": "s-amber",
+    "title": "EPC & kontrol proyek",
+    "hint": "Piping, drafting, dan penjadwalan",
+    "items": [
+     "CAESAR II",
+     "AutoCAD",
+     "Primavera P6"
+    ]
+   },
+   {
+    "key": "code",
+    "stream": "s-violet",
+    "title": "Coding tools sendiri",
+    "hint": "Membangun dan merilis aplikasi web",
+    "items": [
+     "Claude Code",
+     "Antigravity",
+     "Visual Studio",
+     "GitHub",
+     "Supabase",
+     "Vercel"
+    ]
+   },
+   {
+    "key": "data",
+    "stream": "s-teal",
+    "title": "Analisis data",
+    "hint": "Dashboard dan spreadsheet besar",
+    "items": [
+     "Power BI",
+     "Microsoft Office"
+    ]
+   }
   ]
  },
- "software": [
-  "HTRI Xist",
-  "CAESAR II",
-  "PV Elite",
-  "SolidWorks Simulation",
-  "AutoCAD",
-  "Autodesk Inventor",
-  "Primavera P6",
-  "Microsoft Office"
- ],
  "softwareLogos": {
   "HTRI Xist": "assets/img/htri-xist.webp",
   "CAESAR II": "assets/img/caesar-ii.webp",
@@ -2186,7 +2276,12 @@ window.PORTFOLIO = {
   "SolidWorks Simulation": "assets/img/solid-works-simulation.webp",
   "AutoCAD": "assets/img/auto-cad.webp",
   "Primavera P6": "assets/img/primavera-p6.webp",
-  "Microsoft Office": "assets/img/microsoft-office.webp"
+  "Microsoft Office": "assets/img/microsoft-office.webp",
+  "Autodesk Inventor": "assets/img/logo-autodesk-inventor.webp",
+  "Power BI": "assets/img/logo-power-bi.webp",
+  "Claude Code": "assets/img/logo-claude-code.webp",
+  "Antigravity": "assets/img/logo-antigravity.webp",
+  "GitHub": "assets/img/logo-github.webp"
  },
  "clients": [
   {
