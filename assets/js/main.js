@@ -314,17 +314,16 @@
         : '') + '</div>';
   }
 
-  function seal() {
-    var ticks = '';
-    for (var i = 0; i < 36; i++) { var a = i * 10 * Math.PI / 180; ticks += '<line x1="' + (44 + Math.cos(a) * 36).toFixed(1) + '" y1="' + (44 + Math.sin(a) * 36).toFixed(1) + '" x2="' + (44 + Math.cos(a) * (i % 3 ? 40 : 43)).toFixed(1) + '" y2="' + (44 + Math.sin(a) * (i % 3 ? 40 : 43)).toFixed(1) + '"/>'; }
-    return '<svg viewBox="0 0 88 88" aria-hidden="true"><g stroke="var(--stream)" stroke-width="2">' + ticks + '</g><circle cx="44" cy="44" r="31" fill="var(--stream-tint)" stroke="var(--stream)" stroke-width="2"/></svg>';
-  }
-
   function credentialsHTML() {
     var streams = ['s-energy', 's-violet', 's-amber'];
     var certs = D.certifications.map(function (c, i) {
-      return '<li class="cert ' + streams[i] + '"><div class="seal">' + seal() + '<span>' + esc(c.year) + '</span></div><h3>' + esc(c.name) + '</h3>' +
-        '<p class="issuer"><img src="' + esc(c.logo) + '" alt="" width="48" height="18" loading="lazy">' + esc(c.issuer) + '</p><p>' + esc(c.desc) + '</p>' + ext(c.link, U.viewCertificate) + '</li>';
+      var pv = c.preview;
+      return '<li class="cert ' + streams[i] + '"><div class="cert-top">' +
+        '<button type="button" class="cert-sheet" data-lb="' + esc(pv.src) + '" data-cap="' + esc(c.name) + '" aria-label="' + esc(U.certEnlarge) + ': ' + esc(c.name) + '">' +
+        '<img src="' + esc(pv.src) + '" alt="' + esc(U.certAlt) + ': ' + esc(c.name) + '" width="' + pv.w + '" height="' + pv.h + '" loading="lazy"></button>' +
+        '<span class="cert-year">' + esc(c.year) + '</span></div><h3>' + esc(c.name) + '</h3>' +
+        '<p class="issuer"><img src="' + esc(c.logo) + '" alt="" width="48" height="18" loading="lazy">' + esc(c.issuer) + '</p><p>' + esc(c.desc) + '</p>' +
+        '<button type="button" class="link cert-open" data-lb="' + esc(pv.src) + '" data-cap="' + esc(c.name) + '">' + esc(U.certEnlarge) + '</button></li>';
     }).join('');
     var other = '<p class="sub-h" style="margin-top:34px;font-size:17px">' + esc(U.otherCertsLabel) + '</p><ul class="other-certs">' +
       D.otherCerts.map(function (c) { return '<li><span>' + esc(c.year) + '</span>' + esc(c.name) + '</li>'; }).join('') + '</ul>';
