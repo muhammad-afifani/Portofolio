@@ -142,7 +142,9 @@ window.PORTFOLIO = {
    "toolRequest": "Request access",
    "toolRequestNote": "Opens your email app with a short request",
    "toolSoon": "Screen coming soon",
-   "toolWebApp": "Web app"
+   "toolWebApp": "Web app",
+   "certEnlarge": "View certificate",
+   "certAlt": "Certificate of competence"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -383,6 +385,10 @@ window.PORTFOLIO = {
      {
       "id": "wika-activity-5",
       "src": "assets/img/wika-activity-5.webp"
+     },
+     {
+      "id": "wika-activity-6",
+      "src": "assets/img/wika-activity-6.webp"
      }
     ],
     "bullets": [
@@ -679,13 +685,13 @@ window.PORTFOLIO = {
     "client": "Petronas Carigali North Madura II Ltd.",
     "companyUrl": "https://www.petronas.com",
     "project": "FEED Hidayah Development Project",
-    "scope": "Mechanical calculation for Degasser & Electrostatic Coalescer skid packages.",
+    "scope": "Performing mechanical calculation for the Degasser & Electrostatic Coalescer skid packages as part of the Crude Oil Stabilization Unit for the Hidayah Development Project.",
     "date": "Jan 2025",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer",
+    "role": "Mechanical Static Engineer (Freelance)",
     "photos": [
      {
       "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
@@ -708,26 +714,26 @@ window.PORTFOLIO = {
     "client": "PT Tripatra Engineers and Construction",
     "companyUrl": "https://www.tripatra.com/en",
     "project": "FEED Bio Refinery Project",
-    "scope": "Static Equipment according to ASME for Iron Sponge Absorber (100-V-116 A/B).",
+    "scope": "Performing mechanical calculation of the pressure vessel for the Iron Sponge Absorber (100-V-116 A/B) according to ASME, and validating it to ensure compliance with project requirements.",
     "date": "Oct 2024",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Static Engineer (Freelance)"
    },
    {
     "index": "05",
     "client": "PT Amman Mineral Nusa Tenggara",
     "companyUrl": "https://www.amman.co.id/",
     "project": "Sumbawa LNG Terminal & Regas Facility",
-    "scope": "FEM analysis for pressure vessel stress, displacement, and cycle life.",
+    "scope": "Performing Finite Element Method (FEM) analysis on a pressure vessel to determine stress and displacement on the shell and each nozzle, the knuckle head and each nozzle, and calculating the cycle life.",
     "date": "Apr 2024",
     "anchor": true,
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (FEM) (Freelance)",
     "photos": [
      {
       "src": "assets/img/amman-fem-nozzle-3d.webp",
@@ -749,26 +755,26 @@ window.PORTFOLIO = {
     "client": "PT Pertamina Hulu Energi",
     "companyUrl": "https://www.pertamina.com/en",
     "project": "Upgrading Facility SP AKBG, Stage 1",
-    "scope": "Heat exchanger sizing & process planning (shell & tube, plate & frame).",
+    "scope": "Conducting equipment sizing and process planning for heat exchangers, both shell and tube and plate and frame types, for tender project requirements.",
     "date": "Feb 2024",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "Process Engineer"
+    "role": "Process Engineer Estimator (Freelance)"
    },
    {
     "index": "07",
     "client": "PT Aneka Tambang Tbk.",
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
-    "scope": "CFD simulations for heat transfer & forces in heat exchanger, integrated with FEA stress; extended HTRI/CFD performance study.",
-    "date": "Aug 2023 & 2025",
+    "scope": "Performing Computational Fluid Dynamics (CFD) simulations based on process design data and actual conditions to evaluate heat transfer and forces within the heat exchanger, and connecting the results with Finite Element Analysis (FEA) stress.",
+    "date": "Aug – Dec 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (CFD) (Freelance)",
     "photos": [
      {
       "src": "assets/img/antam-hx-tube-temp-3d.webp",
@@ -791,13 +797,13 @@ window.PORTFOLIO = {
     "client": "PT Medco Energi Internasional Tbk.",
     "companyUrl": "https://www.medcoenergi.com/",
     "project": "Forel FPSO Time Charter",
-    "scope": "CFD analysis of hydrodynamic forces on FPSO and liquid levels in LP & HP KO Drum Flare.",
-    "date": "Nov 2022",
+    "scope": "Performing Computational Fluid Dynamics (CFD) of hydrodynamic forces above the FPSO, extending to the liquid level inside the LP and HP KO Drum Flare, to check that the variation in liquid level stays within the tolerance of the liquid level sensor.",
+    "date": "Nov – Dec 2022",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "slosh",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (CFD) (Freelance)",
     "photos": [
      {
       "src": "assets/img/medco-ko-drum-sloshing.webp",
@@ -820,30 +826,42 @@ window.PORTFOLIO = {
   "certifications": [
    {
     "name": "Certified Energy Manager: ISO 50001:2018",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQRwp_seEvIZQ6fxY8K4dP1bASP2VyPeYnuzjrhy_dcsjcI",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2025",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Certified as Energy Manager by BNSP based on ISO 50001 principles, covering energy performance analysis, energy audits, identification of energy-saving opportunities, implementation of Energy Management Systems (EnMS), and continuous improvement of industrial energy efficiency."
+    "desc": "Certified as Energy Manager by BNSP based on ISO 50001 principles, covering energy performance analysis, energy audits, identification of energy-saving opportunities, implementation of Energy Management Systems (EnMS), and continuous improvement of industrial energy efficiency.",
+    "preview": {
+     "src": "assets/img/cert-energy-manager-bnsp.webp",
+     "w": 710,
+     "h": 1006
+    }
    },
    {
     "name": "Certified Emission & Air Pollution Manager (PPPU)",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQQqOBtdKD_HRZUo-iecN9HyAX1y4Zf3OugZKjti_VOJcy4",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2026",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Certified as Person in Charge of Air Pollution Control (PPPU) by BNSP, covering identification and characterization of air emission sources, air pollution monitoring, regulatory compliance, operation of air pollution control equipment, and implementation of environmental management practices within industrial and upstream oil & gas operations."
+    "desc": "Certified as Person in Charge of Air Pollution Control (PPPU) by BNSP, covering identification and characterization of air emission sources, air pollution monitoring, regulatory compliance, operation of air pollution control equipment, and implementation of environmental management practices within industrial and upstream oil & gas operations.",
+    "preview": {
+     "src": "assets/img/cert-pppu-bnsp.webp",
+     "w": 589,
+     "h": 834
+    }
    },
    {
     "name": "AK3U: General Occupational Safety & Health Expert",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQQix33XyQAxTbH5ZwOhOj__AZLlVSWqZklsFLGFS1YmSvk",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2025",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Certified as General Occupational Safety and Health Expert (Ahli K3 Umum) by BNSP, covering occupational safety management systems, hazard identification, risk assessment (HIRADC), work permit systems, accident investigation, Indonesian OSH regulations, and implementation of HSSE best practices in industrial operations."
+    "desc": "Certified as General Occupational Safety and Health Expert (Ahli K3 Umum) by BNSP, covering occupational safety management systems, hazard identification, risk assessment (HIRADC), work permit systems, accident investigation, Indonesian OSH regulations, and implementation of HSSE best practices in industrial operations.",
+    "preview": {
+     "src": "assets/img/cert-ak3u-bnsp.webp",
+     "w": 703,
+     "h": 964
+    }
    }
   ],
   "achievements": [
@@ -1208,7 +1226,9 @@ window.PORTFOLIO = {
    "toolRequest": "Minta akses",
    "toolRequestNote": "Membuka aplikasi email dengan permintaan singkat",
    "toolSoon": "Tampilan segera hadir",
-   "toolWebApp": "Aplikasi web"
+   "toolWebApp": "Aplikasi web",
+   "certEnlarge": "Lihat sertifikat",
+   "certAlt": "Sertifikat kompetensi"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1449,6 +1469,10 @@ window.PORTFOLIO = {
      {
       "id": "wika-activity-5",
       "src": "assets/img/wika-activity-5.webp"
+     },
+     {
+      "id": "wika-activity-6",
+      "src": "assets/img/wika-activity-6.webp"
      }
     ],
     "bullets": [
@@ -1745,13 +1769,13 @@ window.PORTFOLIO = {
     "client": "Petronas Carigali North Madura II Ltd.",
     "companyUrl": "https://www.petronas.com",
     "project": "FEED Hidayah Development Project",
-    "scope": "Perhitungan mekanikal untuk skid Degasser & Electrostatic Coalescer.",
+    "scope": "Melakukan perhitungan mekanikal untuk skid package Degasser & Electrostatic Coalescer sebagai bagian dari Crude Oil Stabilization Unit pada Hidayah Development Project.",
     "date": "Jan 2025",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer",
+    "role": "Mechanical Static Engineer (Freelance)",
     "photos": [
      {
       "src": "assets/img/petronas-pv-elite-crude-oil-stabilization.webp",
@@ -1774,26 +1798,26 @@ window.PORTFOLIO = {
     "client": "PT Tripatra Engineers and Construction",
     "companyUrl": "https://www.tripatra.com/en",
     "project": "FEED Bio Refinery Project",
-    "scope": "Static Equipment sesuai ASME untuk Iron Sponge Absorber (100-V-116 A/B).",
+    "scope": "Melakukan perhitungan mekanikal pressure vessel untuk Iron Sponge Absorber (100-V-116 A/B) sesuai ASME, serta validasi untuk memastikan kesesuaian dengan persyaratan proyek.",
     "date": "Okt 2024",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "mech",
-    "role": "Mechanical Engineer"
+    "role": "Mechanical Static Engineer (Freelance)"
    },
    {
     "index": "05",
     "client": "PT Amman Mineral Nusa Tenggara",
     "companyUrl": "https://www.amman.co.id/",
     "project": "Sumbawa LNG Terminal & Regas Facility",
-    "scope": "Analisis FEM untuk stress, displacement, dan cycle life bejana tekan.",
+    "scope": "Melakukan analisis Finite Element Method (FEM) pada pressure vessel untuk mengetahui tegangan dan displacement pada shell dan tiap nozzle, knuckle head dan tiap nozzle, serta menghitung umur siklus (cycle life).",
     "date": "Apr 2024",
     "anchor": true,
     "anchorHref": "#case-fem",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "fem",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (FEM) (Freelance)",
     "photos": [
      {
       "src": "assets/img/amman-fem-nozzle-3d.webp",
@@ -1815,26 +1839,26 @@ window.PORTFOLIO = {
     "client": "PT Pertamina Hulu Energi",
     "companyUrl": "https://www.pertamina.com/en",
     "project": "Upgrading Facility SP AKBG, Stage 1",
-    "scope": "Sizing heat exchanger & process planning (shell & tube, plate & frame).",
+    "scope": "Melakukan sizing peralatan dan perencanaan proses untuk heat exchanger, baik tipe shell and tube maupun plate and frame, untuk kebutuhan tender proyek.",
     "date": "Feb 2024",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "Process Engineer"
+    "role": "Process Engineer Estimator (Freelance)"
    },
    {
     "index": "07",
     "client": "PT Aneka Tambang Tbk.",
     "companyUrl": "https://www.antam.com/id",
     "project": "2×30 MW CFPP Pomalaa",
-    "scope": "Simulasi CFD perpindahan panas & gaya pada heat exchanger, terintegrasi dengan FEA stress; diperluas dengan studi performa HTRI/CFD.",
-    "date": "Agu 2023 & 2025",
+    "scope": "Melakukan simulasi Computational Fluid Dynamics (CFD) berdasarkan data desain proses dan kondisi aktual untuk mengevaluasi perpindahan panas dan gaya di dalam heat exchanger, lalu menghubungkannya dengan tegangan Finite Element Analysis (FEA).",
+    "date": "Agu – Des 2023 & 2025",
     "anchor": true,
     "anchorHref": "#case-htri",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "hx",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (CFD) (Freelance)",
     "photos": [
      {
       "src": "assets/img/antam-hx-tube-temp-3d.webp",
@@ -1857,13 +1881,13 @@ window.PORTFOLIO = {
     "client": "PT Medco Energi Internasional Tbk.",
     "companyUrl": "https://www.medcoenergi.com/",
     "project": "Forel FPSO Time Charter",
-    "scope": "Analisis CFD gaya hidrodinamika pada FPSO dan level cairan di LP & HP KO Drum Flare.",
-    "date": "Nov 2022",
+    "scope": "Melakukan Computational Fluid Dynamics (CFD) gaya hidrodinamik di atas FPSO, sampai ke level liquid di dalam LP dan HP KO Drum Flare, untuk memastikan variasi level liquid tetap dalam toleransi sensor level liquid.",
+    "date": "Nov – Des 2022",
     "anchor": false,
     "anchorHref": "",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgAAXct_NCCXTpt1uIuASR-2AaRXkV_DcJwd7tMsDO0gEdQ?e=CP9dia",
     "discipline": "slosh",
-    "role": "FEM/CFD Specialist",
+    "role": "Mechanical Engineer (CFD) (Freelance)",
     "photos": [
      {
       "src": "assets/img/medco-ko-drum-sloshing.webp",
@@ -1886,30 +1910,42 @@ window.PORTFOLIO = {
   "certifications": [
    {
     "name": "Energy Manager Bersertifikat: ISO 50001:2018",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQRwp_seEvIZQ6fxY8K4dP1bASP2VyPeYnuzjrhy_dcsjcI",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2025",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Tersertifikasi sebagai Manajer Energi oleh BNSP berdasarkan prinsip ISO 50001, mencakup analisis performa energi, audit energi, identifikasi peluang penghematan energi, implementasi Sistem Manajemen Energi (EnMS), dan peningkatan berkelanjutan efisiensi energi industri."
+    "desc": "Tersertifikasi sebagai Manajer Energi oleh BNSP berdasarkan prinsip ISO 50001, mencakup analisis performa energi, audit energi, identifikasi peluang penghematan energi, implementasi Sistem Manajemen Energi (EnMS), dan peningkatan berkelanjutan efisiensi energi industri.",
+    "preview": {
+     "src": "assets/img/cert-energy-manager-bnsp.webp",
+     "w": 710,
+     "h": 1006
+    }
    },
    {
     "name": "Emission & Air Pollution Manager Bersertifikat (PPPU)",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQQqOBtdKD_HRZUo-iecN9HyAX1y4Zf3OugZKjti_VOJcy4",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2026",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Tersertifikasi sebagai Penanggung Jawab Pengendalian Pencemaran Udara (PPPU) oleh BNSP, mencakup identifikasi dan karakterisasi sumber emisi udara, pemantauan pencemaran udara, kepatuhan regulasi, pengoperasian peralatan pengendali pencemaran udara, dan penerapan praktik manajemen lingkungan pada operasi industri dan hulu migas."
+    "desc": "Tersertifikasi sebagai Penanggung Jawab Pengendalian Pencemaran Udara (PPPU) oleh BNSP, mencakup identifikasi dan karakterisasi sumber emisi udara, pemantauan pencemaran udara, kepatuhan regulasi, pengoperasian peralatan pengendali pencemaran udara, dan penerapan praktik manajemen lingkungan pada operasi industri dan hulu migas.",
+    "preview": {
+     "src": "assets/img/cert-pppu-bnsp.webp",
+     "w": 589,
+     "h": 834
+    }
    },
    {
     "name": "AK3U: Ahli K3 Umum",
-    "link": "https://1drv.ms/b/c/8df1985aa0d6d304/IQQix33XyQAxTbH5ZwOhOj__AZLlVSWqZklsFLGFS1YmSvk",
     "body": "BNSP",
     "issuer": "Badan Nasional Sertifikasi Profesi (BNSP)",
     "year": "2025",
     "logo": "assets/img/logo-bnsp.webp",
-    "desc": "Tersertifikasi sebagai Ahli K3 Umum oleh BNSP, mencakup sistem manajemen keselamatan kerja, identifikasi bahaya, penilaian risiko (HIRADC), sistem izin kerja, investigasi kecelakaan, regulasi K3 Indonesia, dan penerapan praktik terbaik HSSE pada operasi industri."
+    "desc": "Tersertifikasi sebagai Ahli K3 Umum oleh BNSP, mencakup sistem manajemen keselamatan kerja, identifikasi bahaya, penilaian risiko (HIRADC), sistem izin kerja, investigasi kecelakaan, regulasi K3 Indonesia, dan penerapan praktik terbaik HSSE pada operasi industri.",
+    "preview": {
+     "src": "assets/img/cert-ak3u-bnsp.webp",
+     "w": 703,
+     "h": 964
+    }
    }
   ],
   "achievements": [
