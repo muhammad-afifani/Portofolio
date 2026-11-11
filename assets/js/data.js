@@ -123,14 +123,6 @@ window.PORTFOLIO = {
    "issueSolutionHint": "Issue, then what I did about it",
    "figLabel": "Figures",
    "projPhotos": "Simulation results",
-   "pipeMarkers": {
-    "s-hot": "HOT SIDE",
-    "s-cold": "COLD SIDE",
-    "s-energy": "ENERGY",
-    "s-amber": "PIPING · EPC",
-    "s-teal": "CFD",
-    "s-violet": "CERTIFIED"
-   },
    "openFull": "Open full size",
    "disc_slosh": "CFD sloshing",
    "fixProblem": "The problem",
@@ -1344,14 +1336,6 @@ window.PORTFOLIO = {
    "issueSolutionHint": "Masalah, lalu solusi yang saya lakukan",
    "figLabel": "Gambar",
    "projPhotos": "Hasil simulasi",
-   "pipeMarkers": {
-    "s-hot": "SISI PANAS",
-    "s-cold": "SISI DINGIN",
-    "s-energy": "ENERGI",
-    "s-amber": "PIPING · EPC",
-    "s-teal": "CFD",
-    "s-violet": "SERTIFIKASI"
-   },
    "openFull": "Buka ukuran penuh",
    "disc_slosh": "CFD sloshing",
    "fixProblem": "Masalahnya",
