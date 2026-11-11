@@ -151,15 +151,20 @@ window.PORTFOLIO = {
    ],
    "levelNote": "Levels are my own assessment",
    "filterAll": "All",
-   "levelOf": "of 4"
+   "levelOf": "of 4",
+   "plateNow": "Environment Engineer · PHM",
+   "plateReg": "Ir. (PII) · 3 BNSP certificates",
+   "plateNowK": "Now",
+   "plateRegK": "Reg.",
+   "awardPhotoSoon": "Photo coming soon"
   },
   "heroTags": [
    "Static Equipment according to ASME",
    "FEM / CFD Analysis",
    "Piping Engineering",
    "Project Engineer",
-   "GHG / Emission Quantification (IPCC/API Compendium)",
-   "ISO 50001 Energy Management",
+   "GHG / Emission Quantification",
+   "Energy Management",
    "Data Analyst / Data Engineer"
   ],
   "quickFacts": [
@@ -910,7 +915,13 @@ window.PORTFOLIO = {
     "orgLogo": "assets/img/logo-esdm.webp",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgBJvwn1c9R4Qp4ibBQyw1zEAWPF77BloDNXR_qBI6_UOuQ?e=oXbpUd",
     "program": "Subroto Award",
-    "rank": "Rank #1"
+    "rank": "Rank #1",
+    "photo": {
+     "src": "assets/img/award-subroto-2024-flare.webp",
+     "caption": "Subroto Award 2024 ceremony: oil & gas emission reduction",
+     "w": 1400,
+     "h": 859
+    }
    }
   ],
   "organizational": [
@@ -942,7 +953,7 @@ window.PORTFOLIO = {
    "Heat Exchanger Sizing",
    "Piping Engineering",
    "GHG & Emission Quantification",
-   "ISO 50001 Energy Management",
+   "Energy Management",
    "Project Planning & Scheduling"
   ],
   "trainings": [
@@ -1111,12 +1122,12 @@ window.PORTFOLIO = {
       "level": 3
      },
      {
-      "name": "Ansys",
+      "name": "Autodesk Inventor",
       "level": 3
      },
      {
-      "name": "Autodesk Inventor",
-      "level": 3
+      "name": "Ansys",
+      "level": 2
      }
     ]
    },
@@ -1131,6 +1142,10 @@ window.PORTFOLIO = {
       "level": 4
      },
      {
+      "name": "Navisworks",
+      "level": 4
+     },
+     {
       "name": "AutoCAD",
       "level": 3
      },
@@ -1140,14 +1155,10 @@ window.PORTFOLIO = {
      },
      {
       "name": "CAESAR II",
-      "level": 2
+      "level": 3
      },
      {
       "name": "AutoCAD Plant 3D",
-      "level": 2
-     },
-     {
-      "name": "Navisworks",
       "level": 2
      },
      {
@@ -1164,11 +1175,11 @@ window.PORTFOLIO = {
     "items": [
      {
       "name": "Claude Code",
-      "level": 3
+      "level": 4
      },
      {
       "name": "Antigravity",
-      "level": 3
+      "level": 4
      },
      {
       "name": "GitHub",
@@ -1199,16 +1210,16 @@ window.PORTFOLIO = {
       "level": 4
      },
      {
-      "name": "Ms. Access",
-      "level": 3
-     },
-     {
       "name": "Power BI",
       "level": 3
      },
      {
-      "name": "Python",
+      "name": "Ms. Access",
       "level": 2
+     },
+     {
+      "name": "Python",
+      "level": 1
      }
     ]
    }
@@ -1364,15 +1375,20 @@ window.PORTFOLIO = {
    ],
    "levelNote": "Level berdasarkan penilaian saya sendiri",
    "filterAll": "Semua",
-   "levelOf": "dari 4"
+   "levelOf": "dari 4",
+   "plateNow": "Environment Engineer · PHM",
+   "plateReg": "Ir. (PII) · 3 sertifikat BNSP",
+   "plateNowK": "Kini",
+   "plateRegK": "Reg.",
+   "awardPhotoSoon": "Foto segera hadir"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
    "Analisis FEM / CFD",
    "Piping Engineering",
    "Project Engineer",
-   "Kuantifikasi GRK / Emisi (IPCC/API Compendium)",
-   "Manajemen Energi ISO 50001",
+   "Kuantifikasi GRK / Emisi",
+   "Manajemen Energi",
    "Data Analyst / Data Engineer"
   ],
   "quickFacts": [
@@ -2123,7 +2139,13 @@ window.PORTFOLIO = {
     "orgLogo": "assets/img/logo-esdm.webp",
     "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgBJvwn1c9R4Qp4ibBQyw1zEAWPF77BloDNXR_qBI6_UOuQ?e=oXbpUd",
     "program": "Subroto Award",
-    "rank": "Peringkat #1"
+    "rank": "Peringkat #1",
+    "photo": {
+     "src": "assets/img/award-subroto-2024-flare.webp",
+     "caption": "Malam penghargaan Subroto Award 2024: kontribusi pengurangan emisi migas",
+     "w": 1400,
+     "h": 859
+    }
    }
   ],
   "organizational": [
@@ -2155,7 +2177,7 @@ window.PORTFOLIO = {
    "Sizing Heat Exchanger",
    "Piping Engineering",
    "Kuantifikasi GRK & Emisi",
-   "Manajemen Energi ISO 50001",
+   "Manajemen Energi",
    "Perencanaan & Penjadwalan Proyek"
   ],
   "trainings": [
@@ -2324,12 +2346,12 @@ window.PORTFOLIO = {
       "level": 3
      },
      {
-      "name": "Ansys",
+      "name": "Autodesk Inventor",
       "level": 3
      },
      {
-      "name": "Autodesk Inventor",
-      "level": 3
+      "name": "Ansys",
+      "level": 2
      }
     ]
    },
@@ -2344,6 +2366,10 @@ window.PORTFOLIO = {
       "level": 4
      },
      {
+      "name": "Navisworks",
+      "level": 4
+     },
+     {
       "name": "AutoCAD",
       "level": 3
      },
@@ -2353,14 +2379,10 @@ window.PORTFOLIO = {
      },
      {
       "name": "CAESAR II",
-      "level": 2
+      "level": 3
      },
      {
       "name": "AutoCAD Plant 3D",
-      "level": 2
-     },
-     {
-      "name": "Navisworks",
       "level": 2
      },
      {
@@ -2377,11 +2399,11 @@ window.PORTFOLIO = {
     "items": [
      {
       "name": "Claude Code",
-      "level": 3
+      "level": 4
      },
      {
       "name": "Antigravity",
-      "level": 3
+      "level": 4
      },
      {
       "name": "GitHub",
@@ -2412,16 +2434,16 @@ window.PORTFOLIO = {
       "level": 4
      },
      {
-      "name": "Ms. Access",
-      "level": 3
-     },
-     {
       "name": "Power BI",
       "level": 3
      },
      {
-      "name": "Python",
+      "name": "Ms. Access",
       "level": 2
+     },
+     {
+      "name": "Python",
+      "level": 1
      }
     ]
    }
@@ -2484,5 +2506,23 @@ window.PORTFOLIO = {
    "name": "Pertamina Hulu Energi",
    "logo": "assets/img/logo-phe.webp"
   }
+ ],
+ "focusIcons": [
+  "vessel",
+  "fem",
+  "piping",
+  "plan",
+  "ghg",
+  "energy",
+  "data"
+ ],
+ "coreIcons": [
+  "vessel",
+  "fem",
+  "hx",
+  "piping",
+  "ghg",
+  "energy",
+  "plan"
  ]
 };

@@ -50,9 +50,6 @@
     { kind: 'pipe', stream: 's-amber', sheet: 'ISO · RFID spool tracking' }
   ];
   var DISC = { cfd: 's-teal', slosh: 's-teal', fem: 's-hot', mech: 's-cold', hx: 's-hot', plan: 's-amber' };
-  var FOCUS_STYLE = [ // P&ID line types, one per focus area
-    ['solid', '--hot'], ['dash', '--cold'], ['solid', '--amber'], ['dot', '--ink'], ['dash', '--energy'], ['solid', '--energy'], ['dot', '--violet']
-  ];
 
   // ------------------------------------------------------------- sections
   function navHTML() {
@@ -90,6 +87,32 @@
     return top + legs;
   }
 
+  // A smaller knock-out drum behind and to the right of the portrait vessel, fed from its side nozzle.
+  // Motion: flow in the connecting and outlet pipes, a liquid level bobbing in the sight glass.
+  function plantSVG() {
+    return '<svg class="plant" viewBox="0 0 200 360" aria-hidden="true"><defs>' +
+      '<linearGradient id="pdS" x1="0" x2="1"><stop offset="0" stop-color="#8F9AA7"/><stop offset=".42" stop-color="#EEF1F4"/><stop offset="1" stop-color="#7D8895"/></linearGradient>' +
+      '<linearGradient id="pdP" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E7A184"/><stop offset=".5" stop-color="#B5563A"/><stop offset="1" stop-color="#6E2E1C"/></linearGradient>' +
+      '<clipPath id="pdGlass"><rect x="178" y="128" width="8" height="118" rx="3"/></clipPath></defs>' +
+      '<rect x="0" y="142" width="92" height="16" fill="url(#pdP)" stroke="#15181D" stroke-width="2"/>' +
+      '<path class="pd-flow" d="M2 150H90"/>' +
+      '<rect x="44" y="134" width="6" height="32" rx="1" fill="#A4AEBA" stroke="#15181D" stroke-width="1.5"/><rect x="51" y="134" width="6" height="32" rx="1" fill="#A4AEBA" stroke="#15181D" stroke-width="1.5"/>' +
+      '<path d="M90 76a40 18 0 0 1 80 0v204a40 18 0 0 1-80 0z" fill="url(#pdS)" stroke="#15181D" stroke-width="2.5"/>' +
+      '<path d="M90 120h80M90 236h80" stroke="#15181D" stroke-width="1" opacity=".35"/>' +
+      '<path d="M130 58V40" stroke="#15181D" stroke-width="6"/><path d="M130 58V40" stroke="#C3CAD2" stroke-width="3"/>' +
+      '<path d="M121 40h18l-4-12h-10z" fill="#D9432B" stroke="#15181D" stroke-width="1.8"/><path d="M135 22h22v-10" fill="none" stroke="#15181D" stroke-width="4"/>' +
+      '<path d="M170 128h8M170 246h8" stroke="#15181D" stroke-width="3"/>' +
+      '<rect x="178" y="128" width="8" height="118" rx="3" fill="#F4F6F8" stroke="#15181D" stroke-width="1.8"/>' +
+      '<g clip-path="url(#pdGlass)"><rect class="pd-level" x="176" y="196" width="12" height="60" fill="#1B5FD1"/></g>' +
+      '<path d="M130 297v22h70" fill="none" stroke="#15181D" stroke-width="12" stroke-linejoin="round"/><path d="M130 297v22h70" fill="none" stroke="#B5563A" stroke-width="8" stroke-linejoin="round"/>' +
+      '<path class="pd-flow" d="M130 300v19h70"/>' +
+      '<path d="M100 290v50M160 290v50" stroke="#15181D" stroke-width="9"/><path d="M100 290v50M160 290v50" stroke="#C3CAD2" stroke-width="5"/>' +
+      '<rect x="88" y="338" width="24" height="6" rx="1" fill="#15181D"/><rect x="148" y="338" width="24" height="6" rx="1" fill="#15181D"/>' +
+      '<path d="M0 343H200" stroke="#15181D" stroke-width="2"/>' +
+      Array.apply(null, Array(13)).map(function (_, k) { return '<path d="M' + (4 + k * 15) + ' 343l-7 9" stroke="#4A515C" stroke-width="1.5"/>'; }).join('') +
+      '</svg>';
+  }
+
   function heroHTML() {
     var stats = D.stats.map(function (s, i) {
       var cls = ['s-amber', 's-energy', 's-cold', 's-hot'][i];
@@ -104,10 +127,11 @@
       '<a class="btn btn-line dl" href="assets/CV_Muhammad_Afifani_Romadhan.pdf" download>' + esc(strip(U.getCvCta)) + '</a></div>' +
       '<ul class="hero-tags" aria-label="' + esc(U.focusAreasLabel) + '">' + D.heroTags.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
       '</div>' +
-      '<div class="portrait">' + vesselParts() + '<div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
-      '<span class="nozzle n1" aria-hidden="true"></span><span class="nozzle n2" aria-hidden="true"></span>' +
-      '<div class="callout c2"><b>' + esc(U.nowLabel) + '</b>' + esc(U.nowValue) + '</div>' +
-      '<div class="callout c1"><b>' + esc(U.regLabel) + '</b>' + esc(U.regValue) + '</div></div>' +
+      '<div class="portrait"><div class="v-bg" aria-hidden="true"><img src="assets/img/site-phm.webp" alt="" width="1280" height="720" loading="lazy"></div>' +
+      '<div class="v-main">' + plantSVG() + vesselParts() + '<div class="vessel"><img src="assets/img/portrait.webp" width="786" height="800" alt="Portrait of Muhammad Afifani Romadhan" fetchpriority="high"></div>' +
+      '<span class="nozzle n1" aria-hidden="true"></span>' +
+      '<dl class="v-plate"><div><dt>' + esc(U.plateNowK) + '</dt><dd>' + esc(U.plateNow) + '</dd></div><div><dt>' + esc(U.plateRegK) + '</dt><dd>' + esc(U.plateReg) + '</dd></div></dl>' +
+      '</div></div>' +
       '</div>' +
       '<div class="clients"><span class="clients-label">' + esc(U.experienceAtLabel) + '</span><ul class="client-logos">' +
       P.clients.map(function (c) { return '<li><img src="' + esc(c.logo) + '" alt="' + esc(c.name) + '" width="120" height="34" loading="lazy"></li>'; }).join('') +
@@ -124,19 +148,32 @@
     }).join(' ');
   }
 
+  // Small engineering glyphs; the part with class "ia" moves when the row is hovered or first scrolls in.
+  var ICONS = {
+    vessel: ['s-hot', '<rect x="13" y="5" width="14" height="30" rx="7"/><path d="M20 5V2M27 18h5M8 26h5"/><path class="ia ia-wave" d="M14 23c2-1.6 4 1.6 6 0s4 1.6 6 0"/>'],
+    fem: ['s-violet', '<path d="M5 33L20 7l15 26zM12.5 20h15M20 7v26M12.5 20L20 33l7.5-13"/><circle class="ia ia-pulse" cx="20" cy="20" r="3.2"/>'],
+    hx: ['s-cold', '<rect x="5" y="13" width="30" height="14" rx="4"/><path d="M5 18h30M5 22h30"/><path class="ia ia-slide" d="M9 8h12m-3-3l3 3-3 3"/><path class="ia ia-slide2" d="M31 32H19m3-3l-3 3 3 3"/>'],
+    piping: ['s-amber', '<path d="M4 14h14a6 6 0 0 1 6 6v16"/><path d="M4 9v10M19 36h10"/><path class="ia ia-dash" d="M4 14h14a6 6 0 0 1 6 6v16"/>'],
+    plan: ['s-teal', '<path d="M7 11h13M11 20h17M17 29h16" class="thick"/><path class="ia ia-today" d="M22 5v30"/>'],
+    ghg: ['s-energy', '<path d="M9 36V19h6v17M5 36h14"/><path class="ia ia-drift" d="M16 14a4.5 4.5 0 0 1 8-2.5 4.5 4.5 0 0 1 8 3 3.5 3.5 0 0 1-2 6.5H18a3.5 3.5 0 0 1-2-7z"/>'],
+    energy: ['s-amber', '<path d="M7 29a13 13 0 1 1 26 0"/><path d="M10 29h3M27 29h3M20 16v3"/><path class="ia ia-needle" d="M20 29l7-8"/><circle cx="20" cy="29" r="2.2" class="fillc"/>'],
+    data: ['s-cold', '<path d="M6 35h28"/><path class="ia ia-bars" d="M10 33V23M17 33V15M24 33V19M31 33V9"/>']
+  };
+  function iconList(items, keys, extra) {
+    return '<ul class="ilist' + (extra ? ' ' + extra : '') + '">' + items.map(function (t, i) {
+      var ic = ICONS[keys[i]] || ICONS.vessel;
+      return '<li class="' + ic[0] + '" style="--i:' + i + '"><span class="ico" aria-hidden="true"><svg viewBox="0 0 40 40">' + ic[1] + '</svg></span><span>' + esc(t) + '</span></li>';
+    }).join('') + '</ul>';
+  }
+
   function aboutHTML() {
-    var legend = D.heroTags.map(function (t, i) {
-      var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
-      var dash = st[0] === 'dash' ? ' stroke-dasharray="10 6"' : st[0] === 'dot' ? ' stroke-dasharray="2 5" stroke-linecap="round"' : '';
-      return '<li><svg viewBox="0 0 56 10" aria-hidden="true"><line x1="0" y1="5" x2="56" y2="5" stroke="var(' + st[1] + ')" stroke-width="3.5"' + dash + '/></svg>' + esc(t) + '</li>';
-    }).join('');
     return section('about', 'About', 'E-01', U.sectionAbout, '', 's-energy',
       '<div class="about-grid"><div><p class="about-bio">' + esc(U.heroBio) + '</p>' +
       '<dl class="facts">' + D.quickFacts.map(function (f) {
         var v = f.value.indexOf('@') > 0 ? '<a class="link" href="mailto:' + esc(f.value) + '">' + esc(f.value) + '</a>' : esc(f.value);
         return '<div><dt>' + esc(cap(f.label)) + '</dt><dd>' + v + '</dd></div>';
       }).join('') + '</dl></div>' +
-      '<div><p class="legend-title">' + esc(cap(U.focusAreasLabel)) + '</p><ul class="legend">' + legend + '</ul></div></div>');
+      '<div><p class="legend-title">' + esc(cap(U.focusAreasLabel)) + '</p>' + iconList(D.heroTags, P.focusIcons) + '</div></div>');
   }
 
   function section(id, label, tag, title, intro, stream, inner, extra) {
@@ -375,15 +412,10 @@
         return '<div class="rd-row"><p><b>' + esc(LV[lv - 1]) + '</b><span class="rd-dots" aria-hidden="true">' + [1, 2, 3, 4].map(function (k) { return '<i' + (k <= lv ? ' class="on"' : '') + '></i>'; }).join('') + '</span></p><div>' +
           on.map(function (t) { return '<button type="button" class="rd-chip ' + t.g.stream + ' g-' + t.g.key + '" data-t="' + t.i + '">' + logo(t.name, 18) + esc(t.name) + '</button>'; }).join('') + '</div></div>';
       }).join('') + '</div><p class="cm-note">' + esc(U.levelNote) + '</p></div></div></div>';
-    var comp = D.coreSkills.map(function (t, i) {
-      var st = FOCUS_STYLE[i % FOCUS_STYLE.length];
-      var dash = st[0] === 'dash' ? ' stroke-dasharray="10 6"' : st[0] === 'dot' ? ' stroke-dasharray="2 5" stroke-linecap="round"' : '';
-      return '<li><svg viewBox="0 0 56 10" aria-hidden="true"><line x1="0" y1="5" x2="56" y2="5" stroke="var(' + st[1] + ')" stroke-width="3.5"' + dash + '/></svg>' + esc(t) + '</li>';
-    }).join('');
     return section('credentials', 'Skills & Credentials', 'E-06', U.sectionCredentials, '', 's-violet',
       '<ul class="certs">' + certs + '</ul>' + other +
       radar +
-      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p><ul class="legend legend-cols">' + comp + '</ul></div>');
+      '<div class="skills-block"><p class="sub-h">' + esc(cap(U.coreCompLabel)) + '</p>' + iconList(D.coreSkills, P.coreIcons, 'cols') + '</div>');
   }
 
   function medal(rank) {
@@ -395,8 +427,11 @@
   function achievementsHTML() {
     return section('achievements', 'Achievements', 'E-07', U.sectionAchievements, '', 's-amber',
       '<ul class="awards">' + D.achievements.map(function (a) {
-        return '<li class="award"><span class="award-y">' + esc(a.year) + '</span><div><h3>' + esc(a.title) + '</h3><p class="org">' + esc(a.org) + '</p>' +
-          '<p class="prog">' + esc(a.program) + (a.rank ? ' · ' + esc(a.rank) : '') + '</p>' + ext(a.link, U.viewEvidence) + '</div>' + medal(a.rank) + '</li>';
+        var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+        var ph = a.photo ? '<figure class="aw-photo">' + photoBtn(a.photo.src, a.photo.caption, a.photo.w, a.photo.h) + '</figure>'
+          : '<figure class="aw-photo aw-soon"><div class="slot">' + cam + esc(U.awardPhotoSoon) + '</div></figure>';
+        return '<li class="award">' + ph + '<div class="aw-body"><span class="award-y">' + esc(a.year) + '</span><div><h3>' + esc(a.title) + '</h3><p class="org">' + esc(a.org) + '</p>' +
+          '<p class="prog">' + esc(a.program) + (a.rank ? ' · ' + esc(a.rank) : '') + '</p>' + ext(a.link, U.viewEvidence) + '</div>' + medal(a.rank) + '</div></li>';
       }).join('') + '</ul>');
   }
 
@@ -714,6 +749,10 @@
       });
     });
     main.querySelectorAll('[data-tools]').forEach(function (box) { tabGroup(box, '.tool-tab'); });
+    if ('IntersectionObserver' in window && !IL.isPaused()) {
+      var il = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); il.unobserve(e.target); } }); }, { threshold: 0.3 });
+      main.querySelectorAll('.ilist').forEach(function (u) { il.observe(u); }); observers.push(il);
+    }
     // competency radar
     main.querySelectorAll('[data-rd]').forEach(function (box) {
       var rd = box.querySelector('.rd'), card = box.querySelector('.rd-card');
