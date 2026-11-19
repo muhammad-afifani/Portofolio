@@ -73,3 +73,5 @@ html.swarm-boot [data-screen-label] { opacity: 0; animation: swFailsafe .01s lin
 .sw-hud .sw-play { background: linear-gradient(90deg, #3B82F6, #8B5CF6); color: #fff; font-weight: 600; }
 .sw-hud .sw-play:hover { background: linear-gradient(90deg, #60a5fa, #a78bfa); }
 .sw-hud.sw-min .sw-replay { display: none !important; }
+
+.sw-hud.sw-gone { opacity: 0; transform: translate(-50%, 20px); transition: opacity .5s ease, transform .5s ease; pointer-events: none; }

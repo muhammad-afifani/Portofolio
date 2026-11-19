@@ -8,6 +8,8 @@
  * cursors building a site" idea (Swarm by Joel Califa, Swarm Rebuild by
  * Dhvanil Patel). No code from either project is used.
  *
+ * It only builds what is on screen when the page first loads, at 3x speed, and
+ * then the cursors leave and the swarm stops completely.
  * Visitors with "reduce motion" switched on get the finished page plus a
  * "Play swarm build" button instead of the automatic build.
  * URL switches: ?swarm=off (never run), ?swarm=on (always auto-play).
@@ -73,7 +75,7 @@
   var layer, hud, hudEls = {}, orb;
   var vw = window.innerWidth, vh = window.innerHeight;
   var mouse = { x: -1, y: -1, t: -1e9 };
-  var userSpeed = 1;
+  var userSpeed = 3;
   var building = false;
   var hidden = false;
   var doneCount = 0;
@@ -151,7 +153,11 @@
       var rootEl = roots[b];
       if (rootEl.parentElement && rootEl.parentElement.closest(BLOCK_SELECTOR)) continue;
       var fixed = getComputedStyle(rootEl).position === 'fixed';
-      var block = { el: rootEl, fixed: fixed, tasks: [], index: blocks.length };
+      var sticky = getComputedStyle(rootEl).position === 'sticky';
+      var br = rootEl.getBoundingClientRect();
+      // only what is on screen right now; everything further down shows normally
+      if (!fixed && !sticky && (br.top > vh || br.bottom < 0)) continue;
+      var block = { el: rootEl, fixed: fixed || sticky, tasks: [], index: blocks.length };
       blocks.push(block);
       var rootCs = getComputedStyle(rootEl);
       var rootKind = isBoxy(rootCs) ? 'box' : null;
@@ -172,6 +178,7 @@
       if (parseFloat(cs.opacity) < 0.02) continue;
       if (cs.position === 'fixed' && !block.fixed) continue;
       var r = c.getBoundingClientRect();
+      if (!block.fixed && (r.top > vh + 40 || r.bottom < -40)) continue;
       var kind = classify(c, cs);
       var t = parentTask;
       var onScreenX = r.right > 0 && r.left < vw;
@@ -301,6 +308,7 @@
       var dt = Math.min(0.05, (t - last) / 1000);
       last = t;
       try { tick(t, dt); } catch (e) { console.warn('[swarm]', e); }
+      if (completeAt && !agents.length) { layer.remove(); layer = null; return; }   // swarm gone: stop for good
       requestAnimationFrame(frame);
     })();
 
@@ -353,7 +361,7 @@
       setTimeout(function () {
         building = true;
         if (orb) { orb.classList.add('out'); setTimeout(function () { orb && orb.remove(); orb = null; }, 600); }
-      }, 1300);
+      }, 800);
     } else building = true;
   }
 
@@ -486,7 +494,7 @@
         limit(a, 1800);
         a.x += a.vx * dt; a.y += a.vy * dt;
         var ex = a.exit.x - a.x, ey = a.exit.y - a.y;
-        if (ex * ex + ey * ey < 900 || t - a.t0 > 2500) {
+        if (ex * ex + ey * ey < 900 || t - a.t0 > 1500) {
           a.el.remove();
           agents.splice(i, 1);
           updateHudAvatars();
@@ -752,7 +760,7 @@
       '<span class="sw-stat"><b class="sw-n">0</b> agents</span>' +
       '<span class="sw-stat sw-layers"><b class="sw-d">0</b> / <span class="sw-t">0</span> layers</span>' +
       '<div class="sw-bar"><i></i></div>' +
-      '<button type="button" class="sw-speed" aria-label="Build speed">1×</button>' +
+      '<button type="button" class="sw-speed" aria-label="Build speed">3×</button>' +
       '<button type="button" class="sw-skip">Skip</button>' +
       '<button type="button" class="sw-replay">↻ Replay</button>' +
       '<button type="button" class="sw-play">▶ Play swarm build</button>' +
@@ -789,12 +797,27 @@
     hudEls.d.textContent = doneCount;
     hudEls.t.textContent = tasks.length;
     hudEls.bar.style.width = (tasks.length ? doneCount / tasks.length * 100 : 0).toFixed(1) + '%';
-    var complete = tasks.length > 0 && doneCount >= tasks.length;
+    var complete = building && doneCount >= tasks.length;
     if (complete && !completeAt) {
       completeAt = t;
       hud.classList.add('sw-done');
       hudEls.layers.innerHTML = '<b>Built</b> ✓';
+      finishSwarm();
     }
+  }
+
+  // Build done: every cursor flies off screen, the HUD fades away, and the loop then stops.
+  function finishSwarm() {
+    building = false;
+    var t = now();
+    agents.forEach(function (a) {
+      if (a.task) release(a, t);
+      a.mode = 'leave'; a.t0 = t; a.exit = edgePoint();
+    });
+    setTimeout(function () {
+      hud.classList.add('sw-gone');
+      setTimeout(function () { hud.remove(); }, 500);
+    }, 900);
   }
 
   function updateHudAvatars() {
