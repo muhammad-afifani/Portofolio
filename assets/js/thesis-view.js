@@ -129,15 +129,20 @@
   }
 
   // ------------------------------------------------------------ a single baffle, face on
+  // Face view, as in the fabrication drawing: 8 semi-circular cut-outs (R6.5) on a 45° pitch, each with its
+  // straight fold line pointing at the centre. The cut tab is bent out along that line, so it shows as a
+  // narrow, foreshortened half-disc beside the hole. Only the disc spins; the label stays upright.
   function baffleSVG() {
-    var s = '<svg class="th-baffle" viewBox="-40 -40 80 80" aria-hidden="true"><circle r="34" fill="#D58B57" stroke="#15181D" stroke-width="1.2"/>' +
-      '<circle r="17.5" fill="var(--sheet)" stroke="#15181D" stroke-width="1.2"/>';
+    var s = '<svg class="th-baffle" viewBox="-44 -44 88 88" aria-hidden="true"><g class="th-baffle-rot">' +
+      '<circle r="34" fill="#D58B57" stroke="#15181D" stroke-width="1.2"/><circle r="17.5" fill="var(--sheet)" stroke="#15181D" stroke-width="1.2"/>';
     for (var k = 0; k < 8; k++) {
-      var a = k * 45;
-      s += '<g transform="rotate(' + a + ') translate(0 -26)"><path d="M-6.5 0a6.5 6.5 0 0 0 13 0z" fill="var(--sheet)" stroke="#15181D" stroke-width=".9"/>' +
-        '<path d="M-6.5 0a6.5 6.5 0 0 1 13 0z" fill="#F0B48D" stroke="#7A3E19" stroke-width=".7" opacity=".9"/></g>';
+      s += '<g transform="rotate(' + (k * 45) + ') translate(0 -26)">' +
+        '<path d="M0 -6.5a6.5 6.5 0 0 1 0 13z" fill="var(--sheet)" stroke="#15181D" stroke-width=".9"/>' +             // the hole
+        '<path d="M0 -6.5a2.6 6.5 0 0 0 0 13z" fill="#F0B48D" stroke="#7A3E19" stroke-width=".8"/>' +                 // the bent fin, foreshortened
+        '<path d="M0 -6.5v13" stroke="#15181D" stroke-width="1.1"/></g>';                                              // fold line, radial
     }
-    s += '<path d="M-34 0h-4M34 0h4" stroke="#15181D" stroke-width="1"/><text x="0" y="39" text-anchor="middle" font-size="5" font-family="IBM Plex Mono, monospace" fill="#4A515C">Ø68</text></svg>';
+    s += '</g><path d="M-34 0h-6M34 0h6" stroke="#15181D" stroke-width="1"/>' +
+      '<text x="0" y="42" text-anchor="middle" font-size="5" font-family="IBM Plex Mono, monospace" fill="#4A515C">Ø68 · 8 × R6.5 · 45°</text></svg>';
     return s;
   }
 
@@ -146,12 +151,12 @@
     return '<svg class="th-seesaw" viewBox="0 0 340 200" role="img" aria-label="' + esc(L.q.tradeQ) + '">' +
       '<path d="M170 168l-22 26h44z" fill="#15181D"/>' +
       '<g class="th-beam"><rect x="30" y="160" width="280" height="8" rx="3" fill="#15181D"/>' +
-      '<g transform="translate(70 160)"><rect x="-52" y="-46" width="104" height="46" rx="8" fill="#FBE5DC" stroke="#B3321D" stroke-width="2"/>' +
-      '<text y="-27" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="13" fill="#B3321D">' + esc(L.q.tradeUp.split(' ').slice(0, 2).join(' ')) + '</text>' +
-      '<text y="-11" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="12" fill="#B3321D">' + esc(L.q.tradeUp.split(' ').slice(2).join(' ')) + '</text></g>' +
-      '<g transform="translate(270 160)"><rect x="-52" y="-46" width="104" height="46" rx="8" fill="#DEE8FA" stroke="#1B5FD1" stroke-width="2"/>' +
-      '<text y="-27" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="13" fill="#1B5FD1">' + esc(L.q.tradeDown.split(' ').slice(0, 2).join(' ')) + '</text>' +
-      '<text y="-11" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="12" fill="#1B5FD1">' + esc(L.q.tradeDown.split(' ').slice(2).join(' ')) + '</text></g></g>' +
+      '<g transform="translate(76 160)"><rect x="-60" y="-46" width="120" height="46" rx="8" fill="#FBE5DC" stroke="#B3321D" stroke-width="2"/>' +
+      '<text y="-27" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="13" fill="#B3321D">' + esc(L.q.tradeUpL[0]) + '</text>' +
+      '<text y="-11" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="12" fill="#B3321D">' + esc(L.q.tradeUpL[1]) + '</text></g>' +
+      '<g transform="translate(264 160)"><rect x="-60" y="-46" width="120" height="46" rx="8" fill="#DEE8FA" stroke="#1B5FD1" stroke-width="2"/>' +
+      '<text y="-27" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="13" fill="#1B5FD1">' + esc(L.q.tradeDownL[0]) + '</text>' +
+      '<text y="-11" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="12" fill="#1B5FD1">' + esc(L.q.tradeDownL[1]) + '</text></g></g>' +
       '<g transform="translate(170 64)"><circle r="30" fill="var(--sheet)" stroke="#15181D" stroke-width="2"/>' +
       '<path d="M-20 0A20 20 0 0 1 0 -20" fill="none" stroke="#E3A008" stroke-width="3"/><path d="M0 0V-24M0 0L-17 -17" stroke="#15181D" stroke-width="2.4" stroke-linecap="round" class="th-q-hand"/>' +
       '<text y="20" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="16" fill="#15181D">θ ?</text></g>' +
@@ -199,6 +204,26 @@
     p.push('<div class="th-verdict"><h4>' + esc(L.l.verdict) + '</h4><p>' + esc(L.l.verdictBody) + '</p></div><div class="th-two">' +
       '<div><p class="th-label">' + esc(L.l.learnedTitle) + '</p><ul class="th-list">' + L.l.learned.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
       '<div><p class="th-label">' + esc(L.l.nextTitle) + '</p><ul class="th-list next">' + L.l.next.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div></div>');
+
+    // 7 journey
+    var JI = {
+      asme: '<rect x="13" y="6" width="14" height="28" rx="7"/><path d="M8 6v28M5 6h6M5 34h6"/>',
+      weld: '<path d="M5 30h30"/><path d="M8 30c2-4 4-4 6 0s4 4 6 0 4-4 6 0 4 4 6 0"/><path d="M26 6l-6 14"/><path d="M22 4l8 4"/>',
+      nde: '<circle cx="17" cy="17" r="9"/><path d="M24 24l9 9"/><path d="M12 17h3l2-4 2 8 2-4h2"/>',
+      test: '<path d="M7 28a13 13 0 1 1 26 0"/><path d="M20 28l7-9"/><circle cx="20" cy="28" r="2"/><path d="M20 30v6"/>',
+      coat: '<path d="M20 4l13 5v9c0 9-6 15-13 18-7-3-13-9-13-18V9z"/><path d="M14 19l4 4 8-8"/>',
+      stress: '<path d="M4 12h14a6 6 0 0 1 6 6v18"/><path d="M8 6l-4 6 4 6M30 30l-6 6-6-6"/>',
+      hysys: '<rect x="4" y="8" width="10" height="10" rx="2"/><rect x="26" y="8" width="10" height="10" rx="2"/><rect x="15" y="25" width="10" height="10" rx="2"/><path d="M14 13h12M31 18v5l-6 5M9 18v5l6 5"/>',
+      inst: '<circle cx="20" cy="17" r="10"/><path d="M10 17h20"/><path d="M20 27v8M14 35h12"/>',
+      cfd: '<path d="M4 12c8-5 12 5 20 0s8-3 12 0M4 20c8-5 12 5 20 0s8-3 12 0M4 28c8-5 12 5 20 0s8-3 12 0"/>'
+    };
+    p.push('<p class="th-lead">' + esc(L.j.lead) + '</p><p class="th-label">' + esc(L.j.learnTitle) + '</p><ol class="th-learn">' +
+      L.j.learn.map(function (x, k) {
+        return '<li style="--i:' + k + '"><span class="th-li" aria-hidden="true"><svg viewBox="0 0 40 40">' + (JI[T.journeyIcons[k]] || '') + '</svg></span><div><b>' + esc(x[0]) + '</b><p>' + esc(x[1]) + '</p></div></li>';
+      }).join('') + '</ol><p class="th-label">' + esc(L.j.pathTitle) + '</p><ol class="th-path">' +
+      L.j.path.map(function (x, k) {
+        return '<li style="--i:' + k + '"><span class="th-pn" aria-hidden="true">' + two(k) + '</span><span class="th-py">' + esc(x[0]) + '</span><b>' + esc(x[1]) + '</b><p>' + esc(x[2]) + '</p></li>';
+      }).join('') + '</ol><p class="th-close">' + esc(L.j.close) + '</p>');
 
     return '<div class="thesis" id="thesis" hidden><div class="th-head"><div><p class="th-kicker">' + esc(L.kicker) + '</p><h3>' + esc(L.title) + '</h3><p class="th-full">' + esc(L.full) + '</p></div>' +
       '<button type="button" class="icon-btn th-x" data-th-close aria-label="' + esc(L.close) + '"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2"/></svg></button>' +
