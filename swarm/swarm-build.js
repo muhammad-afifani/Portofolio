@@ -8,7 +8,7 @@
  * cursors building a site" idea (Swarm by Joel Califa, Swarm Rebuild by
  * Dhvanil Patel). No code from either project is used.
  *
- * It only builds what is on screen when the page first loads, at 3x speed, and
+ * It only builds what is on screen when the page first loads, at 2x speed, and
  * then the cursors leave and the swarm stops completely.
  * Visitors with "reduce motion" switched on get the finished page plus a
  * "Play swarm build" button instead of the automatic build.
@@ -75,7 +75,7 @@
   var layer, hud, hudEls = {}, orb;
   var vw = window.innerWidth, vh = window.innerHeight;
   var mouse = { x: -1, y: -1, t: -1e9 };
-  var userSpeed = 3;
+  var userSpeed = 2;
   var building = false;
   var hidden = false;
   var doneCount = 0;
@@ -760,7 +760,7 @@
       '<span class="sw-stat"><b class="sw-n">0</b> agents</span>' +
       '<span class="sw-stat sw-layers"><b class="sw-d">0</b> / <span class="sw-t">0</span> layers</span>' +
       '<div class="sw-bar"><i></i></div>' +
-      '<button type="button" class="sw-speed" aria-label="Build speed">3×</button>' +
+      '<button type="button" class="sw-speed" aria-label="Build speed">2×</button>' +
       '<button type="button" class="sw-skip">Skip</button>' +
       '<button type="button" class="sw-replay">↻ Replay</button>' +
       '<button type="button" class="sw-play">▶ Play swarm build</button>' +
