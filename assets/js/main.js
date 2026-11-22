@@ -436,19 +436,34 @@
   }
 
   function orgEduHTML() {
-    var orgs = '<ul class="orgs">' + D.organizational.map(function (o) {
-      return '<li class="org"><div><h3>' + esc(o.role) + '</h3><p class="where">' + esc(o.org) + '</p></div><div><p class="when">' + esc(o.dates) + '</p>' + ext(o.link, U.documentationLabel) + '</div></li>';
+    var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+    var ig = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>';
+    var orgs = '<ul class="orgs">' + D.organizational.map(function (o, i) {
+      var first = o.roles[0], body = 'org-b-' + o.key;
+      var photos = o.photos.length
+        ? o.photos.map(function (ph) { return '<figure>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '</figure>'; }).join('')
+        : Array.apply(null, Array(o.slots)).map(function () { return '<div class="slot">' + cam + '<span>' + esc(U.orgPhotosSoon) + '</span></div>'; }).join('');
+      return '<li class="org-card ' + o.stream + '"><button type="button" class="org-head" aria-expanded="false" aria-controls="' + body + '">' +
+        '<span class="org-n">' + two(i) + '</span><span class="org-t"><b>' + esc(first.role) + '</b><small>' + esc(o.org) + '</small></span>' +
+        '<span class="org-when">' + esc(first.dates) + '</span><span class="org-chev" aria-hidden="true"></span></button>' +
+        '<div class="org-body" id="' + body + '"><div class="org-in">' +
+        (o.roles.length > 1 ? '<ol class="org-roles" aria-label="' + esc(U.orgRolesLabel) + '">' + o.roles.map(function (r) { return '<li><b>' + esc(r.role) + '</b><span>' + esc(r.dates) + '</span></li>'; }).join('') + '</ol>' : '') +
+        '<p>' + esc(o.desc) + '</p><div class="org-photos">' + photos + '</div>' +
+        '<div class="org-links">' + o.links.map(function (l) {
+          return '<a class="' + (l.kind === 'ig' ? 'btn btn-ink org-ig' : 'link ext') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + (l.kind === 'ig' ? ig : '') + esc(l.label) + '</a>';
+        }).join('') + '</div></div></div></li>';
     }).join('') + '</ul>';
     var edu = '<div class="edu"><img src="assets/img/logo-unesa.webp" alt="UNESA" width="64" height="64" loading="lazy"><div><p class="when">2018 – 2022</p><h3>' + esc(U.degreeName) + '</h3>' +
       '<p>Universitas Negeri Surabaya, Surabaya, Indonesia</p><p>' + esc(U.gpaLabel) + '<b>3.61 / 4.0</b>, ' + esc(U.gpaText) + '</p>' +
-      '<p><i>' + esc(U.finalProjectLabel) + esc(U.finalProjectText) + '</i></p></div></div>' +
+      '<p><i>' + esc(U.finalProjectLabel) + esc(U.finalProjectText) + '</i></p>' + (window.ThesisView ? ThesisView.button(lang) : '') + '</div></div>' +
       '<div class="edu"><img src="assets/img/logo-its.webp" alt="ITS" width="64" height="64" loading="lazy"><div><p class="when">' + esc(U.irBatchLabel) + '</p><h3>' + esc(U.irDegreeName) + '</h3>' +
       '<p>Institut Teknologi Sepuluh Nopember (ITS), Surabaya, Indonesia</p><p>' + esc(U.irRegisteredText) + '</p>' +
       '<button type="button" class="pii-btn" data-lb="assets/img/pii-card.webp" data-cap="' + esc(U.viewPiiCardLabel) + '"><img src="assets/img/pii-card.webp" alt="" width="74" height="44" loading="lazy">' +
       '<span>' + esc(U.viewPiiCardLabel) + '<small>' + esc(U.piiRegNoLabel) + ' 1301.09.111868 · ' + esc(U.piiValidLabel) + ' 06/26–12/26</small></span></button></div></div>';
     return '<section class="sec s-cold" id="education" data-screen-label="Education"><div class="wrap"><div class="two">' +
       '<div id="organizational"><header class="sec-head"><span class="tag">E-08</span><h2>' + esc(U.sectionOrganizational) + '</h2></header>' + orgs + '</div>' +
-      '<div><header class="sec-head"><span class="tag">E-09</span><h2>' + esc(U.sectionEducation) + '</h2></header>' + edu + '</div></div></div></section>';
+      '<div><header class="sec-head"><span class="tag">E-09</span><h2>' + esc(U.sectionEducation) + '</h2></header>' + edu + '</div></div>' +
+      (window.ThesisView ? ThesisView.html(lang) : '') + '</div></section>';
   }
 
   function trainingHTML() {
@@ -753,6 +768,15 @@
       var il = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); il.unobserve(e.target); } }); }, { threshold: 0.3 });
       main.querySelectorAll('.ilist').forEach(function (u) { il.observe(u); }); observers.push(il);
     }
+    // organizational story cards
+    main.querySelectorAll('.org-head').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var open = b.getAttribute('aria-expanded') !== 'true';
+        b.setAttribute('aria-expanded', String(open));
+        b.parentNode.classList.toggle('open', open);
+      });
+    });
+    if (window.ThesisView) ThesisView.wire(main, lang, wireLightbox);
     // competency radar
     main.querySelectorAll('[data-rd]').forEach(function (box) {
       var rd = box.querySelector('.rd'), card = box.querySelector('.rd-card');

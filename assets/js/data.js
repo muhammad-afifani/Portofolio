@@ -156,7 +156,11 @@ window.PORTFOLIO = {
    "plateReg": "Ir. (PII) · 3 BNSP certificates",
    "plateNowK": "Now",
    "plateRegK": "Reg.",
-   "awardPhotoSoon": "Photo coming soon"
+   "awardPhotoSoon": "Photo coming soon",
+   "orgOpen": "Read more",
+   "orgClose": "Show less",
+   "orgPhotosSoon": "Photos coming soon",
+   "orgRolesLabel": "Roles"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -926,25 +930,57 @@ window.PORTFOLIO = {
   ],
   "organizational": [
    {
-    "role": "Team Leader",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+    "key": "kkn",
+    "stream": "s-energy",
     "org": "KKN Universitas Negeri Surabaya (UNESA)",
-    "orgShort": "UNESA",
-    "dates": "Jan 2021 – Jun 2021"
+    "orgShort": "KKN UNESA",
+    "roles": [
+     {
+      "role": "Team Leader",
+      "dates": "Jan 2021 – Jun 2021"
+     }
+    ],
+    "desc": "Community service (Kuliah Kerja Nyata) is a semester where UNESA students live and work with a community. I led our group through it: splitting the work, keeping the programs on schedule, and being the contact point between the team, the community and the university. Every activity was documented on the group’s Instagram.",
+    "links": [
+     {
+      "label": "Instagram @aryasaka.urdha",
+      "url": "https://www.instagram.com/aryasaka.urdha/",
+      "kind": "ig"
+     },
+     {
+      "label": "Documentation",
+      "url": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+      "kind": "doc"
+     }
+    ],
+    "photos": [],
+    "slots": 4
    },
    {
-    "role": "Chairman",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+    "key": "dc",
+    "stream": "s-violet",
     "org": "Design Community FT UNESA",
     "orgShort": "DC FT",
-    "dates": "Feb 2020 – Dec 2020"
-   },
-   {
-    "role": "Head of Engineering Design Department",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
-    "org": "Design Community FT UNESA",
-    "orgShort": "DC FT",
-    "dates": "Jan 2019 – Dec 2019"
+    "roles": [
+     {
+      "role": "Chairman",
+      "dates": "Feb 2020 – Dec 2020"
+     },
+     {
+      "role": "Head of Engineering Design Department",
+      "dates": "Jan 2019 – Dec 2019"
+     }
+    ],
+    "desc": "A student community at UNESA’s Faculty of Engineering for people who like to design. I joined the board as Head of the Engineering Design Department in 2019 and was chosen to chair the community in 2020.",
+    "links": [
+     {
+      "label": "Documentation",
+      "url": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+      "kind": "doc"
+     }
+    ],
+    "photos": [],
+    "slots": 3
    }
   ],
   "coreSkills": [
@@ -1380,7 +1416,11 @@ window.PORTFOLIO = {
    "plateReg": "Ir. (PII) · 3 sertifikat BNSP",
    "plateNowK": "Kini",
    "plateRegK": "Reg.",
-   "awardPhotoSoon": "Foto segera hadir"
+   "awardPhotoSoon": "Foto segera hadir",
+   "orgOpen": "Selengkapnya",
+   "orgClose": "Tutup",
+   "orgPhotosSoon": "Foto segera hadir",
+   "orgRolesLabel": "Peran"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -2150,25 +2190,57 @@ window.PORTFOLIO = {
   ],
   "organizational": [
    {
-    "role": "Team Leader",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+    "key": "kkn",
+    "stream": "s-energy",
     "org": "KKN Universitas Negeri Surabaya (UNESA)",
-    "orgShort": "UNESA",
-    "dates": "Jan 2021 – Jun 2021"
+    "orgShort": "KKN UNESA",
+    "roles": [
+     {
+      "role": "Ketua Kelompok",
+      "dates": "Jan 2021 – Jun 2021"
+     }
+    ],
+    "desc": "Kuliah Kerja Nyata adalah satu semester saat mahasiswa UNESA tinggal dan bekerja bersama masyarakat. Saya memimpin kelompok kami: membagi tugas, menjaga program tetap sesuai jadwal, dan menjadi penghubung antara tim, masyarakat, dan kampus. Setiap kegiatan didokumentasikan di Instagram kelompok.",
+    "links": [
+     {
+      "label": "Instagram @aryasaka.urdha",
+      "url": "https://www.instagram.com/aryasaka.urdha/",
+      "kind": "ig"
+     },
+     {
+      "label": "Dokumentasi",
+      "url": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+      "kind": "doc"
+     }
+    ],
+    "photos": [],
+    "slots": 4
    },
    {
-    "role": "Chairman",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+    "key": "dc",
+    "stream": "s-violet",
     "org": "Design Community FT UNESA",
     "orgShort": "DC FT",
-    "dates": "Feb 2020 – Dec 2020"
-   },
-   {
-    "role": "Head of Engineering Design Department",
-    "link": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
-    "org": "Design Community FT UNESA",
-    "orgShort": "DC FT",
-    "dates": "Jan 2019 – Dec 2019"
+    "roles": [
+     {
+      "role": "Ketua Umum",
+      "dates": "Feb 2020 – Des 2020"
+     },
+     {
+      "role": "Kepala Departemen Engineering Design",
+      "dates": "Jan 2019 – Des 2019"
+     }
+    ],
+    "desc": "Komunitas mahasiswa di Fakultas Teknik UNESA untuk yang suka mendesain. Saya masuk kepengurusan sebagai Kepala Departemen Engineering Design pada 2019, lalu dipercaya memimpin komunitas pada 2020.",
+    "links": [
+     {
+      "label": "Dokumentasi",
+      "url": "https://1drv.ms/f/c/8df1985aa0d6d304/IgDI-NxVPV3uSK8fbJpE60eUAR845Ss9s3DOA1Zn4AcEI3g?e=9Uzbj6",
+      "kind": "doc"
+     }
+    ],
+    "photos": [],
+    "slots": 3
    }
   ],
   "coreSkills": [
