@@ -879,7 +879,8 @@ details.fold .steps { margin-top: 6px; }
 .th-area b { font: 500 13px/1 var(--font-m); }
 .th-design { display: grid; grid-template-columns: 280px 1fr; gap: 32px; margin-top: 24px; align-items: start; }
 .th-baffle-fig { margin: 0; text-align: center; }
-.th-baffle { width: 200px; height: 200px; animation: thSpin 24s linear infinite; }
+.th-baffle { width: 220px; height: 220px; }
+.th-baffle-rot { transform-box: view-box; transform-origin: 0 0; animation: thSpin 24s linear infinite; }
 @keyframes thSpin { to { transform: rotate(360deg); } }
 .th-baffle-fig figcaption { font-size: 13.5px; color: var(--ink-2); text-align: left; margin-top: 10px; }
 .th-baffle-fig figcaption b { display: block; color: var(--ink); font-size: 15px; margin-bottom: 4px; }
@@ -972,4 +973,39 @@ details.fold .steps { margin-top: 6px; }
   .th-bar { grid-template-columns: 70px 1fr; } .th-bar b { grid-column: 2; }
   .th-pub { grid-template-columns: 1fr; } .th-pub svg { display: none; }
   .th-baffle-fig { grid-template-columns: 1fr; text-align: center; } .th-baffle { margin: 0 auto; }
+}
+
+
+/* thesis chapter 7: where it led me */
+.th-learn { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.th-learn li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 12px; border: 1.5px solid var(--line-2); border-radius: var(--r-m); background: #fff;
+  transition: border-color .2s, transform .2s; }
+.th-learn li:hover { border-color: var(--ink); transform: translateY(-2px); }
+.th-li { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--cold-tint); color: var(--cold); }
+.th-learn li:nth-child(3n+2) .th-li { background: var(--hot-tint); color: var(--hot-ink); }
+.th-learn li:nth-child(3n) .th-li { background: var(--energy-tint); color: var(--energy-ink); }
+.th-li svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.th-learn b { display: block; font: 700 15.5px/1.25 var(--font-d); }
+.th-learn p { font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin-top: 4px; }
+.th-path { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; padding-top: 6px; }
+.th-path::before { content: ''; position: absolute; left: 18px; right: 18px; top: 24px; height: 6px; border-radius: 3px;
+  background: repeating-linear-gradient(90deg, var(--cold) 0 14px, transparent 14px 22px); opacity: .55; animation: flowx 1.2s linear infinite; }
+.th-path li { position: relative; padding: 0 14px 0 0; }
+.th-pn { position: relative; z-index: 1; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--sheet); border: 2.5px solid var(--cold);
+  font: 500 12.5px/1 var(--font-m); color: var(--cold); margin-bottom: 12px; }
+.th-path li:last-child .th-pn { background: var(--cold); color: #fff; box-shadow: 0 0 0 6px var(--cold-tint); }
+.th-py { display: block; font: 500 12px/1.4 var(--font-m); color: var(--ink-2); }
+.th-path b { display: block; font: 700 18px/1.2 var(--font-d); margin: 2px 0 6px; }
+.th-path p { font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.th-close { margin-top: 26px; padding: 18px 22px; border-left: 4px solid var(--cold); background: var(--cold-tint); border-radius: 0 var(--r-m) var(--r-m) 0;
+  font: 600 clamp(16px, 1.5vw, 19px)/1.5 var(--font-b); }
+.th-panel.in .th-learn li { animation: fixIn .45s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 60ms + .1s); }
+.th-panel.in .th-path li { animation: fixIn .5s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 140ms + .5s); }
+@media (max-width: 980px) { .th-learn { grid-template-columns: 1fr 1fr; } .th-path { grid-template-columns: 1fr 1fr; gap: 22px 0; } .th-path::before { display: none; } }
+@media (max-width: 640px) {
+  .th-learn { grid-template-columns: 1fr; }
+  .th-path { grid-template-columns: 1fr; gap: 0; padding-left: 0; }
+  .th-path li { display: grid; grid-template-columns: 38px 1fr; column-gap: 14px; padding: 0 0 18px; }
+  .th-path li .th-pn { grid-row: span 3; margin: 0; }
+  .th-path li:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 40px; bottom: 0; width: 4px; background: repeating-linear-gradient(180deg, var(--cold) 0 8px, transparent 8px 14px); opacity: .55; }
 }

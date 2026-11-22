@@ -24,7 +24,7 @@ window.THESIS = {
     title: 'Does tilting a baffle make a heat exchanger better?',
     full: 'Experimental study of the inclination angle of semi-circular perforated baffles with semi-circular fins on the annulus side, on the performance of a double pipe heat exchanger',
     meta: [['Supervisor', 'Dr. I Made Arsana, S.Pd., M.T.'], ['Lab', 'Heat Transfer Lab A8.02.01, UNESA'], ['Concentration', 'Energy conversion'], ['Method', 'Experiment, 3 runs per variant']],
-    tabs: ['The question', 'The design', 'Building it', 'Testing', 'Results', 'What I learned'],
+    tabs: ['The question', 'The design', 'Building it', 'Testing', 'Results', 'Lessons', 'Where it led me'],
     variantNames: ['No baffle', '90°', '60°', '45°'],
 
     q: {
@@ -34,6 +34,7 @@ window.THESIS = {
         'Earlier studies showed that perforated, semi-circular baffles help. What nobody had pinned down was the angle. Tilt the baffle and it gets more surface, but it also blocks the flow differently. So I built one exchanger and tested it four ways: with no baffles, and with baffles tilted at 90°, 60° and 45°.'
       ],
       tradeUp: 'More heat transferred', tradeDown: 'More pressure drop', tradeQ: 'Which angle gives the best balance?',
+      tradeUpL: ['More heat', 'transferred'], tradeDownL: ['More pressure', 'drop'],
       fixed: 'Kept the same in every test',
       fixedItems: [['Hot water in', '80 °C, 4 L/min, inner pipe'], ['Cold water in', '30 °C, 8.5 L/min, annulus'], ['Flow', 'Counter flow'], ['Baffles', '18 copper baffles, same gap to the shell at every angle']]
     },
@@ -108,29 +109,58 @@ window.THESIS = {
     l: {
       verdict: 'The answer: 90°.',
       verdictBody: 'Baffles at 90° doubled the exchanger’s effectiveness, from 10% to 20%, and raised the heat the cold water actually received from 1.30 to 2.77 kJ/s, for only 50 Pa more pressure drop. Flatter angles gave more surface but not more useful heat, and cost more pressure.',
-      learnedTitle: 'What surprised me',
+      learnedTitle: 'Lessons learned',
       learned: [
         'More area did not mean more useful heat. At 60° and 45° the hot side gave off more heat, but the cold side received less: the time the water spends in contact matters as much as the surface.',
         'For two of the variants (no baffle and 90°) the cold side picked up more heat than the hot side gave. That cannot be physically true, so I reported it as an anomaly, most likely from instrument accuracy or reading before the rig was fully steady.',
-        'Baffles stir the flow and push heat to the outer wall. An exchanger with baffles needs thicker insulation than a plain one.'
+        'Baffles stir the flow and push heat to the outer wall. An exchanger with baffles needs thicker insulation than a plain one.',
+        'A rig is only as good as its readings. Waiting for steady state and checking the instruments mattered as much as the design itself.'
       ],
-      nextTitle: 'What I would do next',
+      nextTitle: 'Suggestions for future research',
       next: [
         'Log temperatures every second with a microcontroller instead of reading displays by hand.',
         'Measure insulation temperature at more than four points, and calculate convection to the room.',
+        'Find out why useful heat fell as area grew: is contact time the cause, or the quality of the joint between fins and pipe?',
         'Look into the unsteady inlet pressure on the annulus side (water hammer).',
-        'Check the mechanical side too: the shell against ASME Section VIII and the hot piping for thermal expansion (ASME B31).'
+        'Check the mechanical side too: the shell against ASME Section VIII and the hot piping for thermal expansion and pipe stress (ASME B31).',
+        'Track the pumps\u2019 health (remaining useful life): one pump surged and dropped back during testing.'
       ]
+    },
+
+    j: {
+      lead: 'The thesis was one small heat exchanger on a lab bench. It left me wanting to understand the whole life of a real one, from the first calculation to the day it runs in a plant.',
+      learnTitle: 'What I went on to learn',
+      learn: [
+        ['Design to code', 'Sizing shells, heads and nozzles for pressure and temperature, the ASME way.'],
+        ['Welding', 'How joints are specified, qualified and made, with AWS as the reference.'],
+        ['Inspection (NDE)', 'Finding what the eye cannot see in a weld: RT, UT, PT and MT.'],
+        ['Pressure testing', 'Proving a vessel or a line is tight and strong before it goes into service.'],
+        ['Coating and corrosion', 'Protecting steel so the equipment lasts its design life.'],
+        ['Pipe stress', 'Making sure hot piping can expand without overloading nozzles and supports.'],
+        ['Process systems', 'Seeing an exchanger as part of a whole plant, modelled in Aspen HYSYS.'],
+        ['Instrumentation and control', 'The sensors and loops that keep temperatures and flows where they should be.'],
+        ['CFD and FEA', 'Simulating flow, heat and stress, the next step after a physical test rig.']
+      ],
+      pathTitle: 'Where it took me',
+      path: [
+        ['2022', 'Lab', 'Built and tested my own heat exchanger for the thesis.'],
+        ['2023 – 2024', 'EPC and fabrication', 'Piping welding and inspection control on the Manyar smelter EPCC project (WIKA).'],
+        ['2022 – 2025', 'Engineering studies', 'Freelance ASME calculations, FEM, CFD and heat exchanger sizing for EPC contractors and operators.'],
+        ['2024 – now', 'Operations', 'Environment Engineer for energy and emissions in upstream oil and gas at Pertamina Hulu Mahakam.']
+      ],
+      close: 'Each step started with the same question I asked in the lab: what is really happening inside this equipment, and how do we make it work better?'
     }
   },
 
+  // the story after the thesis (tab 7)
+  journeyIcons: ['asme', 'weld', 'nde', 'test', 'coat', 'stress', 'hysys', 'inst', 'cfd'],
   id: {
     open: 'Lihat skripsi', close: 'Tutup skripsi',
     kicker: 'Skripsi S1 · Universitas Negeri Surabaya · 2022',
     title: 'Apakah memiringkan baffle membuat heat exchanger lebih baik?',
     full: 'Studi eksperimental pengaruh sudut kemiringan semi-circular perforated baffle dengan semi circular fins pada sisi annulus terhadap performa double pipe heat exchanger',
     meta: [['Pembimbing', 'Dr. I Made Arsana, S.Pd., M.T.'], ['Lab', 'Lab Perpindahan Panas A8.02.01, UNESA'], ['Konsentrasi', 'Konversi energi'], ['Metode', 'Eksperimen, 3 kali per variasi']],
-    tabs: ['Pertanyaannya', 'Desainnya', 'Membuatnya', 'Pengujian', 'Hasil', 'Yang saya pelajari'],
+    tabs: ['Pertanyaannya', 'Desainnya', 'Membuatnya', 'Pengujian', 'Hasil', 'Pelajaran', 'Ke mana ini membawa saya'],
     variantNames: ['Tanpa baffle', '90°', '60°', '45°'],
 
     q: {
@@ -140,6 +170,7 @@ window.THESIS = {
         'Penelitian sebelumnya menunjukkan baffle setengah lingkaran berlubang itu membantu. Yang belum ditemukan adalah sudutnya. Kalau baffle dimiringkan, luasnya bertambah, tapi cara ia menghalangi aliran juga berubah. Jadi saya membuat satu heat exchanger dan mengujinya dengan empat cara: tanpa baffle, serta dengan baffle bersudut 90°, 60°, dan 45°.'
       ],
       tradeUp: 'Kalor yang berpindah bertambah', tradeDown: 'Pressure drop bertambah', tradeQ: 'Sudut mana yang paling seimbang?',
+      tradeUpL: ['Kalor pindah', 'bertambah'], tradeDownL: ['Pressure drop', 'bertambah'],
       fixed: 'Dibuat sama di setiap pengujian',
       fixedItems: [['Air panas masuk', '80 °C, 4 L/menit, inner pipe'], ['Air dingin masuk', '30 °C, 8,5 L/menit, annulus'], ['Arah aliran', 'Counter flow'], ['Baffle', '18 baffle tembaga, jarak ke shell sama di setiap sudut']]
     },
@@ -214,19 +245,46 @@ window.THESIS = {
     l: {
       verdict: 'Jawabannya: 90°.',
       verdictBody: 'Baffle bersudut 90° menggandakan efektivitas heat exchanger dari 10% menjadi 20%, dan menaikkan kalor yang benar-benar diterima air dingin dari 1,30 menjadi 2,77 kJ/s, dengan tambahan pressure drop hanya 50 Pa. Sudut yang lebih landai memberi permukaan lebih luas, tapi tidak menambah kalor yang berguna, dan pressure drop-nya lebih besar.',
-      learnedTitle: 'Yang membuat saya terkejut',
+      learnedTitle: 'Pelajaran yang saya dapat',
       learned: [
         'Luas yang lebih besar tidak berarti kalor berguna lebih banyak. Pada 60° dan 45° sisi panas melepas lebih banyak kalor, tapi sisi dingin justru menerima lebih sedikit: lamanya air bersentuhan sama pentingnya dengan luas permukaan.',
         'Pada dua variasi, sisi dingin menerima kalor lebih banyak daripada yang dilepas sisi panas. Secara fisik itu tidak mungkin, jadi saya laporkan sebagai anomali, kemungkinan dari ketelitian instrumen atau pembacaan sebelum alat benar-benar steady.',
-        'Baffle mengaduk aliran dan mendorong kalor ke dinding luar. Heat exchanger dengan baffle butuh insulasi lebih tebal daripada yang polos.'
+        'Baffle mengaduk aliran dan mendorong kalor ke dinding luar. Heat exchanger dengan baffle butuh insulasi lebih tebal daripada yang polos.',
+        'Alat uji hanya sebaik pembacaannya. Menunggu kondisi steady dan mengecek instrumen sama pentingnya dengan desain alatnya.'
       ],
-      nextTitle: 'Yang akan saya lakukan berikutnya',
+      nextTitle: 'Saran untuk penelitian selanjutnya',
       next: [
         'Mencatat temperatur setiap detik dengan microcontroller, bukan membaca display secara manual.',
         'Mengukur temperatur insulasi di lebih dari empat titik, dan menghitung konveksi ke ruangan.',
+        'Mencari tahu kenapa kalor berguna turun saat luas bertambah: apakah karena waktu kontak, atau kualitas sambungan antara sirip dan pipa?',
         'Meneliti tekanan masuk yang tidak stabil di sisi annulus (water hammer).',
-        'Mengecek sisi mekanikalnya juga: shell terhadap ASME Section VIII dan pipa panas terhadap pemuaian termal (ASME B31).'
+        'Mengecek sisi mekanikalnya juga: shell terhadap ASME Section VIII dan pipa panas terhadap pemuaian termal dan pipe stress (ASME B31).',
+        'Memantau kesehatan pompa (remaining useful life): satu pompa sempat melonjak lalu turun lagi saat pengujian.'
       ]
+    },
+
+    j: {
+      lead: 'Skripsi ini hanya satu heat exchanger kecil di meja lab. Tapi dari situ saya ingin memahami seluruh hidup heat exchanger yang sebenarnya, dari perhitungan pertama sampai hari ia beroperasi di plant.',
+      learnTitle: 'Yang kemudian saya dalami',
+      learn: [
+        ['Desain sesuai code', 'Menghitung shell, head, dan nozzle terhadap tekanan dan temperatur, mengacu ASME.'],
+        ['Pengelasan', 'Bagaimana sambungan dispesifikasikan, dikualifikasi, dan dikerjakan, mengacu AWS.'],
+        ['Inspeksi (NDE)', 'Menemukan cacat las yang tidak terlihat mata: RT, UT, PT, dan MT.'],
+        ['Pressure test', 'Membuktikan vessel atau jalur pipa rapat dan kuat sebelum dioperasikan.'],
+        ['Coating dan korosi', 'Melindungi baja agar peralatan bertahan sesuai umur desainnya.'],
+        ['Pipe stress', 'Memastikan pipa panas bisa memuai tanpa membebani nozzle dan support.'],
+        ['Sistem proses', 'Melihat heat exchanger sebagai bagian dari seluruh plant, dimodelkan di Aspen HYSYS.'],
+        ['Instrumentasi dan kontrol', 'Sensor dan loop kendali yang menjaga temperatur dan debit tetap di tempatnya.'],
+        ['CFD dan FEA', 'Mensimulasikan aliran, kalor, dan tegangan, langkah lanjut setelah alat uji fisik.']
+      ],
+      pathTitle: 'Ke mana ini membawa saya',
+      path: [
+        ['2022', 'Lab', 'Membuat dan menguji heat exchanger sendiri untuk skripsi.'],
+        ['2023 – 2024', 'EPC dan fabrikasi', 'Kontrol welding dan inspeksi piping di proyek EPCC smelter Manyar (WIKA).'],
+        ['2022 – 2025', 'Studi engineering', 'Freelance perhitungan ASME, FEM, CFD, dan sizing heat exchanger untuk kontraktor EPC dan operator.'],
+        ['2024 – sekarang', 'Operasi', 'Environment Engineer bidang energi dan emisi di hulu migas, Pertamina Hulu Mahakam.']
+      ],
+      close: 'Setiap langkah berawal dari pertanyaan yang sama dengan di lab: apa yang sebenarnya terjadi di dalam peralatan ini, dan bagaimana membuatnya bekerja lebih baik?'
     }
   }
 };
