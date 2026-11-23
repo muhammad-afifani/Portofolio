@@ -160,7 +160,10 @@ window.PORTFOLIO = {
    "orgOpen": "Read more",
    "orgClose": "Show less",
    "orgPhotosSoon": "Photos coming soon",
-   "orgRolesLabel": "Roles"
+   "orgRolesLabel": "Roles",
+   "showEmail": "Show email",
+   "showPhone": "Show phone",
+   "hiddenNote": "Hidden from search engines and bots"
   },
   "heroTags": [
    "Static Equipment according to ASME",
@@ -178,7 +181,8 @@ window.PORTFOLIO = {
    },
    {
     "label": "EMAIL",
-    "value": "muhammad.afifani007@gmail.com"
+    "value": "",
+    "reveal": "email"
    },
    {
     "label": "CURRENT ROLE",
@@ -1420,7 +1424,10 @@ window.PORTFOLIO = {
    "orgOpen": "Selengkapnya",
    "orgClose": "Tutup",
    "orgPhotosSoon": "Foto segera hadir",
-   "orgRolesLabel": "Peran"
+   "orgRolesLabel": "Peran",
+   "showEmail": "Tampilkan email",
+   "showPhone": "Tampilkan nomor telepon",
+   "hiddenNote": "Disembunyikan dari mesin pencari dan bot"
   },
   "heroTags": [
    "Static Equipment sesuai ASME",
@@ -1438,7 +1445,8 @@ window.PORTFOLIO = {
    },
    {
     "label": "EMAIL",
-    "value": "muhammad.afifani007@gmail.com"
+    "value": "",
+    "reveal": "email"
    },
    {
     "label": "PERAN SAAT INI",
@@ -2596,5 +2604,10 @@ window.PORTFOLIO = {
   "ghg",
   "energy",
   "plan"
- ]
+ ],
+ "contact": {
+  "e": "bXVoYW1tYWQuYWZpZmFuaTAwN0BnbWFpbC5jb20=",
+  "p": "KzYyODUyNTk3MDc2NDk=",
+  "pShow": "KzYyIDg1Mi01OTcwLTc2NDk="
+ }
 };
