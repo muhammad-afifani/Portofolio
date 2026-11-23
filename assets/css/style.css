@@ -1009,3 +1009,12 @@ details.fold .steps { margin-top: 6px; }
   .th-path li .th-pn { grid-row: span 3; margin: 0; }
   .th-path li:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 40px; bottom: 0; width: 4px; background: repeating-linear-gradient(180deg, var(--cold) 0 8px, transparent 8px 14px); opacity: .55; }
 }
+
+
+/* contact details revealed on request */
+.reveal { border: 1.5px dashed var(--line-2); background: var(--paper); border-radius: var(--r-s); padding: 6px 12px; font: 600 14px/1.2 var(--font-b); display: inline-flex; align-items: center; gap: 8px; transition: border-color .2s, background .2s; }
+.reveal::before { content: ''; width: 14px; height: 10px; border: 2px solid currentColor; border-radius: 2px; background: linear-gradient(135deg, transparent 45%, currentColor 46% 54%, transparent 55%); opacity: .7; }
+.reveal:hover { border-style: solid; border-color: var(--ink); background: var(--sheet); }
+.reveal.big { font-size: clamp(16px, 1.6vw, 20px); padding: 9px 16px; border-color: #5A626C; background: transparent; color: var(--paper); }
+.reveal.big:hover { border-color: #F6C453; color: #F6C453; background: transparent; }
+.contact-links li { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }

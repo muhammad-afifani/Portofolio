@@ -170,7 +170,7 @@
     return section('about', 'About', 'E-01', U.sectionAbout, '', 's-energy',
       '<div class="about-grid"><div><p class="about-bio">' + esc(U.heroBio) + '</p>' +
       '<dl class="facts">' + D.quickFacts.map(function (f) {
-        var v = f.value.indexOf('@') > 0 ? '<a class="link" href="mailto:' + esc(f.value) + '">' + esc(f.value) + '</a>' : esc(f.value);
+        var v = f.reveal ? '<button type="button" class="reveal" data-reveal="' + f.reveal + '"><span>' + esc(U.showEmail) + '</span></button>' : esc(f.value);
         return '<div><dt>' + esc(cap(f.label)) + '</dt><dd>' + v + '</dd></div>';
       }).join('') + '</dl></div>' +
       '<div><p class="legend-title">' + esc(cap(U.focusAreasLabel)) + '</p>' + iconList(D.heroTags, P.focusIcons) + '</div></div>');
@@ -241,11 +241,11 @@
     var T = D.tools || [];
     if (!T.length) return '';
     var cam = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
-    function mail(t) {
+    function mailBody(t) {
       var body = lang === 'id'
         ? 'Halo Afifani,\n\nSaya ingin meminta akses ke ' + t.name + '.\n\nNama:\nInstansi:\nKeperluan:\n'
         : 'Hi Afifani,\n\nI would like to request access to ' + t.name + '.\n\nName:\nCompany:\nPurpose:\n';
-      return 'mailto:muhammad.afifani007@gmail.com?subject=' + encodeURIComponent((lang === 'id' ? 'Permintaan akses: ' : 'Access request: ') + t.name) + '&body=' + encodeURIComponent(body);
+      return '?subject=' + encodeURIComponent((lang === 'id' ? 'Permintaan akses: ' : 'Access request: ') + t.name) + '&body=' + encodeURIComponent(body);
     }
     return '<div class="sbt" data-tools><div class="sbt-head"><p class="issues-label">' + esc(U.toolsLabel) + ' <span class="fold-n">' + T.length + '</span></p>' +
       '<p class="sbt-intro">' + esc(U.toolsIntro) + '</p></div><div class="sbt-wrap">' +
@@ -259,7 +259,7 @@
           : '<div class="device-soon">' + t.shots.map(function (x) { return '<div class="slot">' + cam + '<span>' + esc(x.caption) + '</span><small>' + esc(U.toolSoon) + '</small></div>'; }).join('') + '</div>';
         return '<div class="tool-panel' + (k === 0 ? ' in' : '') + '" role="tabpanel" id="tool-p' + k + '" aria-labelledby="tool-t' + k + '"' + (k ? ' hidden' : '') + '>' +
           '<div class="device"><div class="device-bar"><span class="device-name">' + esc(t.name) + '</span><span class="device-chip">' + esc(U.toolWebApp) + '</span></div>' + screen + '</div>' +
-          '<div class="tool-info"><div><p class="tool-desc">' + esc(t.desc) + '</p><div class="tool-cta"><a class="btn btn-ink" href="' + esc(mail(t)) + '">' + esc(U.toolRequest) + '</a><small>' + esc(U.toolRequestNote) + '</small></div></div>' +
+          '<div class="tool-info"><div><p class="tool-desc">' + esc(t.desc) + '</p><div class="tool-cta"><button type="button" class="btn btn-ink" data-req="' + esc(mailBody(t)) + '">' + esc(U.toolRequest) + '</button><small>' + esc(U.toolRequestNote) + '</small></div></div>' +
           '<ul class="tool-feats">' + t.features.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div></div>';
       }).join('') + '</div></div></div>';
   }
@@ -486,8 +486,8 @@
     var T = IL_TEXT[lang];
     return '<section class="sec contact" id="contact" data-screen-label="Contact"><div class="wrap"><div class="contact-grid"><div>' +
       '<span class="tag">E-12 · ' + esc(cap(U.getInTouch)) + '</span><h2>' + esc(U.contactHeadline) + '</h2>' +
-      '<ul class="contact-links"><li><a href="mailto:muhammad.afifani007@gmail.com"><small>Email</small>muhammad.afifani007@gmail.com</a></li>' +
-      '<li><a href="tel:+6285259707649"><small>' + esc(U.callMe) + '</small>+62 852-5970-7649</a></li>' +
+      '<ul class="contact-links"><li><small>Email</small><button type="button" class="reveal big" data-reveal="email"><span>' + esc(U.showEmail) + '</span></button></li>' +
+      '<li><small>' + esc(U.callMe) + '</small><button type="button" class="reveal big" data-reveal="phone"><span>' + esc(U.showPhone) + '</span></button></li>' +
       '<li><a href="https://www.linkedin.com/in/muhammad-afifani-romadhan/" target="_blank" rel="noopener"><small>LinkedIn</small><span class="ext">muhammad-afifani-romadhan</span></a></li></ul>' +
       '<a class="btn btn-ink dl" href="assets/CV_Muhammad_Afifani_Romadhan.pdf" download>' + esc(strip(U.downloadFullCv)) + '</a></div>' +
       '<figure class="contact-photo"><img src="assets/img/contact-photo.webp" width="1294" height="725" alt="' + esc(U.contactPhotoCaption) + '" loading="lazy"><figcaption>' + esc(U.contactPhotoCaption) + '</figcaption></figure></div>' +
@@ -768,6 +768,20 @@
       var il = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); il.unobserve(e.target); } }); }, { threshold: 0.3 });
       main.querySelectorAll('.ilist').forEach(function (u) { il.observe(u); }); observers.push(il);
     }
+    // contact details are stored encoded and only decoded when asked for, so crawlers and scrapers do not see them
+    function secret(k) { try { return atob(P.contact[k]); } catch (e) { return ''; } }
+    main.querySelectorAll('[data-reveal]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var email = b.dataset.reveal === 'email', a = document.createElement('a');
+        a.className = b.className.replace('reveal', 'link').trim();
+        a.href = (email ? 'mailto:' : 'tel:') + secret(email ? 'e' : 'p');
+        a.textContent = email ? secret('e') : secret('pShow');
+        b.replaceWith(a); a.focus();
+      });
+    });
+    main.querySelectorAll('[data-req]').forEach(function (b) {
+      b.addEventListener('click', function () { window.location.href = 'mailto:' + secret('e') + b.dataset.req; });
+    });
     // organizational story cards
     main.querySelectorAll('.org-head').forEach(function (b) {
       b.addEventListener('click', function () {
