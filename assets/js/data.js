@@ -957,8 +957,69 @@ window.PORTFOLIO = {
       "kind": "doc"
      }
     ],
-    "photos": [],
-    "slots": 4
+    "photos": [
+     {
+      "src": "assets/img/kkn/tim-kkn.webp",
+      "caption": "Full KKN team at the Masangan Village Hall",
+      "w": 1792,
+      "h": 864
+     },
+     {
+      "src": "assets/img/kkn/bersama-pengurus.webp",
+      "caption": "With the Masangan Village Hall officials",
+      "w": 1792,
+      "h": 864
+     },
+     {
+      "src": "assets/img/kkn/balai-desa-pengurus.webp",
+      "caption": "Group photo with the Masangan Village Hall board, Manyar, Gresik",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/kenang-kenangan-kades.webp",
+      "caption": "Handing over a keepsake to the Masangan village head",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/training-hidroponik.webp",
+      "caption": "Hydroponic training event",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/takjil-bazar.webp",
+      "caption": "Takjil and Ramadan bazaar event",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/mengajar-sd.webp",
+      "caption": "Teaching at the elementary school",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/makan-bersama.webp",
+      "caption": "Eating together",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/irigasi-sprinkler.webp",
+      "caption": "Sprinkler irrigation built by the KKN team",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/hasil-hidroponik.webp",
+      "caption": "Hydroponic harvest in front of the Village Hall",
+      "w": 930,
+      "h": 824
+     }
+    ],
+    "slots": 0
    },
    {
     "key": "dc",
@@ -2221,8 +2282,69 @@ window.PORTFOLIO = {
       "kind": "doc"
      }
     ],
-    "photos": [],
-    "slots": 4
+    "photos": [
+     {
+      "src": "assets/img/kkn/tim-kkn.webp",
+      "caption": "Foto full tim KKN di Balai Desa Masangan",
+      "w": 1792,
+      "h": 864
+     },
+     {
+      "src": "assets/img/kkn/bersama-pengurus.webp",
+      "caption": "Foto bersama pengurus Balai Desa Masangan",
+      "w": 1792,
+      "h": 864
+     },
+     {
+      "src": "assets/img/kkn/balai-desa-pengurus.webp",
+      "caption": "Foto bersama kepengurusan Balai Desa Masangan, Kec. Manyar, Kab. Gresik",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/kenang-kenangan-kades.webp",
+      "caption": "Penyerahan kenang-kenangan ke Kades Desa Masangan",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/training-hidroponik.webp",
+      "caption": "Event Training Hidroponik",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/takjil-bazar.webp",
+      "caption": "Event Takjil dan Bazar Ramadhan",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/mengajar-sd.webp",
+      "caption": "Kegiatan mengajar di Sekolah Dasar",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/makan-bersama.webp",
+      "caption": "Makan bersama",
+      "w": 930,
+      "h": 834
+     },
+     {
+      "src": "assets/img/kkn/irigasi-sprinkler.webp",
+      "caption": "Irigasi sprinkler buatan kelompok KKN",
+      "w": 930,
+      "h": 824
+     },
+     {
+      "src": "assets/img/kkn/hasil-hidroponik.webp",
+      "caption": "Hasil hidroponik di depan Balai Desa",
+      "w": 930,
+      "h": 824
+     }
+    ],
+    "slots": 0
    },
    {
     "key": "dc",
