@@ -966,15 +966,9 @@ window.PORTFOLIO = {
      },
      {
       "src": "assets/img/kkn/bersama-pengurus.webp",
-      "caption": "With the Masangan Village Hall officials",
+      "caption": "Group photo with the Masangan Village Hall board, Manyar, Gresik",
       "w": 1792,
       "h": 864
-     },
-     {
-      "src": "assets/img/kkn/balai-desa-pengurus.webp",
-      "caption": "Group photo with the Masangan Village Hall board, Manyar, Gresik",
-      "w": 930,
-      "h": 824
      },
      {
       "src": "assets/img/kkn/kenang-kenangan-kades.webp",
@@ -2291,15 +2285,9 @@ window.PORTFOLIO = {
      },
      {
       "src": "assets/img/kkn/bersama-pengurus.webp",
-      "caption": "Foto bersama pengurus Balai Desa Masangan",
+      "caption": "Foto bersama kepengurusan Balai Desa Masangan, Kec. Manyar, Kab. Gresik",
       "w": 1792,
       "h": 864
-     },
-     {
-      "src": "assets/img/kkn/balai-desa-pengurus.webp",
-      "caption": "Foto bersama kepengurusan Balai Desa Masangan, Kec. Manyar, Kab. Gresik",
-      "w": 930,
-      "h": 824
      },
      {
       "src": "assets/img/kkn/kenang-kenangan-kades.webp",
