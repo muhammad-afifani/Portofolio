@@ -441,14 +441,14 @@
     var orgs = '<ul class="orgs">' + D.organizational.map(function (o, i) {
       var first = o.roles[0], body = 'org-b-' + o.key;
       var photos = o.photos.length
-        ? o.photos.map(function (ph) { return '<figure>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + '</figure>'; }).join('')
+        ? o.photos.map(function (ph, n) { return '<figure' + (n === 0 ? ' class="lead"' : '') + '>' + photoBtn(ph.src, ph.caption, ph.w, ph.h) + (ph.caption ? '<figcaption>' + esc(ph.caption) + '</figcaption>' : '') + '</figure>'; }).join('')
         : Array.apply(null, Array(o.slots)).map(function () { return '<div class="slot">' + cam + '<span>' + esc(U.orgPhotosSoon) + '</span></div>'; }).join('');
       return '<li class="org-card ' + o.stream + '"><button type="button" class="org-head" aria-expanded="false" aria-controls="' + body + '">' +
         '<span class="org-n">' + two(i) + '</span><span class="org-t"><b>' + esc(first.role) + '</b><small>' + esc(o.org) + '</small></span>' +
         '<span class="org-when">' + esc(first.dates) + '</span><span class="org-chev" aria-hidden="true"></span></button>' +
         '<div class="org-body" id="' + body + '"><div class="org-in">' +
         (o.roles.length > 1 ? '<ol class="org-roles" aria-label="' + esc(U.orgRolesLabel) + '">' + o.roles.map(function (r) { return '<li><b>' + esc(r.role) + '</b><span>' + esc(r.dates) + '</span></li>'; }).join('') + '</ol>' : '') +
-        '<p>' + esc(o.desc) + '</p><div class="org-photos">' + photos + '</div>' +
+        '<p>' + esc(o.desc) + '</p><div class="org-photos' + (o.photos.length ? ' has-pics' : '') + '">' + photos + '</div>' +
         '<div class="org-links">' + o.links.map(function (l) {
           return '<a class="' + (l.kind === 'ig' ? 'btn btn-ink org-ig' : 'link ext') + '" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + (l.kind === 'ig' ? ig : '') + esc(l.label) + '</a>';
         }).join('') + '</div></div></div></li>';
